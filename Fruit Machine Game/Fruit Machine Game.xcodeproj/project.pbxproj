@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC985B6B184D315500283E1A /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B6A184D315500283E1A /* MainMenu.m */; };
+		DC985B6E184D321B00283E1A /* MainGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B6D184D321B00283E1A /* MainGameScene.m */; };
+		DC985B71184D323800283E1A /* HorseRacingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B70184D323800283E1A /* HorseRacingGame.m */; };
+		DC985B74184D326100283E1A /* WackAmoleGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B73184D326100283E1A /* WackAmoleGame.m */; };
+		DC985B77184D355500283E1A /* SpinTheWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B76184D355500283E1A /* SpinTheWheel.m */; };
+		DC985B7D184D35D000283E1A /* PopTheCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B7C184D35D000283E1A /* PopTheCloud.m */; };
 		DCA62F17182B92740053BCD0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F16182B92740053BCD0 /* QuartzCore.framework */; };
 		DCA62F19182B92740053BCD0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F18182B92740053BCD0 /* OpenGLES.framework */; };
 		DCA62F1B182B92740053BCD0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F1A182B92740053BCD0 /* OpenAL.framework */; };
@@ -139,11 +145,22 @@
 		DCA630B5182B927A0053BCD0 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA630B4182B927A0053BCD0 /* vec4.c */; };
 		DCA630BA182B927A0053BCD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630B9182B927A0053BCD0 /* main.m */; };
 		DCA630BD182B927A0053BCD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630BC182B927A0053BCD0 /* AppDelegate.m */; };
-		DCA630C0182B927A0053BCD0 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630BF182B927A0053BCD0 /* HelloWorldLayer.m */; };
-		DCA630C3182B927A0053BCD0 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630C2182B927A0053BCD0 /* IntroLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC985B69184D315500283E1A /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		DC985B6A184D315500283E1A /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		DC985B6C184D321B00283E1A /* MainGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameScene.h; sourceTree = "<group>"; };
+		DC985B6D184D321B00283E1A /* MainGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGameScene.m; sourceTree = "<group>"; };
+		DC985B6F184D323800283E1A /* HorseRacingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorseRacingGame.h; sourceTree = "<group>"; };
+		DC985B70184D323800283E1A /* HorseRacingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorseRacingGame.m; sourceTree = "<group>"; };
+		DC985B72184D326100283E1A /* WackAmoleGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WackAmoleGame.h; sourceTree = "<group>"; };
+		DC985B73184D326100283E1A /* WackAmoleGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WackAmoleGame.m; sourceTree = "<group>"; };
+		DC985B75184D355500283E1A /* SpinTheWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinTheWheel.h; sourceTree = "<group>"; };
+		DC985B76184D355500283E1A /* SpinTheWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinTheWheel.m; sourceTree = "<group>"; };
+		DC985B7B184D35D000283E1A /* PopTheCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopTheCloud.h; sourceTree = "<group>"; };
+		DC985B7C184D35D000283E1A /* PopTheCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopTheCloud.m; sourceTree = "<group>"; };
+		DC985B7F184D3A3800283E1A /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		DCA62F13182B92740053BCD0 /* Fruit Machine Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fruit Machine Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCA62F16182B92740053BCD0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DCA62F18182B92740053BCD0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -421,10 +438,6 @@
 		DCA630B9182B927A0053BCD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCA630BB182B927A0053BCD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DCA630BC182B927A0053BCD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DCA630BE182B927A0053BCD0 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		DCA630BF182B927A0053BCD0 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
-		DCA630C1182B927A0053BCD0 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		DCA630C2182B927A0053BCD0 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,6 +461,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC985B7E184D397600283E1A /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				DCA630BC182B927A0053BCD0 /* AppDelegate.m */,
+				DCA630BB182B927A0053BCD0 /* AppDelegate.h */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
 		DCA62F0A182B92740053BCD0 = {
 			isa = PBXGroup;
 			children = (
@@ -485,12 +507,20 @@
 		DCA62F2A182B92750053BCD0 /* Fruit Machine Game */ = {
 			isa = PBXGroup;
 			children = (
-				DCA630BB182B927A0053BCD0 /* AppDelegate.h */,
-				DCA630BC182B927A0053BCD0 /* AppDelegate.m */,
-				DCA630BE182B927A0053BCD0 /* HelloWorldLayer.h */,
-				DCA630BF182B927A0053BCD0 /* HelloWorldLayer.m */,
-				DCA630C1182B927A0053BCD0 /* IntroLayer.h */,
-				DCA630C2182B927A0053BCD0 /* IntroLayer.m */,
+				DC985B7E184D397600283E1A /* AppDelegate */,
+				DC985B7F184D3A3800283E1A /* Config.h */,
+				DC985B69184D315500283E1A /* MainMenu.h */,
+				DC985B6A184D315500283E1A /* MainMenu.m */,
+				DC985B6C184D321B00283E1A /* MainGameScene.h */,
+				DC985B6D184D321B00283E1A /* MainGameScene.m */,
+				DC985B6F184D323800283E1A /* HorseRacingGame.h */,
+				DC985B70184D323800283E1A /* HorseRacingGame.m */,
+				DC985B72184D326100283E1A /* WackAmoleGame.h */,
+				DC985B73184D326100283E1A /* WackAmoleGame.m */,
+				DC985B75184D355500283E1A /* SpinTheWheel.h */,
+				DC985B76184D355500283E1A /* SpinTheWheel.m */,
+				DC985B7B184D35D000283E1A /* PopTheCloud.h */,
+				DC985B7C184D35D000283E1A /* PopTheCloud.m */,
 				DCA62F2B182B92750053BCD0 /* Resources */,
 				DCA62F43182B92750053BCD0 /* libs */,
 				DCA630B7182B927A0053BCD0 /* Supporting Files */,
@@ -907,6 +937,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = G52GRP;
+				TargetAttributes = {
+					DCA62F12182B92740053BCD0 = {
+						DevelopmentTeam = 49MJRZBUY4;
+					};
+				};
 			};
 			buildConfigurationList = DCA62F0E182B92740053BCD0 /* Build configuration list for PBXProject "Fruit Machine Game" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -959,6 +994,7 @@
 				DCA6300D182B92790053BCD0 /* CCTMXLayer.m in Sources */,
 				DCA630A5182B927A0053BCD0 /* mat4.c in Sources */,
 				DCA62F81182B92760053BCD0 /* ccDeprecated.m in Sources */,
+				DC985B6E184D321B00283E1A /* MainGameScene.m in Sources */,
 				DCA6303C182B92790053BCD0 /* CCDirectorMac.m in Sources */,
 				DCA62F96182B92770053BCD0 /* ccGLStateCache.m in Sources */,
 				DCA63068182B927A0053BCD0 /* TransformUtils.m in Sources */,
@@ -970,6 +1006,7 @@
 				DCA62F6B182B92760053BCD0 /* CCActionTween.m in Sources */,
 				DCA62FA2182B92770053BCD0 /* CCLabelBMFont.m in Sources */,
 				DCA6304F182B927A0053BCD0 /* ccCArray.m in Sources */,
+				DC985B7D184D35D000283E1A /* PopTheCloud.m in Sources */,
 				DCA63079182B927A0053BCD0 /* CDXMacOSXSupport.m in Sources */,
 				DCA6306D182B927A0053BCD0 /* ZipUtils.m in Sources */,
 				DCA62F5F182B92760053BCD0 /* CCActionManager.m in Sources */,
@@ -978,6 +1015,7 @@
 				DCA6301C182B92790053BCD0 /* CCTransitionPageTurn.m in Sources */,
 				DCA62F4D182B92760053BCD0 /* CCActionCatmullRom.m in Sources */,
 				DCA62FC4182B92780053BCD0 /* CCParticleSystem.m in Sources */,
+				DC985B77184D355500283E1A /* SpinTheWheel.m in Sources */,
 				DCA63019182B92790053BCD0 /* CCTransition.m in Sources */,
 				DCA62FC1182B92780053BCD0 /* CCParticleExamples.m in Sources */,
 				DCA62FBE182B92780053BCD0 /* CCParticleBatchNode.m in Sources */,
@@ -993,6 +1031,8 @@
 				DCA630A9182B927A0053BCD0 /* plane.c in Sources */,
 				DCA63055182B927A0053BCD0 /* CCProfiling.m in Sources */,
 				DCA62FEC182B92780053BCD0 /* CCShaderCache.m in Sources */,
+				DC985B74184D326100283E1A /* WackAmoleGame.m in Sources */,
+				DC985B71184D323800283E1A /* HorseRacingGame.m in Sources */,
 				DCA62FF2182B92780053BCD0 /* CCSprite.m in Sources */,
 				DCA62F99182B92770053BCD0 /* CCGrabber.m in Sources */,
 				DCA630A3182B927A0053BCD0 /* mat3.c in Sources */,
@@ -1000,7 +1040,6 @@
 				DCA6302D182B92790053BCD0 /* CCES2Renderer.m in Sources */,
 				DCA62F9F182B92770053BCD0 /* CCLabelAtlas.m in Sources */,
 				DCA62FBB182B92780053BCD0 /* CCParallaxNode.m in Sources */,
-				DCA630C3182B927A0053BCD0 /* IntroLayer.m in Sources */,
 				DCA62F53182B92760053BCD0 /* CCActionGrid.m in Sources */,
 				DCA62F9C182B92770053BCD0 /* CCGrid.m in Sources */,
 				DCA630AB182B927A0053BCD0 /* quaternion.c in Sources */,
@@ -1024,6 +1063,7 @@
 				DCA62F62182B92760053BCD0 /* CCActionPageTurn3D.m in Sources */,
 				DCA630B3182B927A0053BCD0 /* vec3.c in Sources */,
 				DCA63065182B927A0053BCD0 /* TGAlib.m in Sources */,
+				DC985B6B184D315500283E1A /* MainMenu.m in Sources */,
 				DCA62F6E182B92760053BCD0 /* CCAnimation.m in Sources */,
 				DCA63099182B927A0053BCD0 /* aabb.c in Sources */,
 				DCA63010182B92790053BCD0 /* CCTMXObjectGroup.m in Sources */,
@@ -1045,7 +1085,6 @@
 				DCA630A1182B927A0053BCD0 /* matrix.c in Sources */,
 				DCA62F87182B92760053BCD0 /* CCDrawingPrimitives.m in Sources */,
 				DCA62FEF182B92780053BCD0 /* ccShaders.m in Sources */,
-				DCA630C0182B927A0053BCD0 /* HelloWorldLayer.m in Sources */,
 				DCA63045182B92790053BCD0 /* CCWindow.m in Sources */,
 				DCA63023182B92790053BCD0 /* cocos2d.m in Sources */,
 				DCA62FD0182B92780053BCD0 /* CCProgressTimer.m in Sources */,
@@ -1114,12 +1153,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fruit Machine Game/Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Fruit Machine Game/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Fruit Machine Game/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1134,11 +1175,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fruit Machine Game/Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Fruit Machine Game/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Fruit Machine Game/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1169,6 +1212,7 @@
 				DCA630C8182B927A0053BCD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
