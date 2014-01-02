@@ -11,7 +11,10 @@
 
 @interface MainMenu : CCLayer {
     
+    CCLabelTTF *playLabel;
+    
 }
-+(CCScene *) scene;
+
++ (CCScene *) scene;
 
 @end

@@ -42,7 +42,7 @@
 // 00   02 01 00
 #define COCOS2D_VERSION 0x00020100
 
-
+#import "Config.h"
 //
 // all cocos2d include files
 //

@@ -13,6 +13,13 @@
 		DC985B74184D326100283E1A /* WackAmoleGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B73184D326100283E1A /* WackAmoleGame.m */; };
 		DC985B77184D355500283E1A /* SpinTheWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B76184D355500283E1A /* SpinTheWheel.m */; };
 		DC985B7D184D35D000283E1A /* PopTheCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B7C184D35D000283E1A /* PopTheCloud.m */; };
+		DC9B211F1874F1A80012620A /* FruitySlotsLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B211D1874F1A80012620A /* FruitySlotsLogo@2x.png */; };
+		DC9B21201874F1A80012620A /* FruitySlotsLogo@ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B211E1874F1A80012620A /* FruitySlotsLogo@ipadhd.png */; };
+		DC9B21231874F29F0012620A /* FruitySlotsLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B21211874F29F0012620A /* FruitySlotsLogo.png */; };
+		DC9B212818750EE50012620A /* cherry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B212718750EE50012620A /* cherry@2x.png */; };
+		DC9B212B187510DF0012620A /* MenuBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B2129187510DF0012620A /* MenuBackground@2x.png */; };
+		DC9B212C187510DF0012620A /* MenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B212A187510DF0012620A /* MenuBackground.png */; };
+		DC9B212F1875182C0012620A /* GameBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B212E1875182C0012620A /* GameBackground@2x.png */; };
 		DCA62F17182B92740053BCD0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F16182B92740053BCD0 /* QuartzCore.framework */; };
 		DCA62F19182B92740053BCD0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F18182B92740053BCD0 /* OpenGLES.framework */; };
 		DCA62F1B182B92740053BCD0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F1A182B92740053BCD0 /* OpenAL.framework */; };
@@ -161,6 +168,13 @@
 		DC985B7B184D35D000283E1A /* PopTheCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopTheCloud.h; sourceTree = "<group>"; };
 		DC985B7C184D35D000283E1A /* PopTheCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopTheCloud.m; sourceTree = "<group>"; };
 		DC985B7F184D3A3800283E1A /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		DC9B211D1874F1A80012620A /* FruitySlotsLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FruitySlotsLogo@2x.png"; sourceTree = "<group>"; };
+		DC9B211E1874F1A80012620A /* FruitySlotsLogo@ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FruitySlotsLogo@ipadhd.png"; sourceTree = "<group>"; };
+		DC9B21211874F29F0012620A /* FruitySlotsLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FruitySlotsLogo.png; sourceTree = "<group>"; };
+		DC9B212718750EE50012620A /* cherry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cherry@2x.png"; sourceTree = "<group>"; };
+		DC9B2129187510DF0012620A /* MenuBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBackground@2x.png"; sourceTree = "<group>"; };
+		DC9B212A187510DF0012620A /* MenuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuBackground.png; sourceTree = "<group>"; };
+		DC9B212E1875182C0012620A /* GameBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameBackground@2x.png"; sourceTree = "<group>"; };
 		DCA62F13182B92740053BCD0 /* Fruit Machine Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fruit Machine Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCA62F16182B92740053BCD0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DCA62F18182B92740053BCD0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -470,6 +484,59 @@
 			name = AppDelegate;
 			sourceTree = "<group>";
 		};
+		DC9B211B1874EF760012620A /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				DC9B212D187510E20012620A /* Background */,
+				DC9B211C1874EF7C0012620A /* FruitySlots Logo */,
+			);
+			name = MainMenu;
+			sourceTree = "<group>";
+		};
+		DC9B211C1874EF7C0012620A /* FruitySlots Logo */ = {
+			isa = PBXGroup;
+			children = (
+				DC9B21211874F29F0012620A /* FruitySlotsLogo.png */,
+				DC9B211D1874F1A80012620A /* FruitySlotsLogo@2x.png */,
+				DC9B211E1874F1A80012620A /* FruitySlotsLogo@ipadhd.png */,
+			);
+			name = "FruitySlots Logo";
+			sourceTree = "<group>";
+		};
+		DC9B212518750ED40012620A /* MainGameScene */ = {
+			isa = PBXGroup;
+			children = (
+				DC9B21301875182F0012620A /* Background */,
+				DC9B212618750EDD0012620A /* Fruits */,
+			);
+			name = MainGameScene;
+			sourceTree = "<group>";
+		};
+		DC9B212618750EDD0012620A /* Fruits */ = {
+			isa = PBXGroup;
+			children = (
+				DC9B212718750EE50012620A /* cherry@2x.png */,
+			);
+			name = Fruits;
+			sourceTree = "<group>";
+		};
+		DC9B212D187510E20012620A /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				DC9B2129187510DF0012620A /* MenuBackground@2x.png */,
+				DC9B212A187510DF0012620A /* MenuBackground.png */,
+			);
+			name = Background;
+			sourceTree = "<group>";
+		};
+		DC9B21301875182F0012620A /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				DC9B212E1875182C0012620A /* GameBackground@2x.png */,
+			);
+			name = Background;
+			sourceTree = "<group>";
+		};
 		DCA62F0A182B92740053BCD0 = {
 			isa = PBXGroup;
 			children = (
@@ -531,18 +598,10 @@
 		DCA62F2B182B92750053BCD0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DCA62F2C182B92750053BCD0 /* Default.png */,
-				DCA62F2E182B92750053BCD0 /* Default@2x.png */,
-				DCA62F30182B92750053BCD0 /* Default-568h@2x.png */,
-				DCA62F32182B92750053BCD0 /* Default-Landscape~ipad.png */,
-				DCA62F34182B92750053BCD0 /* Icon-72.png */,
-				DCA62F36182B92750053BCD0 /* Icon-Small-50.png */,
-				DCA62F38182B92750053BCD0 /* Icon-Small.png */,
-				DCA62F3A182B92750053BCD0 /* Icon-Small@2x.png */,
-				DCA62F3C182B92750053BCD0 /* Icon.png */,
-				DCA62F3E182B92750053BCD0 /* Icon@2x.png */,
+				DC9B212518750ED40012620A /* MainGameScene */,
+				DC9B211B1874EF760012620A /* MainMenu */,
+				DCABD9DD1874D70E00B45034 /* App and Icon Images */,
 				DCA62F40182B92750053BCD0 /* Info.plist */,
-				DCA62F41182B92750053BCD0 /* iTunesArtwork */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -909,6 +968,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DCABD9DD1874D70E00B45034 /* App and Icon Images */ = {
+			isa = PBXGroup;
+			children = (
+				DCA62F41182B92750053BCD0 /* iTunesArtwork */,
+				DCA62F2C182B92750053BCD0 /* Default.png */,
+				DCA62F2E182B92750053BCD0 /* Default@2x.png */,
+				DCA62F30182B92750053BCD0 /* Default-568h@2x.png */,
+				DCA62F32182B92750053BCD0 /* Default-Landscape~ipad.png */,
+				DCA62F34182B92750053BCD0 /* Icon-72.png */,
+				DCA62F36182B92750053BCD0 /* Icon-Small-50.png */,
+				DCA62F38182B92750053BCD0 /* Icon-Small.png */,
+				DCA62F3A182B92750053BCD0 /* Icon-Small@2x.png */,
+				DCA62F3C182B92750053BCD0 /* Icon.png */,
+				DCA62F3E182B92750053BCD0 /* Icon@2x.png */,
+			);
+			name = "App and Icon Images";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -966,13 +1043,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA62F3D182B92750053BCD0 /* Icon.png in Resources */,
+				DC9B211F1874F1A80012620A /* FruitySlotsLogo@2x.png in Resources */,
+				DC9B212C187510DF0012620A /* MenuBackground.png in Resources */,
+				DC9B212F1875182C0012620A /* GameBackground@2x.png in Resources */,
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
 				DCA62F2F182B92750053BCD0 /* Default@2x.png in Resources */,
+				DC9B21201874F1A80012620A /* FruitySlotsLogo@ipadhd.png in Resources */,
 				DCA62F39182B92750053BCD0 /* Icon-Small.png in Resources */,
 				DCA62F35182B92750053BCD0 /* Icon-72.png in Resources */,
+				DC9B212818750EE50012620A /* cherry@2x.png in Resources */,
+				DC9B212B187510DF0012620A /* MenuBackground@2x.png in Resources */,
 				DCA62F2D182B92750053BCD0 /* Default.png in Resources */,
 				DCA62F37182B92750053BCD0 /* Icon-Small-50.png in Resources */,
 				DCA62F42182B92750053BCD0 /* iTunesArtwork in Resources */,
+				DC9B21231874F29F0012620A /* FruitySlotsLogo.png in Resources */,
 				DCA62F3B182B92750053BCD0 /* Icon-Small@2x.png in Resources */,
 				DCA62F33182B92750053BCD0 /* Default-Landscape~ipad.png in Resources */,
 				DCA62F31182B92750053BCD0 /* Default-568h@2x.png in Resources */,

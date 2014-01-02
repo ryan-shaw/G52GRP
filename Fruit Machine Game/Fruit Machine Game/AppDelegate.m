@@ -20,10 +20,10 @@
 	
 	// iPhone only
 	if( [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone )
-		return UIInterfaceOrientationMaskLandscape;
+		return UIInterfaceOrientationMaskPortrait;
 	
 	// iPad only
-	return UIInterfaceOrientationMaskLandscape;
+	return UIInterfaceOrientationMaskPortrait;
 }
 
 // Supported orientations. Customize it for your own needs
@@ -32,11 +32,11 @@
 {
 	// iPhone only
 	if( [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone )
-		return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+		return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 	
 	// iPad only
 	// iPhone only
-	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+	return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 // This is needed for iOS4 and iOS5 in order to ensure
@@ -116,9 +116,9 @@
 	// On iPhone HD: "-hd"
 	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
 	[sharedFileUtils setEnableFallbackSuffixes:NO];				// Default: NO. No fallback suffixes are going to be used
-	[sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
-	[sharedFileUtils setiPadSuffix:@"-ipad"];					// Default on iPad is "ipad"
-	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
+	[sharedFileUtils setiPhoneRetinaDisplaySuffix:@"@2x"];		// Default on iPhone RetinaDisplay is "-hd"
+	[sharedFileUtils setiPadSuffix:@"@2x"];					// Default on iPad is "ipad"
+	[sharedFileUtils setiPadRetinaDisplaySuffix:@"@ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
 	
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
