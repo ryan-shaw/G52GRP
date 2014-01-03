@@ -20,6 +20,7 @@
 		DC9B212B187510DF0012620A /* MenuBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B2129187510DF0012620A /* MenuBackground@2x.png */; };
 		DC9B212C187510DF0012620A /* MenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B212A187510DF0012620A /* MenuBackground.png */; };
 		DC9B212F1875182C0012620A /* GameBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B212E1875182C0012620A /* GameBackground@2x.png */; };
+		DC9B2134187693950012620A /* Fruit.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B2133187693950012620A /* Fruit.m */; };
 		DCA62F17182B92740053BCD0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F16182B92740053BCD0 /* QuartzCore.framework */; };
 		DCA62F19182B92740053BCD0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F18182B92740053BCD0 /* OpenGLES.framework */; };
 		DCA62F1B182B92740053BCD0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA62F1A182B92740053BCD0 /* OpenAL.framework */; };
@@ -175,6 +176,8 @@
 		DC9B2129187510DF0012620A /* MenuBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBackground@2x.png"; sourceTree = "<group>"; };
 		DC9B212A187510DF0012620A /* MenuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuBackground.png; sourceTree = "<group>"; };
 		DC9B212E1875182C0012620A /* GameBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameBackground@2x.png"; sourceTree = "<group>"; };
+		DC9B2132187693950012620A /* Fruit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fruit.h; sourceTree = "<group>"; };
+		DC9B2133187693950012620A /* Fruit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fruit.m; sourceTree = "<group>"; };
 		DCA62F13182B92740053BCD0 /* Fruit Machine Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fruit Machine Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCA62F16182B92740053BCD0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DCA62F18182B92740053BCD0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -537,6 +540,30 @@
 			name = Background;
 			sourceTree = "<group>";
 		};
+		DC9B21311876937C0012620A /* Fruit */ = {
+			isa = PBXGroup;
+			children = (
+				DC9B2132187693950012620A /* Fruit.h */,
+				DC9B2133187693950012620A /* Fruit.m */,
+			);
+			name = Fruit;
+			sourceTree = "<group>";
+		};
+		DC9B2135187693A30012620A /* MiniGames */ = {
+			isa = PBXGroup;
+			children = (
+				DC985B6F184D323800283E1A /* HorseRacingGame.h */,
+				DC985B70184D323800283E1A /* HorseRacingGame.m */,
+				DC985B72184D326100283E1A /* WackAmoleGame.h */,
+				DC985B73184D326100283E1A /* WackAmoleGame.m */,
+				DC985B75184D355500283E1A /* SpinTheWheel.h */,
+				DC985B76184D355500283E1A /* SpinTheWheel.m */,
+				DC985B7B184D35D000283E1A /* PopTheCloud.h */,
+				DC985B7C184D35D000283E1A /* PopTheCloud.m */,
+			);
+			name = MiniGames;
+			sourceTree = "<group>";
+		};
 		DCA62F0A182B92740053BCD0 = {
 			isa = PBXGroup;
 			children = (
@@ -574,20 +601,14 @@
 		DCA62F2A182B92750053BCD0 /* Fruit Machine Game */ = {
 			isa = PBXGroup;
 			children = (
+				DC9B21311876937C0012620A /* Fruit */,
 				DC985B7E184D397600283E1A /* AppDelegate */,
+				DC9B2135187693A30012620A /* MiniGames */,
 				DC985B7F184D3A3800283E1A /* Config.h */,
 				DC985B69184D315500283E1A /* MainMenu.h */,
 				DC985B6A184D315500283E1A /* MainMenu.m */,
 				DC985B6C184D321B00283E1A /* MainGameScene.h */,
 				DC985B6D184D321B00283E1A /* MainGameScene.m */,
-				DC985B6F184D323800283E1A /* HorseRacingGame.h */,
-				DC985B70184D323800283E1A /* HorseRacingGame.m */,
-				DC985B72184D326100283E1A /* WackAmoleGame.h */,
-				DC985B73184D326100283E1A /* WackAmoleGame.m */,
-				DC985B75184D355500283E1A /* SpinTheWheel.h */,
-				DC985B76184D355500283E1A /* SpinTheWheel.m */,
-				DC985B7B184D35D000283E1A /* PopTheCloud.h */,
-				DC985B7C184D35D000283E1A /* PopTheCloud.m */,
 				DCA62F2B182B92750053BCD0 /* Resources */,
 				DCA62F43182B92750053BCD0 /* libs */,
 				DCA630B7182B927A0053BCD0 /* Supporting Files */,
@@ -1179,6 +1200,7 @@
 				DCA62F7E182B92760053BCD0 /* CCConfiguration.m in Sources */,
 				DCA62FDA182B92780053BCD0 /* CCScheduler.m in Sources */,
 				DCA6302A182B92790053BCD0 /* CCDirectorIOS.m in Sources */,
+				DC9B2134187693950012620A /* Fruit.m in Sources */,
 				DCA62FAC182B92780053BCD0 /* CCMenu.m in Sources */,
 				DCA630B5182B927A0053BCD0 /* vec4.c in Sources */,
 				DCA62F77182B92760053BCD0 /* CCCamera.m in Sources */,
