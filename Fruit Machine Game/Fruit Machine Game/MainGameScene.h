@@ -11,15 +11,6 @@
 
 @interface MainGameScene : CCLayer {
     
-    NSMutableArray *fruits;
-    NSMutableArray *fruitPositions;
-    
-    int currentReelNumber;
-    
-    double lastFruitYPosition;
-    BOOL spinFruits;
-    
-    CGPoint firstTouch, lastTouch;
 }
 
 +(CCScene *) scene;

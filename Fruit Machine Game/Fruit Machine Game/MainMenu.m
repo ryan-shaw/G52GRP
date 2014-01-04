@@ -110,11 +110,13 @@ CGSize win;
 
 - (void) createDisplay {
     
-    NSString *file = [NSString stringWithFormat:@"%@%@", @"MenuBackground", [self getBackgroundFileSuffix]];
+    //NSString *file = [NSString stringWithFormat:@"%@%@", @"MenuBackground", [self getBackgroundFileSuffix]];
     
-    CCSprite *background = [CCSprite spriteWithFile:file];
+    //CCSprite *background = [CCSprite spriteWithFile:file];
     
-    background.position = ccp(win.width/2, win.height/2);
+    CCLayerColor *background = [CCLayerColor layerWithColor:ccc4(255, 190, 38,255)];
+    
+    //background.position = ccp(win.width/2, win.height/2);
     
     [self addChild:background];
     
@@ -151,7 +153,15 @@ CGSize win;
     
     CCSprite *logo = [CCSprite spriteWithFile:file];
     
-    logo.position = ccp(win.width/2, win.height/1.8);
+    logo.position = ccp(win.width/2, win.height/2);
+    
+    [self addChild:logo];
+    
+    file = [NSString stringWithFormat:@"%@%@", @"LogoImage", [self getImageFileSuffix]];
+    
+    logo = [CCSprite spriteWithFile:file];
+    
+    logo.position = ccp(win.width/2, win.height/1.3);
     
     [self addChild:logo];
 }

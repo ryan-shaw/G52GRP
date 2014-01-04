@@ -10,7 +10,19 @@
 #import "MainMenu.h"
 #import "Fruit.h"
 
+NSMutableArray *fruits;
+NSMutableArray *fruitPositions;
+
+int currentReelNumber;
+
+double lastFruitYPosition;
+BOOL spinFruits;
+
+CGPoint firstTouch, lastTouch;
+
 CGPoint startingPosition;
+
+CCLabelTTF *pointsLabel, *betLabel;
 
 int xChange, yChange;
 
@@ -18,7 +30,11 @@ int numberOfReels = NUMBER_OF_REELS;
 int numberOfFruits = NUMBER_OF_FRUITS;
 int numberOfRows = NUMBER_OF_ROWS;
 
+int pointsScore, labelScore, bet, minBet, maxBet;
+
 int deviceTag;
+int iOS7ScaleFactor;
+int iPadScaleFactor;
 CGSize win;
 
 @implementation MainGameScene
@@ -41,6 +57,8 @@ CGSize win;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
+        iPadScaleFactor = 1;
+        
         if ([[UIScreen mainScreen] bounds].size.height == 568) {
             
             deviceTag = IPHONE5;
@@ -54,6 +72,8 @@ CGSize win;
         
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
+        iPadScaleFactor = 2;
+        
         if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [UIScreen mainScreen].scale > 1) {
             
             deviceTag = IPADHD;
@@ -65,6 +85,17 @@ CGSize win;
         }
     }
     
+    NSString *version = [[UIDevice currentDevice] systemVersion];
+    BOOL isAtLeast7 = [version floatValue] >= 7.0;
+    
+    if (isAtLeast7) {
+        
+        iOS7ScaleFactor = 20;
+        
+    } else {
+        
+        iOS7ScaleFactor = 0;
+    }
 }
 
 - (NSString*) getBackgroundFileSuffix {
@@ -108,6 +139,8 @@ CGSize win;
         fruitPositions = [[NSMutableArray alloc] init];
         
         currentReelNumber = 0;
+        labelScore = 0;
+        bet = 0;
         spinFruits = NO;
         
         [self setDeviceTag];
@@ -115,6 +148,8 @@ CGSize win;
         [self createDisplay];
         
         [self addFruits];
+        
+        [self setMinMaxBets];
         
         [self schedule:@selector(update)];
     }
@@ -124,26 +159,34 @@ CGSize win;
     
 }
 
+- (void) setMinMaxBets {
+    
+    minBet = 0;
+    maxBet = 250;
+    
+}
+
 - (void) update {
     
-    if (spinFruits) {
-        
-        [self spinReels];
-    }
+    [self displayCredits];
+    
+    [self spinReels];
 }
 
 - (void) spinReels {
     
-    [self moveFruits];
-    
-    if (self.numberOfRunningActions == 0) {
+    if (spinFruits) {
         
-        CCDelayTime *start = [CCDelayTime actionWithDuration:FRUITS_SPINNING_TIME];
+        [self moveFruits];
         
-        CCCallBlock *stop = [CCCallBlockN actionWithBlock:^(CCNode *node) { [self stopFirstReel]; }];
-        
-        [self runAction:[CCSequence actionOne:start two:stop]];
-        
+        if (self.numberOfRunningActions == 0) {
+            
+            CCDelayTime *start = [CCDelayTime actionWithDuration:FRUITS_SPINNING_TIME];
+            
+            CCCallBlock *stop = [CCCallBlockN actionWithBlock:^(CCNode *node) { [self stopFirstReel]; }];
+            
+            [self runAction:[CCSequence actionOne:start two:stop]];
+        }
     }
 }
 
@@ -228,7 +271,9 @@ CGSize win;
     
     if (currentReelNumber == THIRD_REEL) {
         
-        CCDelayTime *start = [CCDelayTime actionWithDuration:REEL_STOP_DELAY/4];
+        [self stopAllActions];
+        
+        CCDelayTime *start = [CCDelayTime actionWithDuration:SPIN_RESET_TIME];
         
         CCCallBlock *stop = [CCCallBlockN actionWithBlock:^(CCNode *node) {
             
@@ -268,9 +313,62 @@ CGSize win;
     
     [self setFruitPositions];
     
+    NSString *file;
+    
+    int count = 0;
+    
+    int startPosition = arc4random() % numberOfFruits;
+    
     for (NSValue *position in fruitPositions) {
         
-        NSString *file = [NSString stringWithFormat:@"%@%@", @"cherry", [self getImageFileSuffix]];
+        switch (++startPosition) {
+                
+            case 1:
+                
+                file = [NSString stringWithFormat:@"%@%@", @"cherry", [self getImageFileSuffix]];
+                break;
+                
+            case 2:
+                
+                file = [NSString stringWithFormat:@"%@%@", @"strawberry", [self getImageFileSuffix]];
+                break;
+                
+            case 3:
+                
+                file = [NSString stringWithFormat:@"%@%@", @"melon", [self getImageFileSuffix]];
+                break;
+                
+            case 4:
+                
+                file = [NSString stringWithFormat:@"%@%@", @"apple", [self getImageFileSuffix]];
+                break;
+                
+            case 5:
+                
+                file = [NSString stringWithFormat:@"%@%@", @"pear", [self getImageFileSuffix]];
+                break;
+                
+            case 6:
+                
+                file = [NSString stringWithFormat:@"%@%@", @"orange", [self getImageFileSuffix]];
+                break;
+                
+            case 7:
+                
+                file = [NSString stringWithFormat:@"%@%@", @"banana", [self getImageFileSuffix]];
+                startPosition = 0;
+                break;
+                
+            default:
+                startPosition = 0;
+                break;
+        }
+        
+        if (++count >= numberOfFruits) {
+            
+            count = 0;
+            startPosition = arc4random() % numberOfFruits;
+        }
         
         Fruit *fruit = [Fruit spriteWithFile:file];
         
@@ -278,7 +376,7 @@ CGSize win;
         
         [fruit setReel:(((fruit.position.x - startingPosition.x) / xChange) + 1)];
         
-        [self addChild:fruit];
+        [self addChild:fruit z:-1];
         
         [fruits addObject:fruit];
         
@@ -330,7 +428,8 @@ CGSize win;
     
     background = [CCLayerColor layerWithColor:ccc4(255,255,255,255)];
     
-    [self addChild:background];
+    [self addChild:background z:-1];
+    
     
     NSString *file = [NSString stringWithFormat:@"%@%@", @"GameBackground", [self getBackgroundFileSuffix]];
     
@@ -338,7 +437,113 @@ CGSize win;
     
     background.position = ccp(win.width/2, win.height/2);
     
-    [self addChild:background z:1];
+    [self addChild:background];
+    
+    
+    pointsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", labelScore] fontName:@"Heiti TC" fontSize:POINTS_FONTSIZE*iPadScaleFactor];
+    
+    pointsLabel.position = ccp(win.width/2, win.height - (30 * iPadScaleFactor + iOS7ScaleFactor));
+    
+    pointsLabel.color = ccBLACK;
+    
+    [self addChild:pointsLabel];
+    
+    
+    betLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", bet] fontName:@"Heiti TC" fontSize:POINTS_FONTSIZE*iPadScaleFactor];
+    
+    betLabel.position = ccp(pointsLabel.position.x + 60, win.height/8);
+    
+    betLabel.color = ccBLACK;
+    
+    [betLabel setAnchorPoint:ccp(1, 0.5)];
+    
+    [self addChild:betLabel];
+    
+    [self setMenuButtons];
+}
+
+- (void) displayCredits {
+    
+    if (pointsScore > labelScore) {
+        
+        labelScore += SCORE_DISPLAY_CHANGE;
+        [pointsLabel setString:[NSString stringWithFormat:@"%i", labelScore]];
+        
+    } else if (pointsScore < labelScore) {
+        
+        labelScore -= SCORE_DISPLAY_CHANGE;
+        [pointsLabel setString:[NSString stringWithFormat:@"%i", labelScore]];
+    }
+    
+    [betLabel setString:[NSString stringWithFormat:@"%i", bet]];
+}
+
+- (void) setMenuButtons {
+    
+    NSString *file;
+    
+    file = [NSString stringWithFormat:@"%@%@", @"cherry", [self getImageFileSuffix]];
+    
+    CCMenuItem *returnButton = [CCMenuItemImage itemWithNormalImage:file selectedImage:file target:self selector:@selector(returnButtonPressed)];
+    
+    returnButton.position = ccp(win.width/10, pointsLabel.position.y);
+    
+    returnButton.scale = 0.5;
+    
+    
+    
+    file = [NSString stringWithFormat:@"%@%@", @"betMin", [self getImageFileSuffix]];
+    
+    CCMenuItem *betMin = [CCMenuItemImage itemWithNormalImage:file selectedImage:file target:self selector:@selector(betMin)];
+    
+    betMin.position = ccp(win.width/4, win.height/8);
+    
+    
+    file = [NSString stringWithFormat:@"%@%@", @"betMax", [self getImageFileSuffix]];
+    
+    CCMenuItem *betMax = [CCMenuItemImage itemWithNormalImage:file selectedImage:file target:self selector:@selector(betMax)];
+    
+    betMax.position = ccp(betMin.position.x, betMin.position.y + 55);
+    
+    
+    
+    
+    CCMenu *menu = [CCMenu menuWithItems:returnButton, betMin, betMax, nil];
+    menu.position = CGPointZero;
+    
+    [self addChild:menu];
+}
+
+- (void) returnButtonPressed {
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
+}
+
+- (void) decreaseBet {
+    
+    if (bet > minBet) {
+        
+        bet -= SCORE_DISPLAY_CHANGE;
+    }
+}
+
+- (void) increaseBet {
+    
+    if (bet < maxBet) {
+        
+        bet += SCORE_DISPLAY_CHANGE;
+    }
+}
+
+- (void) betMin {
+    
+    bet = minBet;
+    
+}
+
+- (void) betMax {
+    
+    bet = maxBet;
 }
 
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -346,12 +551,6 @@ CGSize win;
     UITouch *touch = [touches anyObject];
     firstTouch = [touch locationInView:[touch view]];
     firstTouch = [[CCDirector sharedDirector] convertToGL:firstTouch];
-    
-    /* if (touchLocation.y < win.height/2) {
-     
-     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
-     
-     }*/
 }
 
 - (void) ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -360,9 +559,36 @@ CGSize win;
     lastTouch = [touch locationInView:[touch view]];
     lastTouch = [[CCDirector sharedDirector] convertToGL:lastTouch];
     
-    if (firstTouch.y > lastTouch.y && !spinFruits) {
+    [self swipeDownOnReels];
+    
+    [self swipeAcrossBet];
+    
+}
+
+- (void) swipeAcrossBet {
+    
+    if (lastTouch.y < startingPosition.y) {
         
-        if (firstTouch.y >= startingPosition.y && firstTouch.y <= (startingPosition.y + (yChange*numberOfRows))) {
+        double touchDifference = lastTouch.x - firstTouch.x;
+        
+        if (touchDifference > 20) {
+            
+            [self increaseBet];
+            firstTouch = lastTouch;
+            
+        } else if (touchDifference < - 20) {
+            
+            [self decreaseBet];
+            firstTouch = lastTouch;
+        }
+    }
+}
+
+- (void) swipeDownOnReels {
+    
+    if (firstTouch.y > (lastTouch.y + yChange/2) && !spinFruits) {
+        
+        if (firstTouch.y >= startingPosition.y && firstTouch.y <= (startingPosition.y + (yChange*(numberOfRows + 1)))) {
             
             [self resetFruitPositions];
             spinFruits = YES;
