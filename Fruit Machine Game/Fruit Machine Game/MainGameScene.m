@@ -225,7 +225,7 @@ CGSize win;
 
 - (void) setRandomFruits:(int)reel {
     
-    int start = 0 + (NUMBER_OF_FRUITS * (reel-1));
+    int start = 0 + (numberOfFruits * (reel-1));
     
     int position = [self getRandomFruitPosition:start];
     
@@ -247,7 +247,7 @@ CGSize win;
         
         fruit = [fruits objectAtIndex:position++];
         
-        if (position >= (start + NUMBER_OF_FRUITS)) {
+        if (position >= (start + numberOfFruits)) {
             
             position = start;
         }
@@ -273,7 +273,7 @@ CGSize win;
         
         [self stopAllActions];
         
-        CCDelayTime *start = [CCDelayTime actionWithDuration:SPIN_RESET_TIME];
+        CCDelayTime *start = [CCDelayTime actionWithDuration:REEL_STOP_DELAY];
         
         CCCallBlock *stop = [CCCallBlockN actionWithBlock:^(CCNode *node) {
             
@@ -444,7 +444,7 @@ CGSize win;
     
     pointsLabel.position = ccp(win.width/2, win.height - (30 * iPadScaleFactor + iOS7ScaleFactor));
     
-    pointsLabel.color = ccBLACK;
+    pointsLabel.color = ccWHITE;//ccBLACK;
     
     [self addChild:pointsLabel];
     
@@ -492,7 +492,7 @@ CGSize win;
     
     
     
-    file = [NSString stringWithFormat:@"%@%@", @"betMin", [self getImageFileSuffix]];
+   /* file = [NSString stringWithFormat:@"%@%@", @"betMin", [self getImageFileSuffix]];
     
     CCMenuItem *betMin = [CCMenuItemImage itemWithNormalImage:file selectedImage:file target:self selector:@selector(betMin)];
     
@@ -503,12 +503,12 @@ CGSize win;
     
     CCMenuItem *betMax = [CCMenuItemImage itemWithNormalImage:file selectedImage:file target:self selector:@selector(betMax)];
     
-    betMax.position = ccp(betMin.position.x, betMin.position.y + 55);
+    betMax.position = ccp(betMin.position.x, betMin.position.y + 55);*/
     
     
     
     
-    CCMenu *menu = [CCMenu menuWithItems:returnButton, betMin, betMax, nil];
+    CCMenu *menu = [CCMenu menuWithItems:returnButton,nil];//, betMin, betMax, nil];
     menu.position = CGPointZero;
     
     [self addChild:menu];
