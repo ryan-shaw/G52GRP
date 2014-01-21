@@ -164,6 +164,18 @@
 		DCA630B5182B927A0053BCD0 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA630B4182B927A0053BCD0 /* vec4.c */; };
 		DCA630BA182B927A0053BCD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630B9182B927A0053BCD0 /* main.m */; };
 		DCA630BD182B927A0053BCD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630BC182B927A0053BCD0 /* AppDelegate.m */; };
+		DCD5C222188E7C84000F95D5 /* betMaxOff.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C216188E7C84000F95D5 /* betMaxOff.png */; };
+		DCD5C223188E7C84000F95D5 /* betMaxOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C217188E7C84000F95D5 /* betMaxOff@2x.png */; };
+		DCD5C224188E7C84000F95D5 /* betMaxOff@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C218188E7C84000F95D5 /* betMaxOff@4x.png */; };
+		DCD5C225188E7C84000F95D5 /* betMaxOn.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C219188E7C84000F95D5 /* betMaxOn.png */; };
+		DCD5C226188E7C84000F95D5 /* betMaxOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21A188E7C84000F95D5 /* betMaxOn@2x.png */; };
+		DCD5C227188E7C84000F95D5 /* betMaxOn@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21B188E7C84000F95D5 /* betMaxOn@4x.png */; };
+		DCD5C228188E7C84000F95D5 /* betMinOff.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21C188E7C84000F95D5 /* betMinOff.png */; };
+		DCD5C229188E7C84000F95D5 /* betMinOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21D188E7C84000F95D5 /* betMinOff@2x.png */; };
+		DCD5C22A188E7C84000F95D5 /* betMinOff@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21E188E7C84000F95D5 /* betMinOff@4x.png */; };
+		DCD5C22B188E7C84000F95D5 /* betMinOn.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21F188E7C84000F95D5 /* betMinOn.png */; };
+		DCD5C22C188E7C84000F95D5 /* betMinOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C220188E7C84000F95D5 /* betMinOn@2x.png */; };
+		DCD5C22D188E7C84000F95D5 /* betMinOn@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C221188E7C84000F95D5 /* betMinOn@4x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -477,6 +489,18 @@
 		DCA630B9182B927A0053BCD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCA630BB182B927A0053BCD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DCA630BC182B927A0053BCD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DCD5C216188E7C84000F95D5 /* betMaxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = betMaxOff.png; sourceTree = "<group>"; };
+		DCD5C217188E7C84000F95D5 /* betMaxOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMaxOff@2x.png"; sourceTree = "<group>"; };
+		DCD5C218188E7C84000F95D5 /* betMaxOff@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMaxOff@4x.png"; sourceTree = "<group>"; };
+		DCD5C219188E7C84000F95D5 /* betMaxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = betMaxOn.png; sourceTree = "<group>"; };
+		DCD5C21A188E7C84000F95D5 /* betMaxOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMaxOn@2x.png"; sourceTree = "<group>"; };
+		DCD5C21B188E7C84000F95D5 /* betMaxOn@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMaxOn@4x.png"; sourceTree = "<group>"; };
+		DCD5C21C188E7C84000F95D5 /* betMinOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = betMinOff.png; sourceTree = "<group>"; };
+		DCD5C21D188E7C84000F95D5 /* betMinOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMinOff@2x.png"; sourceTree = "<group>"; };
+		DCD5C21E188E7C84000F95D5 /* betMinOff@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMinOff@4x.png"; sourceTree = "<group>"; };
+		DCD5C21F188E7C84000F95D5 /* betMinOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = betMinOn.png; sourceTree = "<group>"; };
+		DCD5C220188E7C84000F95D5 /* betMinOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMinOn@2x.png"; sourceTree = "<group>"; };
+		DCD5C221188E7C84000F95D5 /* betMinOn@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMinOn@4x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -532,6 +556,7 @@
 		DC9B212518750ED40012620A /* MainGameScene */ = {
 			isa = PBXGroup;
 			children = (
+				DCD5C215188E7C84000F95D5 /* bet Buttons */,
 				DCA49F8718772ECB00308254 /* Menu Items */,
 				DC9B21301875182F0012620A /* Background */,
 				DC9B212618750EDD0012620A /* Fruits */,
@@ -1056,6 +1081,25 @@
 			name = "App and Icon Images";
 			sourceTree = "<group>";
 		};
+		DCD5C215188E7C84000F95D5 /* bet Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				DCD5C216188E7C84000F95D5 /* betMaxOff.png */,
+				DCD5C217188E7C84000F95D5 /* betMaxOff@2x.png */,
+				DCD5C218188E7C84000F95D5 /* betMaxOff@4x.png */,
+				DCD5C219188E7C84000F95D5 /* betMaxOn.png */,
+				DCD5C21A188E7C84000F95D5 /* betMaxOn@2x.png */,
+				DCD5C21B188E7C84000F95D5 /* betMaxOn@4x.png */,
+				DCD5C21C188E7C84000F95D5 /* betMinOff.png */,
+				DCD5C21D188E7C84000F95D5 /* betMinOff@2x.png */,
+				DCD5C21E188E7C84000F95D5 /* betMinOff@4x.png */,
+				DCD5C21F188E7C84000F95D5 /* betMinOn.png */,
+				DCD5C220188E7C84000F95D5 /* betMinOn@2x.png */,
+				DCD5C221188E7C84000F95D5 /* betMinOn@4x.png */,
+			);
+			path = "bet Buttons";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1112,14 +1156,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD5C222188E7C84000F95D5 /* betMaxOff.png in Resources */,
 				DCA49F911877934C00308254 /* strawberry@2x.png in Resources */,
 				DCA62F3D182B92750053BCD0 /* Icon.png in Resources */,
+				DCD5C22C188E7C84000F95D5 /* betMinOn@2x.png in Resources */,
 				DCA49F8D1877347000308254 /* betMin@2x.png in Resources */,
 				DCA49F971877968600308254 /* apple@2x.png in Resources */,
 				DC9B211F1874F1A80012620A /* FruitySlotsLogo@2x.png in Resources */,
 				DCA49F991877968600308254 /* orange@2x.png in Resources */,
 				DC9B212C187510DF0012620A /* MenuBackground.png in Resources */,
 				DC9B212F1875182C0012620A /* GameBackground@2x.png in Resources */,
+				DCD5C223188E7C84000F95D5 /* betMaxOff@2x.png in Resources */,
+				DCD5C228188E7C84000F95D5 /* betMinOff.png in Resources */,
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
 				DCA62F2F182B92750053BCD0 /* Default@2x.png in Resources */,
 				DC9B21201874F1A80012620A /* FruitySlotsLogo@ipadhd.png in Resources */,
@@ -1127,13 +1175,21 @@
 				DCA62F39182B92750053BCD0 /* Icon-Small.png in Resources */,
 				DCA49F8F18776BAB00308254 /* BetFrame@2x.png in Resources */,
 				DCA62F35182B92750053BCD0 /* Icon-72.png in Resources */,
+				DCD5C225188E7C84000F95D5 /* betMaxOn.png in Resources */,
+				DCD5C22B188E7C84000F95D5 /* betMinOn.png in Resources */,
+				DCD5C224188E7C84000F95D5 /* betMaxOff@4x.png in Resources */,
 				DCA49F851877225500308254 /* LogoImage@2x.png in Resources */,
+				DCD5C227188E7C84000F95D5 /* betMaxOn@4x.png in Resources */,
 				DC9B212818750EE50012620A /* cherry@2x.png in Resources */,
 				DC9B212B187510DF0012620A /* MenuBackground@2x.png in Resources */,
+				DCD5C22D188E7C84000F95D5 /* betMinOn@4x.png in Resources */,
 				DCA49F931877955A00308254 /* melon@2x.png in Resources */,
 				DCA62F2D182B92750053BCD0 /* Default.png in Resources */,
 				DCA49F9B1877969100308254 /* pear@2x.png in Resources */,
 				DCA62F37182B92750053BCD0 /* Icon-Small-50.png in Resources */,
+				DCD5C226188E7C84000F95D5 /* betMaxOn@2x.png in Resources */,
+				DCD5C229188E7C84000F95D5 /* betMinOff@2x.png in Resources */,
+				DCD5C22A188E7C84000F95D5 /* betMinOff@4x.png in Resources */,
 				DCA62F42182B92750053BCD0 /* iTunesArtwork in Resources */,
 				DC9B21231874F29F0012620A /* FruitySlotsLogo.png in Resources */,
 				DCA62F3B182B92750053BCD0 /* Icon-Small@2x.png in Resources */,

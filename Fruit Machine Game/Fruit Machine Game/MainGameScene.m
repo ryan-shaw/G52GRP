@@ -12,6 +12,7 @@
 
 NSMutableArray *fruits;
 NSMutableArray *fruitPositions;
+NSMutableArray *fruitImages;
 
 int currentReelNumber;
 
@@ -137,6 +138,7 @@ CGSize win;
         
         fruits = [[NSMutableArray alloc] init];
         fruitPositions = [[NSMutableArray alloc] init];
+        fruitImages = [[NSMutableArray alloc] init];
         
         currentReelNumber = 0;
         labelScore = 0;
@@ -260,7 +262,7 @@ CGSize win;
 
 - (void) runStopAnimation:(Fruit*)fruit {
     
-    double animationTime = REEL_STOP_DELAY/4;
+    double animationTime = FRUIT_BOUNCE_ANIMATION_TIME;
     
     CCMoveTo *down = [CCMoveTo actionWithDuration:animationTime position:ccp(fruit.position.x, fruit.position.y - STOP_ANIMATION_Y_MOVEMENT)];
     CCMoveTo *up = [CCMoveTo actionWithDuration:animationTime position:ccp(fruit.position.x, fruit.position.y + STOP_ANIMATION_Y_MOVEMENT)];
@@ -313,64 +315,24 @@ CGSize win;
     
     [self setFruitPositions];
     
-    NSString *file;
+    NSString *fruitImageName;
     
-    int count = 0;
-    
-    int startPosition = arc4random() % numberOfFruits;
+    int fruitArrayPosition;
     
     for (NSValue *position in fruitPositions) {
         
-        switch (++startPosition) {
-                
-            case 1:
-                
-                file = [NSString stringWithFormat:@"%@%@", @"cherry", [self getImageFileSuffix]];
-                break;
-                
-            case 2:
-                
-                file = [NSString stringWithFormat:@"%@%@", @"strawberry", [self getImageFileSuffix]];
-                break;
-                
-            case 3:
-                
-                file = [NSString stringWithFormat:@"%@%@", @"melon", [self getImageFileSuffix]];
-                break;
-                
-            case 4:
-                
-                file = [NSString stringWithFormat:@"%@%@", @"apple", [self getImageFileSuffix]];
-                break;
-                
-            case 5:
-                
-                file = [NSString stringWithFormat:@"%@%@", @"pear", [self getImageFileSuffix]];
-                break;
-                
-            case 6:
-                
-                file = [NSString stringWithFormat:@"%@%@", @"orange", [self getImageFileSuffix]];
-                break;
-                
-            case 7:
-                
-                file = [NSString stringWithFormat:@"%@%@", @"banana", [self getImageFileSuffix]];
-                startPosition = 0;
-                break;
-                
-            default:
-                startPosition = 0;
-                break;
-        }
-        
-        if (++count >= numberOfFruits) {
+        if (fruitImages.count == 0) {
             
-            count = 0;
-            startPosition = arc4random() % numberOfFruits;
+            [self setFruitImageNames];
         }
         
-        Fruit *fruit = [Fruit spriteWithFile:file];
+        fruitArrayPosition = arc4random() % fruitImages.count;
+        
+        fruitImageName = [fruitImages objectAtIndex:fruitArrayPosition];
+        
+        [fruitImages removeObjectAtIndex:fruitArrayPosition];
+        
+        Fruit *fruit = [Fruit spriteWithFile:fruitImageName];
         
         fruit.position = ccp(position.CGPointValue.x, position.CGPointValue.y);
         
@@ -383,17 +345,35 @@ CGSize win;
     }
 }
 
+- (void) setFruitImageNames {
+    
+    [fruitImages addObject:[NSString stringWithFormat:@"%@%@", @"cherry", [self getImageFileSuffix]]];
+    
+    [fruitImages addObject:[NSString stringWithFormat:@"%@%@", @"strawberry", [self getImageFileSuffix]]];
+    
+    [fruitImages addObject:[NSString stringWithFormat:@"%@%@", @"melon", [self getImageFileSuffix]]];
+    
+    [fruitImages addObject:[NSString stringWithFormat:@"%@%@", @"apple", [self getImageFileSuffix]]];
+    
+    [fruitImages addObject:[NSString stringWithFormat:@"%@%@", @"pear", [self getImageFileSuffix]]];
+    
+    [fruitImages addObject:[NSString stringWithFormat:@"%@%@", @"orange", [self getImageFileSuffix]]];
+    
+    [fruitImages addObject:[NSString stringWithFormat:@"%@%@", @"banana", [self getImageFileSuffix]]];
+    
+}
+
 - (void) setFruitPositions {
     
     [self getStartingPositions];
     
     int x, y;
     
-    for (int row = 0; row < NUMBER_OF_REELS; row++) {
+    for (int row = 0; row < numberOfReels; row++) {
         
         x = xChange * row;
         
-        for (int column = 0; column < NUMBER_OF_FRUITS; column++) {
+        for (int column = 0; column < numberOfFruits; column++) {
             
             y = yChange * column;
             
@@ -588,7 +568,7 @@ CGSize win;
     
     if (firstTouch.y > (lastTouch.y + yChange/2) && !spinFruits) {
         
-        if (firstTouch.y >= startingPosition.y && firstTouch.y <= (startingPosition.y + (yChange*(numberOfRows + 1)))) {
+        if (firstTouch.y >= startingPosition.y + 100 && firstTouch.y <= (startingPosition.y + (yChange*(numberOfRows + 1)))) {
             
             [self resetFruitPositions];
             spinFruits = YES;
@@ -614,7 +594,9 @@ CGSize win;
     [super dealloc];
     [fruits release];
     [fruitPositions release];
+    [fruitImages release];
     
+    fruitImages = NULL;
     fruits = NULL;
     fruitPositions = NULL;
 }
