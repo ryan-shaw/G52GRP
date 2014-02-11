@@ -6,9 +6,16 @@
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
-#define SCORE_DISPLAY_CHANGE 50
+#define MIN_STARTING 250
 
-#define POINTS_FONTSIZE 25
+#define LEVEL_FONT @"Ostrich Sans"
+#define LEVEL_FONTSIZE 20
+
+#define CREDITS_FONT @"Nova Square"
+#define POINTS_FONTSIZE 20
+
+
+#define SCORE_DISPLAY_CHANGE 50
 
 #define STOP_ANIMATION_Y_MOVEMENT 6
 
@@ -20,7 +27,7 @@
 #define SECOND_REEL 2
 #define THIRD_REEL 3
 
-#define REEL_STOP_DELAY 0.9//0.7
+#define REEL_STOP_DELAY 0.9
 #define FRUIT_BOUNCE_ANIMATION_TIME 0.18
 
 #define FRUITS_SPINNING_TIME 1.5
@@ -36,3 +43,26 @@
 #define IPAD 3
 #define IPHONE5 2
 #define IPHONE 1
+
+// Fruit Tags
+#define CHERRY 1
+#define STRAWBERRY 2
+#define MELON 3
+#define APPLE 4
+#define PEAR 5
+#define ORANGE 6
+#define BANANA 7
+
+// XP BAR COLOUR
+
+#define XP_R 137
+#define XP_G 233
+#define XP_B 141
+
+// POWER BAR COLOUR
+
+#define POWER_R 255
+#define POWER_G 190
+#define POWER_B 38
+
+

@@ -35,6 +35,14 @@
 	<true/>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>OstrichSans-Heavy.otf</string>
+		<string>NovaSquare.ttf</string>
+		<string>Klill-Light.ttf</string>
+		<string>Odin Rounded - Bold.otf</string>
+		<string>SourceSansPro-Regular.otf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<dict>
 		<key>accelerometer</key>
@@ -44,6 +52,8 @@
 	</dict>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>

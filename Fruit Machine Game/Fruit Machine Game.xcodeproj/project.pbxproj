@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC21D53B18A246C2009F4C09 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21D53818A246C2009F4C09 /* bar.png */; };
+		DC21D53C18A246C2009F4C09 /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21D53918A246C2009F4C09 /* bar@2x.png */; };
+		DC21D53D18A246C2009F4C09 /* bar@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21D53A18A246C2009F4C09 /* bar@4x.png */; };
+		DC7F682C188E8B2100231BA7 /* MaxOff.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6820188E8B2100231BA7 /* MaxOff.png */; };
+		DC7F682D188E8B2100231BA7 /* MaxOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6821188E8B2100231BA7 /* MaxOff@2x.png */; };
+		DC7F682E188E8B2100231BA7 /* MaxOff@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6822188E8B2100231BA7 /* MaxOff@4x.png */; };
+		DC7F682F188E8B2100231BA7 /* MaxOn.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6823188E8B2100231BA7 /* MaxOn.png */; };
+		DC7F6830188E8B2100231BA7 /* MaxOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6824188E8B2100231BA7 /* MaxOn@2x.png */; };
+		DC7F6831188E8B2100231BA7 /* MaxOn@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6825188E8B2100231BA7 /* MaxOn@4x.png */; };
+		DC7F6832188E8B2100231BA7 /* MinOff.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6826188E8B2100231BA7 /* MinOff.png */; };
+		DC7F6833188E8B2100231BA7 /* MinOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6827188E8B2100231BA7 /* MinOff@2x.png */; };
+		DC7F6834188E8B2100231BA7 /* MinOff@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6828188E8B2100231BA7 /* MinOff@4x.png */; };
+		DC7F6835188E8B2100231BA7 /* MinOn.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6829188E8B2100231BA7 /* MinOn.png */; };
+		DC7F6836188E8B2100231BA7 /* MinOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F682A188E8B2100231BA7 /* MinOn@2x.png */; };
+		DC7F6837188E8B2100231BA7 /* MinOn@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F682B188E8B2100231BA7 /* MinOn@4x.png */; };
+		DC8ACE5218A313070094075B /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8ACE5118A313070094075B /* backButton@2x.png */; };
+		DC8ACE5418A338C70094075B /* levelStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8ACE5318A338C70094075B /* levelStar@2x.png */; };
 		DC985B6B184D315500283E1A /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B6A184D315500283E1A /* MainMenu.m */; };
 		DC985B6E184D321B00283E1A /* MainGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B6D184D321B00283E1A /* MainGameScene.m */; };
 		DC985B71184D323800283E1A /* HorseRacingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B70184D323800283E1A /* HorseRacingGame.m */; };
@@ -22,10 +39,6 @@
 		DC9B212F1875182C0012620A /* GameBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9B212E1875182C0012620A /* GameBackground@2x.png */; };
 		DC9B2134187693950012620A /* Fruit.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B2133187693950012620A /* Fruit.m */; };
 		DCA49F851877225500308254 /* LogoImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA49F841877225500308254 /* LogoImage@2x.png */; };
-		DCA49F8918772ED600308254 /* SwipeArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA49F8818772ED600308254 /* SwipeArrow@2x.png */; };
-		DCA49F8C1877347000308254 /* betMax@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA49F8A1877347000308254 /* betMax@2x.png */; };
-		DCA49F8D1877347000308254 /* betMin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA49F8B1877347000308254 /* betMin@2x.png */; };
-		DCA49F8F18776BAB00308254 /* BetFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA49F8E18776BAB00308254 /* BetFrame@2x.png */; };
 		DCA49F911877934C00308254 /* strawberry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA49F901877934C00308254 /* strawberry@2x.png */; };
 		DCA49F931877955A00308254 /* melon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA49F921877955A00308254 /* melon@2x.png */; };
 		DCA49F971877968600308254 /* apple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA49F941877968600308254 /* apple@2x.png */; };
@@ -164,21 +177,31 @@
 		DCA630B5182B927A0053BCD0 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA630B4182B927A0053BCD0 /* vec4.c */; };
 		DCA630BA182B927A0053BCD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630B9182B927A0053BCD0 /* main.m */; };
 		DCA630BD182B927A0053BCD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630BC182B927A0053BCD0 /* AppDelegate.m */; };
-		DCD5C222188E7C84000F95D5 /* betMaxOff.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C216188E7C84000F95D5 /* betMaxOff.png */; };
-		DCD5C223188E7C84000F95D5 /* betMaxOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C217188E7C84000F95D5 /* betMaxOff@2x.png */; };
-		DCD5C224188E7C84000F95D5 /* betMaxOff@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C218188E7C84000F95D5 /* betMaxOff@4x.png */; };
-		DCD5C225188E7C84000F95D5 /* betMaxOn.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C219188E7C84000F95D5 /* betMaxOn.png */; };
-		DCD5C226188E7C84000F95D5 /* betMaxOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21A188E7C84000F95D5 /* betMaxOn@2x.png */; };
-		DCD5C227188E7C84000F95D5 /* betMaxOn@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21B188E7C84000F95D5 /* betMaxOn@4x.png */; };
-		DCD5C228188E7C84000F95D5 /* betMinOff.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21C188E7C84000F95D5 /* betMinOff.png */; };
-		DCD5C229188E7C84000F95D5 /* betMinOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21D188E7C84000F95D5 /* betMinOff@2x.png */; };
-		DCD5C22A188E7C84000F95D5 /* betMinOff@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21E188E7C84000F95D5 /* betMinOff@4x.png */; };
-		DCD5C22B188E7C84000F95D5 /* betMinOn.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C21F188E7C84000F95D5 /* betMinOn.png */; };
-		DCD5C22C188E7C84000F95D5 /* betMinOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C220188E7C84000F95D5 /* betMinOn@2x.png */; };
-		DCD5C22D188E7C84000F95D5 /* betMinOn@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD5C221188E7C84000F95D5 /* betMinOn@4x.png */; };
+		DCEF49A418A2640400F108DF /* OstrichSans-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = DCEF49A318A2640400F108DF /* OstrichSans-Heavy.otf */; };
+		DCEF49A918A2689700F108DF /* Odin Rounded - Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DCEF49A818A2689700F108DF /* Odin Rounded - Bold.otf */; };
+		DCEF49AD18A26CD400F108DF /* Klill-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCEF49AC18A26CD400F108DF /* Klill-Light.ttf */; };
+		DCEF49AF18A26D8700F108DF /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DCEF49AE18A26D8700F108DF /* SourceSansPro-Regular.otf */; };
+		DCEF49B318A2809700F108DF /* NovaSquare.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCEF49B218A2809700F108DF /* NovaSquare.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC21D53818A246C2009F4C09 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
+		DC21D53918A246C2009F4C09 /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
+		DC21D53A18A246C2009F4C09 /* bar@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@4x.png"; sourceTree = "<group>"; };
+		DC7F6820188E8B2100231BA7 /* MaxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MaxOff.png; sourceTree = "<group>"; };
+		DC7F6821188E8B2100231BA7 /* MaxOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MaxOff@2x.png"; sourceTree = "<group>"; };
+		DC7F6822188E8B2100231BA7 /* MaxOff@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MaxOff@4x.png"; sourceTree = "<group>"; };
+		DC7F6823188E8B2100231BA7 /* MaxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MaxOn.png; sourceTree = "<group>"; };
+		DC7F6824188E8B2100231BA7 /* MaxOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MaxOn@2x.png"; sourceTree = "<group>"; };
+		DC7F6825188E8B2100231BA7 /* MaxOn@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MaxOn@4x.png"; sourceTree = "<group>"; };
+		DC7F6826188E8B2100231BA7 /* MinOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MinOff.png; sourceTree = "<group>"; };
+		DC7F6827188E8B2100231BA7 /* MinOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MinOff@2x.png"; sourceTree = "<group>"; };
+		DC7F6828188E8B2100231BA7 /* MinOff@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MinOff@4x.png"; sourceTree = "<group>"; };
+		DC7F6829188E8B2100231BA7 /* MinOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MinOn.png; sourceTree = "<group>"; };
+		DC7F682A188E8B2100231BA7 /* MinOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MinOn@2x.png"; sourceTree = "<group>"; };
+		DC7F682B188E8B2100231BA7 /* MinOn@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MinOn@4x.png"; sourceTree = "<group>"; };
+		DC8ACE5118A313070094075B /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
+		DC8ACE5318A338C70094075B /* levelStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "levelStar@2x.png"; sourceTree = "<group>"; };
 		DC985B69184D315500283E1A /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		DC985B6A184D315500283E1A /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
 		DC985B6C184D321B00283E1A /* MainGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameScene.h; sourceTree = "<group>"; };
@@ -202,10 +225,6 @@
 		DC9B2132187693950012620A /* Fruit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fruit.h; sourceTree = "<group>"; };
 		DC9B2133187693950012620A /* Fruit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fruit.m; sourceTree = "<group>"; };
 		DCA49F841877225500308254 /* LogoImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoImage@2x.png"; sourceTree = "<group>"; };
-		DCA49F8818772ED600308254 /* SwipeArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SwipeArrow@2x.png"; sourceTree = "<group>"; };
-		DCA49F8A1877347000308254 /* betMax@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMax@2x.png"; sourceTree = "<group>"; };
-		DCA49F8B1877347000308254 /* betMin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMin@2x.png"; sourceTree = "<group>"; };
-		DCA49F8E18776BAB00308254 /* BetFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BetFrame@2x.png"; sourceTree = "<group>"; };
 		DCA49F901877934C00308254 /* strawberry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strawberry@2x.png"; sourceTree = "<group>"; };
 		DCA49F921877955A00308254 /* melon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "melon@2x.png"; sourceTree = "<group>"; };
 		DCA49F941877968600308254 /* apple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple@2x.png"; sourceTree = "<group>"; };
@@ -489,18 +508,11 @@
 		DCA630B9182B927A0053BCD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCA630BB182B927A0053BCD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DCA630BC182B927A0053BCD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DCD5C216188E7C84000F95D5 /* betMaxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = betMaxOff.png; sourceTree = "<group>"; };
-		DCD5C217188E7C84000F95D5 /* betMaxOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMaxOff@2x.png"; sourceTree = "<group>"; };
-		DCD5C218188E7C84000F95D5 /* betMaxOff@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMaxOff@4x.png"; sourceTree = "<group>"; };
-		DCD5C219188E7C84000F95D5 /* betMaxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = betMaxOn.png; sourceTree = "<group>"; };
-		DCD5C21A188E7C84000F95D5 /* betMaxOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMaxOn@2x.png"; sourceTree = "<group>"; };
-		DCD5C21B188E7C84000F95D5 /* betMaxOn@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMaxOn@4x.png"; sourceTree = "<group>"; };
-		DCD5C21C188E7C84000F95D5 /* betMinOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = betMinOff.png; sourceTree = "<group>"; };
-		DCD5C21D188E7C84000F95D5 /* betMinOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMinOff@2x.png"; sourceTree = "<group>"; };
-		DCD5C21E188E7C84000F95D5 /* betMinOff@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMinOff@4x.png"; sourceTree = "<group>"; };
-		DCD5C21F188E7C84000F95D5 /* betMinOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = betMinOn.png; sourceTree = "<group>"; };
-		DCD5C220188E7C84000F95D5 /* betMinOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMinOn@2x.png"; sourceTree = "<group>"; };
-		DCD5C221188E7C84000F95D5 /* betMinOn@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betMinOn@4x.png"; sourceTree = "<group>"; };
+		DCEF49A318A2640400F108DF /* OstrichSans-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OstrichSans-Heavy.otf"; sourceTree = "<group>"; };
+		DCEF49A818A2689700F108DF /* Odin Rounded - Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Odin Rounded - Bold.otf"; sourceTree = "<group>"; };
+		DCEF49AC18A26CD400F108DF /* Klill-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Klill-Light.ttf"; sourceTree = "<group>"; };
+		DCEF49AE18A26D8700F108DF /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
+		DCEF49B218A2809700F108DF /* NovaSquare.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NovaSquare.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +536,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC21D53E18A246CC009F4C09 /* Other objects */ = {
+			isa = PBXGroup;
+			children = (
+				DC21D53818A246C2009F4C09 /* bar.png */,
+				DC21D53918A246C2009F4C09 /* bar@2x.png */,
+				DC21D53A18A246C2009F4C09 /* bar@4x.png */,
+			);
+			name = "Other objects";
+			sourceTree = "<group>";
+		};
+		DC7F67EF188E898200231BA7 /* Bet Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				DC7F6820188E8B2100231BA7 /* MaxOff.png */,
+				DC7F6821188E8B2100231BA7 /* MaxOff@2x.png */,
+				DC7F6822188E8B2100231BA7 /* MaxOff@4x.png */,
+				DC7F6823188E8B2100231BA7 /* MaxOn.png */,
+				DC7F6824188E8B2100231BA7 /* MaxOn@2x.png */,
+				DC7F6825188E8B2100231BA7 /* MaxOn@4x.png */,
+				DC7F6826188E8B2100231BA7 /* MinOff.png */,
+				DC7F6827188E8B2100231BA7 /* MinOff@2x.png */,
+				DC7F6828188E8B2100231BA7 /* MinOff@4x.png */,
+				DC7F6829188E8B2100231BA7 /* MinOn.png */,
+				DC7F682A188E8B2100231BA7 /* MinOn@2x.png */,
+				DC7F682B188E8B2100231BA7 /* MinOn@4x.png */,
+			);
+			name = "Bet Buttons";
+			sourceTree = "<group>";
+		};
 		DC985B7E184D397600283E1A /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,8 +597,10 @@
 		DC9B212518750ED40012620A /* MainGameScene */ = {
 			isa = PBXGroup;
 			children = (
-				DCD5C215188E7C84000F95D5 /* bet Buttons */,
-				DCA49F8718772ECB00308254 /* Menu Items */,
+				DC8ACE5318A338C70094075B /* levelStar@2x.png */,
+				DC8ACE5118A313070094075B /* backButton@2x.png */,
+				DC21D53E18A246CC009F4C09 /* Other objects */,
+				DC7F67EF188E898200231BA7 /* Bet Buttons */,
 				DC9B21301875182F0012620A /* Background */,
 				DC9B212618750EDD0012620A /* Fruits */,
 			);
@@ -627,17 +670,6 @@
 			name = "Logo Image";
 			sourceTree = "<group>";
 		};
-		DCA49F8718772ECB00308254 /* Menu Items */ = {
-			isa = PBXGroup;
-			children = (
-				DCA49F8E18776BAB00308254 /* BetFrame@2x.png */,
-				DCA49F8A1877347000308254 /* betMax@2x.png */,
-				DCA49F8B1877347000308254 /* betMin@2x.png */,
-				DCA49F8818772ED600308254 /* SwipeArrow@2x.png */,
-			);
-			name = "Menu Items";
-			sourceTree = "<group>";
-		};
 		DCA62F0A182B92740053BCD0 = {
 			isa = PBXGroup;
 			children = (
@@ -693,6 +725,7 @@
 		DCA62F2B182B92750053BCD0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DCEF49A518A2642800F108DF /* Fonts */,
 				DC9B212518750ED40012620A /* MainGameScene */,
 				DC9B211B1874EF760012620A /* MainMenu */,
 				DCABD9DD1874D70E00B45034 /* App and Icon Images */,
@@ -1081,23 +1114,16 @@
 			name = "App and Icon Images";
 			sourceTree = "<group>";
 		};
-		DCD5C215188E7C84000F95D5 /* bet Buttons */ = {
+		DCEF49A518A2642800F108DF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				DCD5C216188E7C84000F95D5 /* betMaxOff.png */,
-				DCD5C217188E7C84000F95D5 /* betMaxOff@2x.png */,
-				DCD5C218188E7C84000F95D5 /* betMaxOff@4x.png */,
-				DCD5C219188E7C84000F95D5 /* betMaxOn.png */,
-				DCD5C21A188E7C84000F95D5 /* betMaxOn@2x.png */,
-				DCD5C21B188E7C84000F95D5 /* betMaxOn@4x.png */,
-				DCD5C21C188E7C84000F95D5 /* betMinOff.png */,
-				DCD5C21D188E7C84000F95D5 /* betMinOff@2x.png */,
-				DCD5C21E188E7C84000F95D5 /* betMinOff@4x.png */,
-				DCD5C21F188E7C84000F95D5 /* betMinOn.png */,
-				DCD5C220188E7C84000F95D5 /* betMinOn@2x.png */,
-				DCD5C221188E7C84000F95D5 /* betMinOn@4x.png */,
+				DCEF49B218A2809700F108DF /* NovaSquare.ttf */,
+				DCEF49AE18A26D8700F108DF /* SourceSansPro-Regular.otf */,
+				DCEF49A818A2689700F108DF /* Odin Rounded - Bold.otf */,
+				DCEF49A318A2640400F108DF /* OstrichSans-Heavy.otf */,
+				DCEF49AC18A26CD400F108DF /* Klill-Light.ttf */,
 			);
-			path = "bet Buttons";
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1156,48 +1182,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCD5C222188E7C84000F95D5 /* betMaxOff.png in Resources */,
 				DCA49F911877934C00308254 /* strawberry@2x.png in Resources */,
+				DCEF49B318A2809700F108DF /* NovaSquare.ttf in Resources */,
 				DCA62F3D182B92750053BCD0 /* Icon.png in Resources */,
-				DCD5C22C188E7C84000F95D5 /* betMinOn@2x.png in Resources */,
-				DCA49F8D1877347000308254 /* betMin@2x.png in Resources */,
+				DC7F6836188E8B2100231BA7 /* MinOn@2x.png in Resources */,
+				DC7F682E188E8B2100231BA7 /* MaxOff@4x.png in Resources */,
+				DC7F6830188E8B2100231BA7 /* MaxOn@2x.png in Resources */,
+				DC7F6833188E8B2100231BA7 /* MinOff@2x.png in Resources */,
 				DCA49F971877968600308254 /* apple@2x.png in Resources */,
 				DC9B211F1874F1A80012620A /* FruitySlotsLogo@2x.png in Resources */,
+				DC7F682C188E8B2100231BA7 /* MaxOff.png in Resources */,
+				DC7F682F188E8B2100231BA7 /* MaxOn.png in Resources */,
+				DCEF49A918A2689700F108DF /* Odin Rounded - Bold.otf in Resources */,
 				DCA49F991877968600308254 /* orange@2x.png in Resources */,
+				DC7F682D188E8B2100231BA7 /* MaxOff@2x.png in Resources */,
 				DC9B212C187510DF0012620A /* MenuBackground.png in Resources */,
+				DC7F6837188E8B2100231BA7 /* MinOn@4x.png in Resources */,
 				DC9B212F1875182C0012620A /* GameBackground@2x.png in Resources */,
-				DCD5C223188E7C84000F95D5 /* betMaxOff@2x.png in Resources */,
-				DCD5C228188E7C84000F95D5 /* betMinOff.png in Resources */,
+				DCEF49AD18A26CD400F108DF /* Klill-Light.ttf in Resources */,
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
+				DC7F6832188E8B2100231BA7 /* MinOff.png in Resources */,
 				DCA62F2F182B92750053BCD0 /* Default@2x.png in Resources */,
+				DCEF49AF18A26D8700F108DF /* SourceSansPro-Regular.otf in Resources */,
 				DC9B21201874F1A80012620A /* FruitySlotsLogo@ipadhd.png in Resources */,
-				DCA49F8C1877347000308254 /* betMax@2x.png in Resources */,
 				DCA62F39182B92750053BCD0 /* Icon-Small.png in Resources */,
-				DCA49F8F18776BAB00308254 /* BetFrame@2x.png in Resources */,
 				DCA62F35182B92750053BCD0 /* Icon-72.png in Resources */,
-				DCD5C225188E7C84000F95D5 /* betMaxOn.png in Resources */,
-				DCD5C22B188E7C84000F95D5 /* betMinOn.png in Resources */,
-				DCD5C224188E7C84000F95D5 /* betMaxOff@4x.png in Resources */,
 				DCA49F851877225500308254 /* LogoImage@2x.png in Resources */,
-				DCD5C227188E7C84000F95D5 /* betMaxOn@4x.png in Resources */,
 				DC9B212818750EE50012620A /* cherry@2x.png in Resources */,
 				DC9B212B187510DF0012620A /* MenuBackground@2x.png in Resources */,
-				DCD5C22D188E7C84000F95D5 /* betMinOn@4x.png in Resources */,
+				DC7F6835188E8B2100231BA7 /* MinOn.png in Resources */,
 				DCA49F931877955A00308254 /* melon@2x.png in Resources */,
 				DCA62F2D182B92750053BCD0 /* Default.png in Resources */,
+				DCEF49A418A2640400F108DF /* OstrichSans-Heavy.otf in Resources */,
 				DCA49F9B1877969100308254 /* pear@2x.png in Resources */,
+				DC21D53C18A246C2009F4C09 /* bar@2x.png in Resources */,
 				DCA62F37182B92750053BCD0 /* Icon-Small-50.png in Resources */,
-				DCD5C226188E7C84000F95D5 /* betMaxOn@2x.png in Resources */,
-				DCD5C229188E7C84000F95D5 /* betMinOff@2x.png in Resources */,
-				DCD5C22A188E7C84000F95D5 /* betMinOff@4x.png in Resources */,
 				DCA62F42182B92750053BCD0 /* iTunesArtwork in Resources */,
 				DC9B21231874F29F0012620A /* FruitySlotsLogo.png in Resources */,
 				DCA62F3B182B92750053BCD0 /* Icon-Small@2x.png in Resources */,
 				DCA49F981877968600308254 /* banana@2x.png in Resources */,
+				DC21D53B18A246C2009F4C09 /* bar.png in Resources */,
 				DCA62F33182B92750053BCD0 /* Default-Landscape~ipad.png in Resources */,
-				DCA49F8918772ED600308254 /* SwipeArrow@2x.png in Resources */,
 				DCA62F31182B92750053BCD0 /* Default-568h@2x.png in Resources */,
+				DC8ACE5218A313070094075B /* backButton@2x.png in Resources */,
+				DC7F6831188E8B2100231BA7 /* MaxOn@4x.png in Resources */,
+				DC21D53D18A246C2009F4C09 /* bar@4x.png in Resources */,
 				DCA62F3F182B92750053BCD0 /* Icon@2x.png in Resources */,
+				DC7F6834188E8B2100231BA7 /* MinOff@4x.png in Resources */,
+				DC8ACE5418A338C70094075B /* levelStar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
