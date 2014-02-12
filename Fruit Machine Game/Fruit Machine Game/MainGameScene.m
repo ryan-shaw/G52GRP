@@ -19,7 +19,7 @@ NSMutableArray *fruitImages;
 int currentReelNumber;
 
 double lastFruitYPosition;
-BOOL fruitsSpinning;
+BOOL fruitsSpinning, powerActive;
 
 CGPoint firstTouch, lastTouch;
 
@@ -35,7 +35,10 @@ int numberOfRows = NUMBER_OF_ROWS;
 
 int reel1Fruit, reel2Fruit, reel3Fruit;
 
-int totalCredits, tCreditsLabelScore, bet = 0, minBet, maxBet;
+int totalSpend = 0, totalXP;
+
+int totalCredits, tCreditsLabelScore, bet = 0, winnings = 0, minBet, maxBet;
+int currentLevel;
 
 int deviceTag;
 int iOS7ScaleFactor;
@@ -150,6 +153,9 @@ CGSize win;
         currentReelNumber = 0;
         tCreditsLabelScore = 0;
         fruitsSpinning = NO;
+        powerActive = YES;
+        currentLevel = 1;
+        totalXP = 0;
         
         [self setDeviceTag];
         
@@ -166,20 +172,19 @@ CGSize win;
     
     self.touchEnabled = YES;
     return self;
-    
 }
 
 - (void) setTotalCredits {
     
-    totalCredits = 2000;
+    totalCredits = 1000;
     tCreditsLabelScore = totalCredits;
     [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %i", tCreditsLabelScore]];
 }
 
 - (void) setMinMaxBets {
     
-    minBet = 50;
-    maxBet = 250;
+    minBet = CREDITS_CHANGE * currentLevel;
+    maxBet = minBet * NUMBER_OF_DIFFERENT_BETS;
     
     if (bet == 0) {
         
@@ -194,13 +199,32 @@ CGSize win;
     [self spinReels];
     
     [self correctCredits];
+    
 }
 
 - (void) correctCredits {
     
     if (!fruitsSpinning) {
         
+        if (maxBet > totalCredits) {
+            
+            maxBet = totalCredits;
+            
+        } else {
+            
+            maxBet = minBet * NUMBER_OF_DIFFERENT_BETS;
+        }
         
+        if (bet > maxBet && maxBet > 0) {
+            
+            bet = maxBet;
+        }
+        
+        if (totalCredits <= 0) {
+            
+            totalCredits = MIN_STARTING_CREDITS * currentLevel;
+            [self setMinMaxBets];
+        }
     }
 }
 
@@ -252,6 +276,58 @@ CGSize win;
     currentReelNumber = THIRD_REEL;
     
     [self setRandomFruits:currentReelNumber];
+    
+    [self payOut];
+}
+
+- (void) payOut {
+    
+    if (reel1Fruit == reel2Fruit && reel2Fruit == reel3Fruit) {
+        
+        [self increaseXPBar:WIN_XP];
+        
+        switch (reel1Fruit) {
+                
+            case CHERRY:
+                winnings = bet * CHERRY_MULT;
+                break;
+                
+            case STRAWBERRY:
+                winnings = bet * STRAWBERRY_MULT;
+                break;
+                
+            case MELON:
+                winnings = bet * MELON_MULT;
+                break;
+                
+            case APPLE:
+                winnings = bet * APPLE_MULT;
+                break;
+                
+            case PEAR:
+                winnings = bet * PEAR_MULT;
+                break;
+                
+            case BANANA:
+                winnings = bet * BANANA_MULT;
+                break;
+                
+            case ORANGE:
+                winnings = bet * ORANGE_MULT;
+                break;
+                
+            default:
+                break;
+        }
+        
+        totalCredits += winnings;
+        [winLabel setString:[NSString stringWithFormat:@"$ %i", winnings]];
+        
+    } else {
+        
+        winnings = 0;
+        [winLabel setString:[NSString stringWithFormat:@"$ %i", winnings]];
+    }
 }
 
 - (void) runStopAnimation:(Fruit*)fruit {
@@ -368,30 +444,86 @@ CGSize win;
     return ((arc4random() % numberOfFruits) + start);
 }
 
-- (int) randomFruit {
+- (int) randomFruit:(int)fruit {
     
     switch (arc4random() % numberOfFruits) {
             
         case 0:
-            return CHERRY;
+            
+            if (fruit != CHERRY) {
+                
+                return CHERRY;
+                
+            } else {
+                
+                return [self randomFruit:fruit];
+            }
             
         case 1:
-            return STRAWBERRY;
+            
+            if (fruit != STRAWBERRY) {
+                
+                return STRAWBERRY;
+                
+            } else {
+                
+                return [self randomFruit:fruit];
+            }
             
         case 2:
-            return MELON;
+            
+            if (fruit != MELON) {
+                
+                return MELON;
+                
+            } else {
+                
+                return [self randomFruit:fruit];
+            }
             
         case 3:
-            return APPLE;
+            
+            if (fruit != APPLE) {
+                
+                return APPLE;
+                
+            } else {
+                
+                return [self randomFruit:fruit];
+            }
             
         case 4:
-            return PEAR;
+            
+            if (fruit != PEAR) {
+                
+                return PEAR;
+                
+            } else {
+                
+                return [self randomFruit:fruit];
+            }
             
         case 5:
-            return BANANA;
+            
+            if (fruit != BANANA) {
+                
+                return BANANA;
+                
+            } else {
+                
+                return [self randomFruit:fruit];
+            }
             
         case 6:
-            return ORANGE;
+            
+            if (fruit != ORANGE) {
+                
+                return ORANGE;
+                
+            } else {
+                
+                return [self randomFruit:fruit];
+            }
             
         default:
             return NULL;
@@ -401,138 +533,85 @@ CGSize win;
 
 - (int) firstReelRandomFruit {
     
-    switch (arc4random() % 100) {
-            
-        case 0 ... 29:
-            return CHERRY;
-            
-        case 40 ... 49:
-            return STRAWBERRY;
-            
-        case 50 ... 59:
-            return MELON;
-            
-        case 60 ... 69:
-            return APPLE;
-            
-        case 70 ... 79:
-            return PEAR;
-            
-        case 80 ... 89:
-            return BANANA;
-            
-        case 90 ... 99:
-            return ORANGE;
-            
-        default:
-            return [self randomFruit];
-            break;
+    if (!powerActive) {
+        
+        switch (arc4random() % 100) {
+                
+            case 0 ... 29:
+                return CHERRY;
+                
+            case 40 ... 49:
+                return STRAWBERRY;
+                
+            case 50 ... 59:
+                return MELON;
+                
+            case 60 ... 69:
+                return APPLE;
+                
+            case 70 ... 79:
+                return PEAR;
+                
+            case 80 ... 89:
+                return BANANA;
+                
+            case 90 ... 99:
+                return ORANGE;
+                
+            default:
+                return [self randomFruit:ORANGE];
+                break;
+        }
+        
+    } else {
+        
+        switch (arc4random() % 100) {
+                
+            case 0 ... 29:
+                return CHERRY;
+                
+            case 30 ... 59:
+                return STRAWBERRY;
+                
+            case 60 ... 79:
+                return MELON;
+                
+            case 80 ... 84:
+                return APPLE;
+                
+            case 85 ... 89:
+                return PEAR;
+                
+            case 90 ... 94:
+                return BANANA;
+                
+            case 95 ... 99:
+                return ORANGE;
+                
+            default:
+                return [self randomFruit:ORANGE];
+                break;
+        }
+        
     }
 }
 
 - (int) secondReelRandomFruit {
     
-    switch (reel1Fruit) {
-            
-        case CHERRY:
-            
-            switch (arc4random() % 100) {
-                    
-                case 0 ... 44:
-                    return CHERRY;
-                    break;
-            }
-            
-            return [self randomFruit];
-            
-        case STRAWBERRY:
-            
-            switch (arc4random() % 100) {
-                    
-                case 0 ... 39:
-                    return STRAWBERRY;
-                    break;
-            }
-            
-            return [self randomFruit];
-            
-        case MELON:
-            
-            switch (arc4random() % 100) {
-                    
-                case 0 ... 34:
-                    return MELON;
-                    break;
-            }
-            
-            return [self randomFruit];
-            
-        case APPLE:
-            
-            switch (arc4random() % 100) {
-                    
-                case 0 ... 29:
-                    return APPLE;
-                    break;
-            }
-            
-            return [self randomFruit];
-            
-        case PEAR:
-            
-            switch (arc4random() % 100) {
-                    
-                case 0 ... 24:
-                    return PEAR;
-                    break;
-            }
-            
-            return [self randomFruit];
-            
-        case BANANA:
-            
-            switch (arc4random() % 100) {
-                    
-                case 0 ... 14:
-                    return BANANA;
-                    break;
-            }
-            
-            return [self randomFruit];
-            
-        case ORANGE:
-            
-            switch (arc4random() % 100) {
-                    
-                case 0 ... 14:
-                    return ORANGE;
-                    break;
-            }
-            
-            return [self randomFruit];
-            
-        default:
-            return [self randomFruit];
-            break;
-    }
-}
-
-- (int) thirdReelRandomFruit {
-    
-    if (reel1Fruit == reel2Fruit) {
+    if (!powerActive) {
         
-        switch (reel2Fruit) {
+        switch (reel1Fruit) {
                 
             case CHERRY:
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 39:
+                    case 0 ... 44:
                         return CHERRY;
                         break;
                 }
                 
-                return [self randomFruit];
+                return [self randomFruit:CHERRY];
                 
             case STRAWBERRY:
                 
@@ -543,7 +622,7 @@ CGSize win;
                         break;
                 }
                 
-                return [self randomFruit];
+                return [self randomFruit:STRAWBERRY];
                 
             case MELON:
                 
@@ -554,7 +633,7 @@ CGSize win;
                         break;
                 }
                 
-                return [self randomFruit];
+                return [self randomFruit:MELON];
                 
             case APPLE:
                 
@@ -565,49 +644,150 @@ CGSize win;
                         break;
                 }
                 
-                return [self randomFruit];
+                return [self randomFruit:APPLE];
                 
             case PEAR:
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 29:
+                    case 0 ... 24:
                         return PEAR;
                         break;
                 }
                 
-                return [self randomFruit];
+                return [self randomFruit:PEAR];
                 
             case BANANA:
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 29:
+                    case 0 ... 19:
                         return BANANA;
                         break;
                 }
                 
-                return [self randomFruit];
+                return [self randomFruit:BANANA];
                 
             case ORANGE:
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 9:
+                    case 0 ... 14:
                         return ORANGE;
                         break;
                 }
                 
-                return [self randomFruit];
+                return [self randomFruit:ORANGE];
                 
             default:
-                return [self randomFruit];
+                return [self randomFruit:ORANGE];
                 break;
         }
         
     } else {
         
-        return [self randomFruit];
+        return reel1Fruit;
+    }
+}
+
+- (int) thirdReelRandomFruit {
+    
+    if (reel1Fruit == reel2Fruit) {
+        
+        if (!powerActive) {
+            
+            switch (reel2Fruit) {
+                    
+                case CHERRY:
+                    
+                    switch (arc4random() % 100) {
+                            
+                        case 0 ... 49:
+                            return CHERRY;
+                            break;
+                    }
+                    
+                    return [self randomFruit:CHERRY];
+                    
+                case STRAWBERRY:
+                    
+                    switch (arc4random() % 100) {
+                            
+                        case 0 ... 39:
+                            return STRAWBERRY;
+                            break;
+                    }
+                    
+                    return [self randomFruit:STRAWBERRY];
+                    
+                case MELON:
+                    
+                    switch (arc4random() % 100) {
+                            
+                        case 0 ... 31:
+                            return MELON;
+                            break;
+                    }
+                    
+                    return [self randomFruit:MELON];
+                    
+                case APPLE:
+                    
+                    switch (arc4random() % 100) {
+                            
+                        case 0 ... 26:
+                            return APPLE;
+                            break;
+                    }
+                    
+                    return [self randomFruit:APPLE];
+                    
+                case PEAR:
+                    
+                    switch (arc4random() % 100) {
+                            
+                        case 0 ... 19:
+                            return PEAR;
+                            break;
+                    }
+                    
+                    return [self randomFruit:PEAR];
+                    
+                case BANANA:
+                    
+                    switch (arc4random() % 100) {
+                            
+                        case 0 ... 14:
+                            return BANANA;
+                            break;
+                    }
+                    
+                    return [self randomFruit:BANANA];
+                    
+                case ORANGE:
+                    
+                    switch (arc4random() % 100) {
+                            
+                        case 0 ... 9:
+                            return ORANGE;
+                            break;
+                    }
+                    
+                    return [self randomFruit:ORANGE];
+                    
+                default:
+                    return [self randomFruit:ORANGE];
+                    break;
+            }
+            
+        } else {
+            
+            return reel2Fruit;
+        }
+        
+    } else {
+        
+        return [self randomFruit:0];
     }
 }
 
@@ -778,7 +958,7 @@ CGSize win;
     [self addChild:betLabel];
     
     // win label
-    winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$ 0"] fontName:CREDITS_FONT fontSize:POINTS_FONTSIZE*iPadScaleFactor];
+    winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$ %i", winnings] fontName:CREDITS_FONT fontSize:POINTS_FONTSIZE*iPadScaleFactor];
     
     winLabel.position = [self getWinCreditPosition];
     
@@ -806,7 +986,7 @@ CGSize win;
     [self addChild:star];
     
     
-    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"7"] fontName:LEVEL_FONT fontSize:LEVEL_FONTSIZE*iPadScaleFactor];
+    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", currentLevel] fontName:LEVEL_FONT fontSize:LEVEL_FONTSIZE*iPadScaleFactor];
     
     levelLabel.position = ccp(xpBar.position.x, totalCreditsLabel.position.y - 2);
     
@@ -858,7 +1038,7 @@ CGSize win;
             
         case IPHONE:
             //41
-            return ccp(295,160);
+            return ccp(295,41);
             break;
             
         default:
@@ -869,12 +1049,12 @@ CGSize win;
 
 - (void) displayCredits {
     
-    if (totalCredits > tCreditsLabelScore) {
+    if (totalCredits > tCreditsLabelScore && totalCredits >= 0) {
         
-        tCreditsLabelScore += SCORE_DISPLAY_CHANGE;
+        tCreditsLabelScore += CREDITS_CHANGE;
         [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %i", tCreditsLabelScore]];
         
-    } else if (totalCredits < tCreditsLabelScore) {
+    } else if (totalCredits < tCreditsLabelScore && totalCredits >= 0) {
         
         tCreditsLabelScore = totalCredits;
         [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %i", tCreditsLabelScore]];
@@ -925,21 +1105,6 @@ CGSize win;
     [self addChild:menu];
 }
 
-- (CGPoint) getWinCreditPosition {
-    
-    switch (deviceTag) {
-            
-        case IPHONE:
-            
-            return ccp(225,49);
-            break;
-            
-        default:
-            return ccp(0,0);
-            break;
-    }
-}
-
 - (CGPoint) getTotalCreditPosition {
     
     switch (deviceTag) {
@@ -955,13 +1120,28 @@ CGSize win;
     
 }
 
+- (CGPoint) getWinCreditPosition {
+    
+    switch (deviceTag) {
+            
+        case IPHONE:
+            //225
+            return ccp(245,49);
+            break;
+            
+        default:
+            return ccp(0,0);
+            break;
+    }
+}
+
 - (CGPoint) getBetCreditPosition {
     
     switch (deviceTag) {
             
         case IPHONE:
             
-            return ccp(225,111);
+            return ccp(245,111);
             break;
             
         default:
@@ -1009,17 +1189,25 @@ CGSize win;
 
 - (void) decreaseBet {
     
-    if (bet > minBet) {
+    if ((bet % minBet) != 0) {
         
-        bet -= SCORE_DISPLAY_CHANGE;
+        bet -= bet % minBet;
+        
+    } else if (bet > minBet) {
+        
+        bet -= minBet;
     }
 }
 
 - (void) increaseBet {
     
-    if (bet < maxBet) {
+    if ((bet % minBet) != 0) {
         
-        bet += SCORE_DISPLAY_CHANGE;
+        bet += bet % minBet;
+        
+    } else if (bet < maxBet) {
+        
+        bet += minBet;
     }
 }
 
@@ -1107,9 +1295,10 @@ CGSize win;
             
             [self resetFruitPositions];
             fruitsSpinning = YES;
+            totalSpend += bet;
             [self increaseBars];
+            [self increaseXPBar:SPIN_XP];
             [self removeCredits];
-            
         }
     }
 }
@@ -1121,19 +1310,110 @@ CGSize win;
 
 - (void) increaseBars {
     
+    [powerBar stopAllActions];
+    
+    if (powerActive) {
+        
+        powerActive = NO;
+    }
+    
     double startingHeight = [self getPowerBarPosition].y;
     
-    double totalHeight = powerBar.contentSize.height + startingHeight;
+    double addedHeight = powerBar.contentSize.height;
     
-    [powerBar runAction:[CCMoveTo actionWithDuration:REEL_STOP_DELAY*2 position:ccp(powerBar.position.x, powerBar.position.y + ((totalHeight - startingHeight) / 8))]];
+    double divisionFactor = [self getPowerBarDivisionFactor];
     
-    if (powerBar.position.y >= totalHeight) {
+    double moveTo = startingHeight + (addedHeight * divisionFactor);
+    
+    double maxHeight = (addedHeight + startingHeight);
+    
+    if (moveTo > maxHeight) {
+        
+        moveTo = maxHeight;
+    }
+    
+    divisionFactor = (moveTo - powerBar.position.y) / 30;
+    
+    [powerBar runAction:[CCMoveTo actionWithDuration:divisionFactor position:ccp(powerBar.position.x, moveTo)]];
+    
+    if (moveTo == maxHeight) {
+        
+        [powerBar runAction:[CCRepeatForever actionWithAction:[CCSequence actionOne:[CCFadeTo actionWithDuration:0.5 opacity:110] two:[CCFadeTo actionWithDuration:0.5 opacity:255]]]];
+    }
+    
+    if (powerBar.position.y >= maxHeight) {
+        
+        [self activatePowerBar];
         
         [powerBar stopAllActions];
-        powerBar.position = ccp(powerBar.position.x, startingHeight);
-        [powerBar runAction:[CCMoveTo actionWithDuration:REEL_STOP_DELAY*2 position:ccp(powerBar.position.x, powerBar.position.y + ((totalHeight - startingHeight) / 8))]];
+        [powerBar runAction:[CCFadeTo actionWithDuration:0.5 opacity:255]];
+        [powerBar runAction:[CCMoveTo actionWithDuration:REEL_STOP_DELAY*3.5 position:ccp(powerBar.position.x, startingHeight)]];
+    }
+}
+
+- (void) increaseXPBar:(int)points {
+    
+    totalXP += points;
+    
+    double startingHeight = [self getXPBarPosition].y;
+    
+    double addedHeight = xpBar.contentSize.height;
+    
+    double maxHeight = (addedHeight + startingHeight);
+    
+    double xp = (totalXP)/(double)(LEVEL_XP_INCREASE * currentLevel);
+    
+    double moveTo = startingHeight + (addedHeight * xp);
+    
+    
+    if (totalXP > (LEVEL_XP_INCREASE * currentLevel)) {
+        
+        totalXP -= (LEVEL_XP_INCREASE * currentLevel);
+        
+        [self increaseLevel];
+        
+        xp = (moveTo - xpBar.position.y) / 50;
+        
+        [xpBar runAction:[CCSequence actionOne:[CCMoveTo actionWithDuration:xp position:ccp(xpBar.position.x, maxHeight)] two:[CCCallBlockN actionWithBlock:^(CCNode *node) { xpBar.position = ccp(xpBar.position.x, startingHeight); [self increaseXPBar:0]; }]]];
+        
+    } else {
+        
+        [xpBar stopActionByTag:1];
+        
+        xp = (moveTo - xpBar.position.y) / 20;
+        
+        CCMoveTo *move = [CCMoveTo actionWithDuration:xp position:ccp(xpBar.position.x, moveTo)];
+        move.tag = 1;
+        
+        [xpBar runAction:move];
         
     }
+}
+
+- (void) increaseLevel {
+    
+    currentLevel ++;
+    
+    [levelLabel setString:[NSString stringWithFormat:@"%i", currentLevel]];
+    
+    totalSpend = COMBO_AMOUNT_TO_SPEND * currentLevel;
+    
+    [powerBar stopAllActions];
+    [self increaseBars];
+    
+    [self setMinMaxBets];
+}
+
+- (double) getPowerBarDivisionFactor {
+    
+    return (totalSpend/(double)(COMBO_AMOUNT_TO_SPEND * currentLevel));
+}
+
+- (void) activatePowerBar {
+    
+    [self increaseXPBar:POWER_XP];
+    totalSpend = 0;
+    powerActive = YES;
 }
 
 - (void) resetFruitPositions {

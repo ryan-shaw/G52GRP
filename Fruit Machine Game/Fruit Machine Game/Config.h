@@ -6,7 +6,24 @@
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
-#define MIN_STARTING 250
+// fruit multipliers
+#define CHERRY_MULT 2
+#define STRAWBERRY_MULT 5
+#define MELON_MULT 10
+#define APPLE_MULT 15
+#define PEAR_MULT 20
+#define BANANA_MULT 25
+#define ORANGE_MULT 50
+
+#define POWER_XP 120
+#define WIN_XP 75
+#define SPIN_XP 25
+
+#define LEVEL_XP_INCREASE 500
+
+#define COMBO_AMOUNT_TO_SPEND 1000
+
+#define MIN_STARTING_CREDITS 100
 
 #define LEVEL_FONT @"Ostrich Sans"
 #define LEVEL_FONTSIZE 20
@@ -14,8 +31,8 @@
 #define CREDITS_FONT @"Nova Square"
 #define POINTS_FONTSIZE 20
 
-
-#define SCORE_DISPLAY_CHANGE 50
+#define NUMBER_OF_DIFFERENT_BETS 5
+#define CREDITS_CHANGE 50
 
 #define STOP_ANIMATION_Y_MOVEMENT 6
 
