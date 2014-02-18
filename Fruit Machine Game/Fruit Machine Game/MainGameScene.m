@@ -10,42 +10,48 @@
 #import "MainMenu.h"
 #import "Fruit.h"
 
-CCSprite *powerBar, *xpBar;
+int totalSpend = 0;
 
-NSMutableArray *fruits;
-NSMutableArray *fruitPositions;
-NSMutableArray *fruitImages;
-
-int currentReelNumber;
-
-double lastFruitYPosition;
-BOOL fruitsSpinning, powerActive;
-
-CGPoint firstTouch, lastTouch;
-
-CGPoint startingPosition;
-
-CCLabelTTF *totalCreditsLabel, *betLabel, *winLabel, *levelLabel;
-
-int xChange, yChange;
-
-int numberOfReels = NUMBER_OF_REELS;
-int numberOfFruits = NUMBER_OF_FRUITS;
-int numberOfRows = NUMBER_OF_ROWS;
-
-int reel1Fruit, reel2Fruit, reel3Fruit;
-
-int totalSpend = 0, totalXP;
-
-int totalCredits, tCreditsLabelScore, bet = 0, winnings = 0, minBet, maxBet;
-int currentLevel;
-
-int deviceTag;
-int iOS7ScaleFactor;
-int iPadScaleFactor;
-CGSize win;
-
-@implementation MainGameScene
+@implementation MainGameScene {
+    
+    CCSprite *powerBar, *xpBar;
+    
+    NSMutableArray *fruits;
+    NSMutableArray *fruitPositions;
+    NSMutableArray *fruitImages;
+    
+    int currentReelNumber;
+    
+    double lastFruitYPosition;
+    BOOL fruitsSpinning, powerActive;
+    
+    CGPoint firstTouch, lastTouch;
+    
+    CGPoint startingPosition;
+    
+    CCLabelTTF *totalCreditsLabel, *betLabel, *winLabel, *levelLabel;
+    
+    int xChange, yChange;
+    
+    int numberOfReels;
+    int numberOfFruits;
+    int numberOfRows;
+    
+    int reel1Fruit, reel2Fruit, reel3Fruit;
+    
+    int totalXP;
+    
+    int totalCredits, tCreditsLabelScore, bet, winnings, minBet, maxBet;
+    int currentLevel;
+    
+    int deviceTag;
+    int iOS7ScaleFactor;
+    int iPadScaleFactor;
+    CGSize win;
+    
+    NSUserDefaults *prefs;
+    
+}
 
 + (CCScene *) scene {
 	// 'scene' is an autorelease object.
@@ -137,6 +143,20 @@ CGSize win;
     }
 }
 
+- (void) initialiseVariables {
+    
+    currentReelNumber = 0;
+    tCreditsLabelScore = 0;
+    fruitsSpinning = NO;
+    powerActive = YES;
+    bet = CREDITS_CHANGE * currentLevel;
+    winnings = 0;
+    
+    numberOfReels = NUMBER_OF_REELS;
+    numberOfFruits = NUMBER_OF_FRUITS;
+    numberOfRows = NUMBER_OF_ROWS;
+}
+
 - (id) init {
     
 	if( (self=[super init])) {
@@ -146,16 +166,17 @@ CGSize win;
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
+        prefs = [NSUserDefaults standardUserDefaults];
+        
         fruits = [[NSMutableArray alloc] init];
         fruitPositions = [[NSMutableArray alloc] init];
         fruitImages = [[NSMutableArray alloc] init];
         
-        currentReelNumber = 0;
-        tCreditsLabelScore = 0;
-        fruitsSpinning = NO;
-        powerActive = YES;
-        currentLevel = 1;
-        totalXP = 0;
+        [self setCurrentLevel];
+        
+        [self initialiseVariables];
+        
+        [self setCurrentXP];
         
         [self setDeviceTag];
         
@@ -174,9 +195,36 @@ CGSize win;
     return self;
 }
 
+- (void) setCurrentXP {
+    
+    if (![prefs integerForKey:TOTALXP]) {
+        
+        [prefs setInteger:STARTING_XP forKey:TOTALXP];
+    }
+    
+    totalXP = [prefs integerForKey:TOTALXP];
+    
+}
+
+- (void) setCurrentLevel {
+    
+    if (![prefs integerForKey:CURRENT_LEVEL]) {
+        
+        [prefs setInteger:STARTING_LEVEL forKey:CURRENT_LEVEL];
+    }
+    
+    currentLevel = [prefs integerForKey:CURRENT_LEVEL];
+    
+}
+
 - (void) setTotalCredits {
     
-    totalCredits = 1000;
+    if (![prefs integerForKey:TOTALCREDITS]) {
+        
+        [prefs setInteger:STARTING_CREDITS forKey:TOTALCREDITS];
+    }
+    
+    totalCredits = [prefs integerForKey:TOTALCREDITS];
     tCreditsLabelScore = totalCredits;
     [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %i", tCreditsLabelScore]];
 }
@@ -185,11 +233,6 @@ CGSize win;
     
     minBet = CREDITS_CHANGE * currentLevel;
     maxBet = minBet * NUMBER_OF_DIFFERENT_BETS;
-    
-    if (bet == 0) {
-        
-        bet = minBet;
-    }
 }
 
 - (void) update {
@@ -328,6 +371,8 @@ CGSize win;
         winnings = 0;
         [winLabel setString:[NSString stringWithFormat:@"$ %i", winnings]];
     }
+    
+    [prefs synchronize];
 }
 
 - (void) runStopAnimation:(Fruit*)fruit {
@@ -702,7 +747,7 @@ CGSize win;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 49:
+                        case 0 ... 53:
                             return CHERRY;
                             break;
                     }
@@ -713,7 +758,7 @@ CGSize win;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 39:
+                        case 0 ... 42:
                             return STRAWBERRY;
                             break;
                     }
@@ -724,7 +769,7 @@ CGSize win;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 31:
+                        case 0 ... 34:
                             return MELON;
                             break;
                     }
@@ -988,7 +1033,7 @@ CGSize win;
     
     levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", currentLevel] fontName:LEVEL_FONT fontSize:LEVEL_FONTSIZE*iPadScaleFactor];
     
-    levelLabel.position = ccp(xpBar.position.x, totalCreditsLabel.position.y - 2);
+    levelLabel.position = ccp(xpBar.position.x, totalCreditsLabel.position.y - 1);
     
     levelLabel.color = ccBLACK;
     
@@ -1000,17 +1045,45 @@ CGSize win;
     
     NSString *file = [NSString stringWithFormat:@"%@%@", @"bar", [self getImageFileSuffix]];
     
+    CGPoint point = [self getPowerBarPosition];
+    
     powerBar = [CCSprite spriteWithFile:file];
     
-    powerBar.position = [self getPowerBarPosition];
+    double startingHeight = [self getPowerBarPosition].y;
+    
+    double addedHeight = powerBar.contentSize.height;
+    
+    double divisionFactor = [self getPowerBarDivisionFactor];
+    
+    double moveTo = startingHeight + (addedHeight * divisionFactor);
+    
+    powerBar.position = ccp(point.x, moveTo);
     
     powerBar.color = ccc3(POWER_R, POWER_G, POWER_B);
     
     [self addChild:powerBar z:-1];
     
+    
     xpBar = [CCSprite spriteWithFile:file];
     
-    xpBar.position = [self getXPBarPosition];
+    point = [self getXPBarPosition];
+    
+    if (totalXP == 0) {
+        
+        xpBar.position = point;
+        
+    } else {
+        
+        double startingHeight = [self getXPBarPosition].y;
+        
+        double addedHeight = xpBar.contentSize.height;
+        
+        double xp = (totalXP)/(double)(LEVEL_XP_INCREASE * currentLevel);
+        
+        double moveTo = startingHeight + (addedHeight * xp);
+        
+        xpBar.position = ccp(point.x, moveTo);
+    }
     
     xpBar.color = ccc3(XP_R, XP_G, XP_B);
     
@@ -1184,6 +1257,7 @@ CGSize win;
 
 - (void) returnButtonPressed {
     
+    [prefs synchronize];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
 }
 
@@ -1306,6 +1380,7 @@ CGSize win;
 - (void) removeCredits {
     
     totalCredits -= bet;
+    [prefs setInteger:totalCredits forKey:TOTALCREDITS];
 }
 
 - (void) increaseBars {
@@ -1388,6 +1463,8 @@ CGSize win;
         [xpBar runAction:move];
         
     }
+    
+    [prefs setInteger:totalXP forKey:TOTALXP];
 }
 
 - (void) increaseLevel {
@@ -1402,6 +1479,8 @@ CGSize win;
     [self increaseBars];
     
     [self setMinMaxBets];
+    
+    [prefs setInteger:currentLevel forKey:CURRENT_LEVEL];
 }
 
 - (double) getPowerBarDivisionFactor {

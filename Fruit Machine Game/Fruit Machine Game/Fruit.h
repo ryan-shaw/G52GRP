@@ -10,8 +10,6 @@
 #import "cocos2d.h"
 
 @interface Fruit : CCSprite {
-    
-    int reel;
 }
 
 - (void) setReel:(int)reel;

@@ -10,7 +10,6 @@
 
 #import "AppDelegate.h"
 #import "MainMenu.h"
-#import "MainGameScene.h"
 
 @implementation MyNavigationController
 
@@ -48,7 +47,7 @@
 	if(director.runningScene == nil) {
 		// Add the first scene to the stack. The director will draw it immediately into the framebuffer. (Animation is started automatically when the view is displayed.)
 		// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-		[director runWithScene: [MainGameScene scene]];
+		[director runWithScene: [MainMenu scene]];
 	}
 }
 @end
@@ -142,6 +141,7 @@
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
 }
@@ -149,6 +149,7 @@
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];	
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
@@ -169,6 +170,7 @@
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	CC_DIRECTOR_END();
 }
 

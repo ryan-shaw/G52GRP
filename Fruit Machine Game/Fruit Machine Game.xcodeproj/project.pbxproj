@@ -10,6 +10,11 @@
 		DC21D53B18A246C2009F4C09 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21D53818A246C2009F4C09 /* bar.png */; };
 		DC21D53C18A246C2009F4C09 /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21D53918A246C2009F4C09 /* bar@2x.png */; };
 		DC21D53D18A246C2009F4C09 /* bar@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21D53A18A246C2009F4C09 /* bar@4x.png */; };
+		DC53E8C918B316DC0050F1C5 /* Arialic Hollow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC53E8C818B316DC0050F1C5 /* Arialic Hollow.ttf */; };
+		DC53E8CB18B317900050F1C5 /* carbono_pw.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC53E8CA18B317900050F1C5 /* carbono_pw.ttf */; };
+		DC53E8CD18B318780050F1C5 /* Surrnd_L.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC53E8CC18B318780050F1C5 /* Surrnd_L.ttf */; };
+		DC53E8D018B3D8470050F1C5 /* MenuBackground@ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DC53E8CE18B3D8470050F1C5 /* MenuBackground@ipad.png */; };
+		DC53E8D118B3D8470050F1C5 /* MenuBackground@ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC53E8CF18B3D8470050F1C5 /* MenuBackground@ipadhd.png */; };
 		DC7F682C188E8B2100231BA7 /* MaxOff.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6820188E8B2100231BA7 /* MaxOff.png */; };
 		DC7F682D188E8B2100231BA7 /* MaxOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6821188E8B2100231BA7 /* MaxOff@2x.png */; };
 		DC7F682E188E8B2100231BA7 /* MaxOff@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7F6822188E8B2100231BA7 /* MaxOff@4x.png */; };
@@ -188,6 +193,11 @@
 		DC21D53818A246C2009F4C09 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
 		DC21D53918A246C2009F4C09 /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
 		DC21D53A18A246C2009F4C09 /* bar@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@4x.png"; sourceTree = "<group>"; };
+		DC53E8C818B316DC0050F1C5 /* Arialic Hollow.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arialic Hollow.ttf"; sourceTree = "<group>"; };
+		DC53E8CA18B317900050F1C5 /* carbono_pw.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = carbono_pw.ttf; sourceTree = "<group>"; };
+		DC53E8CC18B318780050F1C5 /* Surrnd_L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Surrnd_L.ttf; sourceTree = "<group>"; };
+		DC53E8CE18B3D8470050F1C5 /* MenuBackground@ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBackground@ipad.png"; sourceTree = "<group>"; };
+		DC53E8CF18B3D8470050F1C5 /* MenuBackground@ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBackground@ipadhd.png"; sourceTree = "<group>"; };
 		DC7F6820188E8B2100231BA7 /* MaxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MaxOff.png; sourceTree = "<group>"; };
 		DC7F6821188E8B2100231BA7 /* MaxOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MaxOff@2x.png"; sourceTree = "<group>"; };
 		DC7F6822188E8B2100231BA7 /* MaxOff@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MaxOff@4x.png"; sourceTree = "<group>"; };
@@ -624,6 +634,8 @@
 		DC9B212D187510E20012620A /* Background */ = {
 			isa = PBXGroup;
 			children = (
+				DC53E8CE18B3D8470050F1C5 /* MenuBackground@ipad.png */,
+				DC53E8CF18B3D8470050F1C5 /* MenuBackground@ipadhd.png */,
 				DC9B2129187510DF0012620A /* MenuBackground@2x.png */,
 				DC9B212A187510DF0012620A /* MenuBackground.png */,
 			);
@@ -1117,6 +1129,9 @@
 		DCEF49A518A2642800F108DF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				DC53E8CC18B318780050F1C5 /* Surrnd_L.ttf */,
+				DC53E8CA18B317900050F1C5 /* carbono_pw.ttf */,
+				DC53E8C818B316DC0050F1C5 /* Arialic Hollow.ttf */,
 				DCEF49B218A2809700F108DF /* NovaSquare.ttf */,
 				DCEF49AE18A26D8700F108DF /* SourceSansPro-Regular.otf */,
 				DCEF49A818A2689700F108DF /* Odin Rounded - Bold.otf */,
@@ -1186,6 +1201,7 @@
 				DCEF49B318A2809700F108DF /* NovaSquare.ttf in Resources */,
 				DCA62F3D182B92750053BCD0 /* Icon.png in Resources */,
 				DC7F6836188E8B2100231BA7 /* MinOn@2x.png in Resources */,
+				DC53E8CB18B317900050F1C5 /* carbono_pw.ttf in Resources */,
 				DC7F682E188E8B2100231BA7 /* MaxOff@4x.png in Resources */,
 				DC7F6830188E8B2100231BA7 /* MaxOn@2x.png in Resources */,
 				DC7F6833188E8B2100231BA7 /* MinOff@2x.png in Resources */,
@@ -1194,6 +1210,7 @@
 				DC7F682C188E8B2100231BA7 /* MaxOff.png in Resources */,
 				DC7F682F188E8B2100231BA7 /* MaxOn.png in Resources */,
 				DCEF49A918A2689700F108DF /* Odin Rounded - Bold.otf in Resources */,
+				DC53E8D018B3D8470050F1C5 /* MenuBackground@ipad.png in Resources */,
 				DCA49F991877968600308254 /* orange@2x.png in Resources */,
 				DC7F682D188E8B2100231BA7 /* MaxOff@2x.png in Resources */,
 				DC9B212C187510DF0012620A /* MenuBackground.png in Resources */,
@@ -1201,6 +1218,7 @@
 				DC9B212F1875182C0012620A /* GameBackground@2x.png in Resources */,
 				DCEF49AD18A26CD400F108DF /* Klill-Light.ttf in Resources */,
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
+				DC53E8C918B316DC0050F1C5 /* Arialic Hollow.ttf in Resources */,
 				DC7F6832188E8B2100231BA7 /* MinOff.png in Resources */,
 				DCA62F2F182B92750053BCD0 /* Default@2x.png in Resources */,
 				DCEF49AF18A26D8700F108DF /* SourceSansPro-Regular.otf in Resources */,
@@ -1219,10 +1237,12 @@
 				DCA62F37182B92750053BCD0 /* Icon-Small-50.png in Resources */,
 				DCA62F42182B92750053BCD0 /* iTunesArtwork in Resources */,
 				DC9B21231874F29F0012620A /* FruitySlotsLogo.png in Resources */,
+				DC53E8CD18B318780050F1C5 /* Surrnd_L.ttf in Resources */,
 				DCA62F3B182B92750053BCD0 /* Icon-Small@2x.png in Resources */,
 				DCA49F981877968600308254 /* banana@2x.png in Resources */,
 				DC21D53B18A246C2009F4C09 /* bar.png in Resources */,
 				DCA62F33182B92750053BCD0 /* Default-Landscape~ipad.png in Resources */,
+				DC53E8D118B3D8470050F1C5 /* MenuBackground@ipadhd.png in Resources */,
 				DCA62F31182B92750053BCD0 /* Default-568h@2x.png in Resources */,
 				DC8ACE5218A313070094075B /* backButton@2x.png in Resources */,
 				DC7F6831188E8B2100231BA7 /* MaxOn@4x.png in Resources */,

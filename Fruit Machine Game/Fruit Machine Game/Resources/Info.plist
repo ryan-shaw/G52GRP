@@ -37,6 +37,9 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Surrnd_L.ttf</string>
+		<string>carbono_pw.ttf</string>
+		<string>Arialic Hollow.ttf</string>
 		<string>OstrichSans-Heavy.otf</string>
 		<string>NovaSquare.ttf</string>
 		<string>Klill-Light.ttf</string>

@@ -8,7 +8,10 @@
 
 #import "Fruit.h"
 
-@implementation Fruit
+@implementation Fruit {
+    
+    int reel;
+}
 
 - (void) setReel:(int)reelPosition {
     

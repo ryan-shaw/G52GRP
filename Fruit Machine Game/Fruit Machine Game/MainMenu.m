@@ -9,10 +9,12 @@
 #import "MainMenu.h"
 #import "MainGameScene.h"
 
-int deviceTag;
-CGSize win;
-
-@implementation MainMenu
+@implementation MainMenu {
+    
+    CCLabelTTF *playLabel;
+    int deviceTag;
+    CGSize win;
+}
 
 + (CCScene *) scene {
 	// 'scene' is an autorelease object.
@@ -110,13 +112,13 @@ CGSize win;
 
 - (void) createDisplay {
     
-    //NSString *file = [NSString stringWithFormat:@"%@%@", @"MenuBackground", [self getBackgroundFileSuffix]];
+    NSString *file = [NSString stringWithFormat:@"%@%@", @"MenuBackground", [self getBackgroundFileSuffix]];
     
-    //CCSprite *background = [CCSprite spriteWithFile:file];
+    CCSprite *background = [CCSprite spriteWithFile:file];
     
-    CCLayerColor *background = [CCLayerColor layerWithColor:ccc4(255, 190, 38,255)];
+   // CCLayerColor *background = [CCLayerColor layerWithColor:ccc4(255, 190, 38,255)];
     
-    //background.position = ccp(win.width/2, win.height/2);
+    background.position = ccp(win.width/2, win.height/2);
     
     [self addChild:background];
     
@@ -129,7 +131,7 @@ CGSize win;
     
     playLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"insert coin to play"] fontName:@"Heiti TC" fontSize:INSERT_COIN_FONTSIZE];
     
-    playLabel.color = ccBLACK;
+    playLabel.color = ccWHITE;
     
     playLabel.position = ccp(win.width/2, win.height/10);
     
@@ -149,7 +151,7 @@ CGSize win;
 
 - (void) setLogo {
     
-    NSString *file = [NSString stringWithFormat:@"%@%@", @"FruitySlotsLogo", [self getImageFileSuffix]];
+    /*NSString *file = [NSString stringWithFormat:@"%@%@", @"FruitySlotsLogo", [self getImageFileSuffix]];
     
     CCSprite *logo = [CCSprite spriteWithFile:file];
     
@@ -163,7 +165,7 @@ CGSize win;
     
     logo.position = ccp(win.width/2, win.height/1.3);
     
-    [self addChild:logo];
+    [self addChild:logo];*/
 }
 
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

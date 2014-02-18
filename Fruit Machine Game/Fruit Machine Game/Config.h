@@ -6,6 +6,17 @@
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
+// NSUserDefaults File Names
+#define TOTALCREDITS @"TotalCredits"
+#define CURRENT_LEVEL @"CurrentLevel"
+#define TOTALXP @"TotalXP"
+
+
+#define STARTING_CREDITS 2000
+#define STARTING_LEVEL 1
+#define STARTING_XP 0
+
+
 // fruit multipliers
 #define CHERRY_MULT 2
 #define STRAWBERRY_MULT 5
