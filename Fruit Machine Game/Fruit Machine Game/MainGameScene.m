@@ -10,7 +10,7 @@
 #import "MainMenu.h"
 #import "Fruit.h"
 
-int totalSpend = 0;
+int totalSpend = 0, totalCredits;
 
 @implementation MainGameScene {
     
@@ -41,7 +41,7 @@ int totalSpend = 0;
     
     int totalXP;
     
-    int totalCredits, tCreditsLabelScore, bet, winnings, minBet, maxBet;
+    int tCreditsLabelScore, bet, winnings, minBet, maxBet;
     int currentLevel;
     
     int deviceTag;
@@ -163,10 +163,9 @@ int totalSpend = 0;
         
         win = [[CCDirector sharedDirector] winSize];
         
-        [[UIApplication sharedApplication] setStatusBarHidden:NO];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        
         prefs = [NSUserDefaults standardUserDefaults];
+        
+        [prefs synchronize];
         
         fruits = [[NSMutableArray alloc] init];
         fruitPositions = [[NSMutableArray alloc] init];
@@ -219,7 +218,7 @@ int totalSpend = 0;
 
 - (void) setTotalCredits {
     
-    if (![prefs integerForKey:TOTALCREDITS]) {
+    if (![prefs integerForKey:TOTALCREDITS] && totalCredits == 0) {
         
         [prefs setInteger:STARTING_CREDITS forKey:TOTALCREDITS];
     }
@@ -747,7 +746,7 @@ int totalSpend = 0;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 53:
+                        case 0 ... 52:
                             return CHERRY;
                             break;
                     }
@@ -769,7 +768,7 @@ int totalSpend = 0;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 34:
+                        case 0 ... 33:
                             return MELON;
                             break;
                     }
@@ -791,7 +790,7 @@ int totalSpend = 0;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 19:
+                        case 0 ... 22:
                             return PEAR;
                             break;
                     }
@@ -802,7 +801,7 @@ int totalSpend = 0;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 14:
+                        case 0 ... 17:
                             return BANANA;
                             break;
                     }
@@ -1057,6 +1056,13 @@ int totalSpend = 0;
     
     double moveTo = startingHeight + (addedHeight * divisionFactor);
     
+    if (moveTo > (addedHeight + startingHeight)) {
+        
+        moveTo = (addedHeight + startingHeight);
+        
+        [powerBar runAction:[CCRepeatForever actionWithAction:[CCSequence actionOne:[CCFadeTo actionWithDuration:0.5 opacity:110] two:[CCFadeTo actionWithDuration:0.5 opacity:255]]]];
+    }
+    
     powerBar.position = ccp(point.x, moveTo);
     
     powerBar.color = ccc3(POWER_R, POWER_G, POWER_B);
@@ -1263,25 +1269,31 @@ int totalSpend = 0;
 
 - (void) decreaseBet {
     
-    if ((bet % minBet) != 0) {
+    if (totalCredits > bet) {
         
-        bet -= bet % minBet;
-        
-    } else if (bet > minBet) {
-        
-        bet -= minBet;
+        if ((bet % minBet) != 0) {
+            
+            bet -= (bet % minBet);
+            
+        } else if (bet > minBet) {
+            
+            bet -= minBet;
+        }
     }
 }
 
 - (void) increaseBet {
     
-    if ((bet % minBet) != 0) {
+    if (totalCredits > bet) {
         
-        bet += bet % minBet;
-        
-    } else if (bet < maxBet) {
-        
-        bet += minBet;
+        if ((bet % minBet) != 0) {
+            
+            bet += (bet % minBet);
+            
+        } else if (bet < maxBet) {
+            
+            bet += minBet;
+        }
     }
 }
 

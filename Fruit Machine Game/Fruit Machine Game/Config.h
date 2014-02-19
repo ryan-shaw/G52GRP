@@ -6,6 +6,11 @@
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
+#define PLAY_LABEL_FONT @"Heiti TC"
+#define PLAY_LABEL_TEXT @"insert coin to play"
+
+#define OPTION_BAR_MOVE_TIME 0.4
+
 // NSUserDefaults File Names
 #define TOTALCREDITS @"TotalCredits"
 #define CURRENT_LEVEL @"CurrentLevel"
@@ -93,4 +98,9 @@
 #define POWER_G 190
 #define POWER_B 38
 
+// MENU SELECT COLOUR
+
+#define MENU_R 150
+#define MENU_G 150
+#define MENU_B 150
 

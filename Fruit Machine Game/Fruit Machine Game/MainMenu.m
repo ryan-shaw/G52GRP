@@ -9,11 +9,16 @@
 #import "MainMenu.h"
 #import "MainGameScene.h"
 
+
 @implementation MainMenu {
     
     CCLabelTTF *playLabel;
-    int deviceTag;
+    int deviceTag, scaleFactor;
     CGSize win;
+    
+    CCSprite *optionBar;
+    CCMenu *menu;
+
 }
 
 + (CCScene *) scene {
@@ -44,6 +49,7 @@
             
         }
         
+        scaleFactor = 1;
         
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
@@ -56,6 +62,8 @@
             deviceTag = IPAD;
             
         }
+        
+        scaleFactor = 2;
     }
     
 }
@@ -88,7 +96,7 @@
             
         case IPADHD:
             return @"@ipadhd.png";
-     
+            
         default:
             return @".png";
     }
@@ -97,6 +105,9 @@
 - (id) init {
     
 	if( (self=[super init])) {
+        
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         win = [[CCDirector sharedDirector] winSize];
         
@@ -116,20 +127,140 @@
     
     CCSprite *background = [CCSprite spriteWithFile:file];
     
-   // CCLayerColor *background = [CCLayerColor layerWithColor:ccc4(255, 190, 38,255)];
-    
     background.position = ccp(win.width/2, win.height/2);
     
     [self addChild:background];
     
     [self setPlayLabel];
     
-    [self setLogo];
+    [self setOptions];
+}
+
+- (void) setOptions {
+    
+    NSString *file = [NSString stringWithFormat:@"%@%@", @"optionBar", [self getImageFileSuffix]];
+    
+    CCSprite *select, *unselect;
+    
+    optionBar = [CCSprite spriteWithFile:file];
+    
+    optionBar.position = ccp(-optionBar.contentSize.width/2.8, win.height/1.15);
+    
+    [self addChild:optionBar];
+    
+    
+    
+    file = [NSString stringWithFormat:@"%@%@", @"option", [self getImageFileSuffix]];
+    
+    select = [CCSprite spriteWithFile:file];
+    unselect = [CCSprite spriteWithFile:file];
+    unselect.scale = 0.85;
+    
+    CCMenuItemSprite *optionButton = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(extendOptions)];
+    optionButton.position = ccp(optionBar.contentSize.width/16, optionBar.position.y);
+    
+    CCMenu *otherMenu = [CCMenu menuWithItems: optionButton, nil];
+    otherMenu.position = CGPointZero;
+    
+    [self addChild:otherMenu];
+    
+    
+    
+    
+    
+    file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
+    select = [CCSprite spriteWithFile:file];
+    
+    file = [NSString stringWithFormat:@"%@%@", @"muteOn", [self getImageFileSuffix]];
+    unselect = [CCSprite spriteWithFile:file];
+    unselect.color = ccc3(MENU_R, MENU_G, MENU_B);
+    
+    CCMenuItemSprite *mute = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(mute)];
+    mute.position = ccp(optionButton.position.x*1.5 + optionBar.contentSize.width/6, optionBar.position.y);
+    
+    
+    
+    file = [NSString stringWithFormat:@"%@%@", @"leaderboard", [self getImageFileSuffix]];
+    select = [CCSprite spriteWithFile:file];
+    unselect = [CCSprite spriteWithFile:file];
+    unselect.color = ccc3(MENU_R, MENU_G, MENU_B);
+    
+    CCMenuItemSprite *leaderboard = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(showLeaderboard)];
+    leaderboard.position = ccp(optionButton.position.x*1.5 + (optionBar.contentSize.width/6)*2, optionBar.position.y);
+    
+    
+    
+    file = [NSString stringWithFormat:@"%@%@", @"reset", [self getImageFileSuffix]];
+
+    select = [CCSprite spriteWithFile:file];
+    unselect = [CCSprite spriteWithFile:file];
+    unselect.color = ccc3(MENU_R, MENU_G, MENU_B);
+    
+    CCMenuItemSprite *question = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(reset)];
+    question.position = ccp(optionButton.position.x*1.5 + (optionBar.contentSize.width/6)*3, optionBar.position.y);
+    
+    
+    
+    
+    file = [NSString stringWithFormat:@"%@%@", @"question", [self getImageFileSuffix]];
+    
+    select = [CCSprite spriteWithFile:file];
+    unselect = [CCSprite spriteWithFile:file];
+    unselect.color = ccc3(MENU_R, MENU_G, MENU_B);
+    
+    CCMenuItemSprite *reset = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(showHelp)];
+    reset.position = ccp(optionButton.position.x*1.5 + (optionBar.contentSize.width/6)*4, optionBar.position.y);
+    
+    
+    
+    menu = [CCMenu menuWithItems: mute, leaderboard, question, reset, nil];
+    menu.position = CGPointZero;
+    
+    [self addChild:menu];
+    menu.opacity = 0;
+}
+
+- (void) reset {
+    
+    
+    
+}
+
+- (void) showLeaderboard {
+    
+}
+
+- (void) showHelp {
+    
+}
+
+- (void) mute {
+    
+}
+
+- (void) extendOptions {
+    
+    if (optionBar.numberOfRunningActions == 0) {
+        
+        if (optionBar.position.x < 0) {
+            
+            [optionBar runAction:[CCMoveTo actionWithDuration:OPTION_BAR_MOVE_TIME position:ccp(optionBar.contentSize.width/2.50, optionBar.position.y)]];
+            
+            menu.enabled = YES;
+            [menu runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:OPTION_BAR_MOVE_TIME] two:[CCFadeIn actionWithDuration:0.1]]];
+            
+        } else {
+            
+            [optionBar runAction:[CCMoveTo actionWithDuration:OPTION_BAR_MOVE_TIME position:ccp(-optionBar.contentSize.width/2.8, optionBar.position.y)]];
+            menu.opacity = 0;
+            menu.enabled = NO;
+        }
+    }
 }
 
 - (void) setPlayLabel {
     
-    playLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"insert coin to play"] fontName:@"Heiti TC" fontSize:INSERT_COIN_FONTSIZE];
+    playLabel = [CCLabelTTF labelWithString:PLAY_LABEL_TEXT fontName:PLAY_LABEL_FONT fontSize:INSERT_COIN_FONTSIZE*scaleFactor];
     
     playLabel.color = ccWHITE;
     
@@ -147,25 +278,6 @@
     
     [playLabel runAction:repeat];
     
-}
-
-- (void) setLogo {
-    
-    /*NSString *file = [NSString stringWithFormat:@"%@%@", @"FruitySlotsLogo", [self getImageFileSuffix]];
-    
-    CCSprite *logo = [CCSprite spriteWithFile:file];
-    
-    logo.position = ccp(win.width/2, win.height/2);
-    
-    [self addChild:logo];
-    
-    file = [NSString stringWithFormat:@"%@%@", @"LogoImage", [self getImageFileSuffix]];
-    
-    logo = [CCSprite spriteWithFile:file];
-    
-    logo.position = ccp(win.width/2, win.height/1.3);
-    
-    [self addChild:logo];*/
 }
 
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
