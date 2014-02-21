@@ -6,6 +6,21 @@
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
+//sound effects
+
+#define ACTIVATE @"ActivatePower.mp3"
+#define LEVEL_UP @"LevelUp.mp3"
+#define POWERBAR_SOUND @"PowerBarSound.mp3"
+#define REELS_SPINNING @"WheelSpinning.mp3"
+#define REEL_STOP @"reelStop.mp3"
+#define TOUCH @"screenTouch.mp3"
+#define WIN @"win.mp3"
+
+// NSUserDefault
+#define MUTE_DATA @"Mute"
+#define MUTE 1
+#define UNMUTE 0
+
 #define PLAY_LABEL_FONT @"Heiti TC"
 #define PLAY_LABEL_TEXT @"insert coin to play"
 

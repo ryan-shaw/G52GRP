@@ -8,6 +8,7 @@
 
 #import "MainMenu.h"
 #import "MainGameScene.h"
+#import "SimpleAudioEngine.h"
 
 
 @implementation MainMenu {
@@ -18,7 +19,7 @@
     
     CCSprite *optionBar;
     CCMenu *menu;
-
+    CCMenuItemSprite *mute;
 }
 
 + (CCScene *) scene {
@@ -111,6 +112,8 @@
         
         win = [[CCDirector sharedDirector] winSize];
         
+         [SimpleAudioEngine sharedEngine].enabled = NO;
+        
         [self setDeviceTag];
         
         [self createDisplay];
@@ -166,16 +169,26 @@
     
     
     
+    if (![[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] || [[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == UNMUTE) {
     
+        file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
+        select = [CCSprite spriteWithFile:file];
     
-    file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
-    select = [CCSprite spriteWithFile:file];
+        file = [NSString stringWithFormat:@"%@%@", @"muteOn", [self getImageFileSuffix]];
+        unselect = [CCSprite spriteWithFile:file];
+        unselect.color = ccc3(MENU_R, MENU_G, MENU_B);
+        
+    } else {
+        
+        file = [NSString stringWithFormat:@"%@%@", @"muteOn", [self getImageFileSuffix]];
+        select = [CCSprite spriteWithFile:file];
+        select.color = ccc3(MENU_R, MENU_G, MENU_B);
+        
+        file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
+        unselect = [CCSprite spriteWithFile:file];
+    }
     
-    file = [NSString stringWithFormat:@"%@%@", @"muteOn", [self getImageFileSuffix]];
-    unselect = [CCSprite spriteWithFile:file];
-    unselect.color = ccc3(MENU_R, MENU_G, MENU_B);
-    
-    CCMenuItemSprite *mute = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(mute)];
+    mute = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(mute)];
     mute.position = ccp(optionButton.position.x*1.5 + optionBar.contentSize.width/6, optionBar.position.y);
     
     
@@ -222,25 +235,69 @@
 
 - (void) reset {
     
+    UIAlertView *myAlert = [[UIAlertView alloc]
+                            initWithTitle:@"Reset Everything"
+                            message:@"Are you sure you want to reset all progress?"
+                            delegate:self
+                            cancelButtonTitle:@"Reset"
+                            otherButtonTitles:@"Cancel",nil];
+    [myAlert show];
+    [myAlert release];
+}
+
+- (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
-    
+    // the user clicked Reset
+    if (buttonIndex == 0) {
+      
+        NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
+        CCSprite *select = [CCSprite spriteWithFile:file];
+        mute.normalImage = select;
+    }
 }
 
 - (void) showLeaderboard {
     
+    [self playSoundEffect:TOUCH];
 }
 
 - (void) showHelp {
     
+    [self playSoundEffect:TOUCH];
 }
 
 - (void) mute {
     
+    [self playSoundEffect:TOUCH];
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == UNMUTE) {
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:MUTE forKey:MUTE_DATA];
+        
+        NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOn", [self getImageFileSuffix]];
+        CCSprite *select = [CCSprite spriteWithFile:file];
+        select.color = ccc3(MENU_R, MENU_G, MENU_B);
+        mute.normalImage = select;
+        
+    } else {
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:UNMUTE forKey:MUTE_DATA];
+        
+        NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
+        CCSprite *select = [CCSprite spriteWithFile:file];
+        mute.normalImage = select;
+    }
 }
 
 - (void) extendOptions {
     
-    if (optionBar.numberOfRunningActions == 0) {
+    [self playSoundEffect:TOUCH];
+    
+    if (optionBar.numberOfRunningActions == 0 && menu.numberOfRunningActions == 0) {
         
         if (optionBar.position.x < 0) {
             
@@ -280,6 +337,16 @@
     
 }
 
+- (void) playSoundEffect:(NSString*)effect {
+    
+    [SimpleAudioEngine sharedEngine].enabled = YES;
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == UNMUTE) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:effect];
+    }
+}
+
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -288,6 +355,7 @@
     
     if (touchLocation.y < win.height/2) {
         
+        [self playSoundEffect:TOUCH];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
         
     }

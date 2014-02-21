@@ -9,6 +9,7 @@
 #import "MainGameScene.h"
 #import "MainMenu.h"
 #import "Fruit.h"
+#import "SimpleAudioEngine.h"
 
 int totalSpend = 0, totalCredits;
 
@@ -45,11 +46,12 @@ int totalSpend = 0, totalCredits;
     int currentLevel;
     
     int deviceTag;
-    int iOS7ScaleFactor;
     int iPadScaleFactor;
     CGSize win;
     
     NSUserDefaults *prefs;
+    
+    CDSoundSource *powerSound;
     
 }
 
@@ -98,18 +100,6 @@ int totalSpend = 0, totalCredits;
             
         }
     }
-    
-    NSString *version = [[UIDevice currentDevice] systemVersion];
-    BOOL isAtLeast7 = [version floatValue] >= 7.0;
-    
-    if (isAtLeast7) {
-        
-        iOS7ScaleFactor = 20;
-        
-    } else {
-        
-        iOS7ScaleFactor = 0;
-    }
 }
 
 - (NSString*) getBackgroundFileSuffix {
@@ -151,7 +141,6 @@ int totalSpend = 0, totalCredits;
     powerActive = YES;
     bet = CREDITS_CHANGE * currentLevel;
     winnings = 0;
-    
     numberOfReels = NUMBER_OF_REELS;
     numberOfFruits = NUMBER_OF_FRUITS;
     numberOfRows = NUMBER_OF_ROWS;
@@ -165,6 +154,8 @@ int totalSpend = 0, totalCredits;
         
         prefs = [NSUserDefaults standardUserDefaults];
         
+        [SimpleAudioEngine sharedEngine].enabled = YES;
+        
         [prefs synchronize];
         
         fruits = [[NSMutableArray alloc] init];
@@ -177,13 +168,13 @@ int totalSpend = 0, totalCredits;
         
         [self setCurrentXP];
         
+        [self setTotalCredits];
+        
         [self setDeviceTag];
         
         [self createDisplay];
         
         [self addFruits];
-        
-        [self setTotalCredits];
         
         [self setMinMaxBets];
         
@@ -218,14 +209,19 @@ int totalSpend = 0, totalCredits;
 
 - (void) setTotalCredits {
     
-    if (![prefs integerForKey:TOTALCREDITS] && totalCredits == 0) {
+    if (![prefs integerForKey:TOTALCREDITS]) {
         
         [prefs setInteger:STARTING_CREDITS forKey:TOTALCREDITS];
+        totalSpend = 0;
     }
     
     totalCredits = [prefs integerForKey:TOTALCREDITS];
     tCreditsLabelScore = totalCredits;
-    [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %i", tCreditsLabelScore]];
+    
+    if (bet > totalCredits) {
+        
+        bet = totalCredits;
+    }
 }
 
 - (void) setMinMaxBets {
@@ -266,6 +262,8 @@ int totalSpend = 0, totalCredits;
             
             totalCredits = MIN_STARTING_CREDITS * currentLevel;
             [self setMinMaxBets];
+            
+            bet = minBet;
         }
     }
 }
@@ -326,6 +324,8 @@ int totalSpend = 0, totalCredits;
     
     if (reel1Fruit == reel2Fruit && reel2Fruit == reel3Fruit) {
         
+        [self playSoundEffect:WIN];
+        
         [self increaseXPBar:WIN_XP];
         
         switch (reel1Fruit) {
@@ -363,7 +363,15 @@ int totalSpend = 0, totalCredits;
         }
         
         totalCredits += winnings;
-        [winLabel setString:[NSString stringWithFormat:@"$ %i", winnings]];
+        
+        NSNumberFormatter *formatter = [NSNumberFormatter new];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        NSString *formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:winnings]];
+        
+        [formatter release];
+        
+        [winLabel setString:[NSString stringWithFormat:@"$ %@", formatted]];
         
     } else {
         
@@ -371,6 +379,7 @@ int totalSpend = 0, totalCredits;
         [winLabel setString:[NSString stringWithFormat:@"$ %i", winnings]];
     }
     
+    [prefs setInteger:totalCredits forKey:TOTALCREDITS];
     [prefs synchronize];
 }
 
@@ -378,8 +387,8 @@ int totalSpend = 0, totalCredits;
     
     double animationTime = FRUIT_BOUNCE_ANIMATION_TIME;
     
-    CCMoveTo *down = [CCMoveTo actionWithDuration:animationTime position:ccp(fruit.position.x, fruit.position.y - STOP_ANIMATION_Y_MOVEMENT)];
-    CCMoveTo *up = [CCMoveTo actionWithDuration:animationTime position:ccp(fruit.position.x, fruit.position.y + STOP_ANIMATION_Y_MOVEMENT)];
+    CCMoveTo *down = [CCMoveTo actionWithDuration:animationTime position:ccp(fruit.position.x, fruit.position.y - STOP_ANIMATION_Y_MOVEMENT*iPadScaleFactor)];
+    CCMoveTo *up = [CCMoveTo actionWithDuration:animationTime position:ccp(fruit.position.x, fruit.position.y + STOP_ANIMATION_Y_MOVEMENT*iPadScaleFactor)];
     
     CCSequence *sequence = [CCSequence actions:down, up, nil];
     
@@ -403,6 +412,8 @@ int totalSpend = 0, totalCredits;
 }
 
 - (void) setRandomFruits:(int)reel {
+    
+    [self playSoundEffect:REEL_STOP];
     
     int start = 0 + (numberOfFruits * (reel-1));
     
@@ -623,13 +634,13 @@ int totalSpend = 0, totalCredits;
             case 80 ... 84:
                 return APPLE;
                 
-            case 85 ... 89:
+            case 85 ... 90:
                 return PEAR;
                 
-            case 90 ... 94:
+            case 91 ... 95:
                 return BANANA;
                 
-            case 95 ... 99:
+            case 96 ... 99:
                 return ORANGE;
                 
             default:
@@ -846,7 +857,7 @@ int totalSpend = 0, totalCredits;
         
         if (fruit.getReelPosition > currentReelNumber) {
             
-            fruit.position = ccp(fruit.position.x, fruit.position.y - FRUIT_SPIN_SPEED);
+            fruit.position = ccp(fruit.position.x, fruit.position.y - (FRUIT_SPIN_SPEED*iPadScaleFactor));
             
         }
     }
@@ -956,6 +967,23 @@ int totalSpend = 0, totalCredits;
             
             break;
             
+        case IPHONE5:
+            
+            startingPosition = ccp(85, 184);
+            yChange = 70;
+            xChange = 75;
+            
+            break;
+            
+        case IPAD:
+        case IPADHD:
+            
+            startingPosition = ccp(229, 267);
+            yChange = 140;
+            xChange = 150;
+            
+            break;
+            
         default:
             break;
     }
@@ -981,7 +1009,15 @@ int totalSpend = 0, totalCredits;
     [self addChild:background];
     
     // total credits label
-    totalCreditsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$ %i", tCreditsLabelScore] fontName:CREDITS_FONT fontSize:POINTS_FONTSIZE*iPadScaleFactor];
+    
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    NSString *formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:tCreditsLabelScore]];
+    
+    [formatter release];
+    
+    totalCreditsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$ %@", formatted] fontName:CREDITS_FONT fontSize:POINTS_FONTSIZE*iPadScaleFactor];
     
     totalCreditsLabel.position = [self getTotalCreditPosition];
     
@@ -991,7 +1027,15 @@ int totalSpend = 0, totalCredits;
     
     
     // current bet label
-    betLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$ %i", bet] fontName:CREDITS_FONT fontSize:POINTS_FONTSIZE*iPadScaleFactor];
+    
+    formatter = [NSNumberFormatter new];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:bet]];
+    
+    [formatter release];
+    
+    betLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$ %@", formatted] fontName:CREDITS_FONT fontSize:POINTS_FONTSIZE*iPadScaleFactor];
     
     betLabel.position = [self getBetCreditPosition];
     
@@ -1002,7 +1046,15 @@ int totalSpend = 0, totalCredits;
     [self addChild:betLabel];
     
     // win label
-    winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$ %i", winnings] fontName:CREDITS_FONT fontSize:POINTS_FONTSIZE*iPadScaleFactor];
+    
+    formatter = [NSNumberFormatter new];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:winnings]];
+    
+    [formatter release];
+    
+    winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$ %@", formatted] fontName:CREDITS_FONT fontSize:POINTS_FONTSIZE*iPadScaleFactor];
     
     winLabel.position = [self getWinCreditPosition];
     
@@ -1042,6 +1094,12 @@ int totalSpend = 0, totalCredits;
 
 - (void) createPowerAndXPBars {
     
+    if ([prefs integerForKey:MUTE_DATA] == UNMUTE) {
+        
+        powerSound = [[[SimpleAudioEngine sharedEngine] soundSourceForFile:POWERBAR_SOUND] retain];
+        
+    }
+    
     NSString *file = [NSString stringWithFormat:@"%@%@", @"bar", [self getImageFileSuffix]];
     
     CGPoint point = [self getPowerBarPosition];
@@ -1056,11 +1114,17 @@ int totalSpend = 0, totalCredits;
     
     double moveTo = startingHeight + (addedHeight * divisionFactor);
     
-    if (moveTo > (addedHeight + startingHeight)) {
+    if (moveTo >= (addedHeight + startingHeight)) {
         
         moveTo = (addedHeight + startingHeight);
         
         [powerBar runAction:[CCRepeatForever actionWithAction:[CCSequence actionOne:[CCFadeTo actionWithDuration:0.5 opacity:110] two:[CCFadeTo actionWithDuration:0.5 opacity:255]]]];
+        
+        if ([prefs integerForKey:MUTE_DATA] == UNMUTE) {
+            
+            [powerSound play];
+            powerSound.looping = YES;
+        }
     }
     
     powerBar.position = ccp(point.x, moveTo);
@@ -1068,7 +1132,6 @@ int totalSpend = 0, totalCredits;
     powerBar.color = ccc3(POWER_R, POWER_G, POWER_B);
     
     [self addChild:powerBar z:-1];
-    
     
     xpBar = [CCSprite spriteWithFile:file];
     
@@ -1105,6 +1168,17 @@ int totalSpend = 0, totalCredits;
             return ccp(25,41);
             break;
             
+        case IPHONE5:
+            
+            return ccp(25,106);
+            break;
+            
+        case IPAD:
+        case IPADHD:
+            
+            return ccp(113,110);
+            break;
+            
         default:
             return ccp(0,0);
             break;
@@ -1116,8 +1190,19 @@ int totalSpend = 0, totalCredits;
     switch (deviceTag) {
             
         case IPHONE:
-            //41
+            
             return ccp(295,41);
+            break;
+            
+        case IPHONE5:
+            
+            return ccp(295,106);
+            break;
+            
+        case IPAD:
+        case IPADHD:
+            
+            return ccp(652,110);
             break;
             
         default:
@@ -1131,15 +1216,38 @@ int totalSpend = 0, totalCredits;
     if (totalCredits > tCreditsLabelScore && totalCredits >= 0) {
         
         tCreditsLabelScore += CREDITS_CHANGE;
-        [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %i", tCreditsLabelScore]];
+        
+        NSNumberFormatter *formatter = [NSNumberFormatter new];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        NSString *formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:tCreditsLabelScore]];
+        
+        [formatter release];
+        
+        [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %@", formatted]];
         
     } else if (totalCredits < tCreditsLabelScore && totalCredits >= 0) {
         
         tCreditsLabelScore = totalCredits;
-        [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %i", tCreditsLabelScore]];
+        
+        NSNumberFormatter *formatter = [NSNumberFormatter new];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        NSString *formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:tCreditsLabelScore]];
+        
+        [formatter release];
+        
+        [totalCreditsLabel setString:[NSString stringWithFormat:@"$ %@", formatted]];
     }
     
-    [betLabel setString:[NSString stringWithFormat:@"$ %i", bet]];
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    NSString *formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:bet]];
+    
+    [formatter release];
+    
+    [betLabel setString:[NSString stringWithFormat:@"$ %@", formatted]];
 }
 
 - (void) setMenuButtons {
@@ -1160,8 +1268,8 @@ int totalSpend = 0, totalCredits;
     returnButton.position = ccp(powerBar.position.x, totalCreditsLabel.position.y);
     
     // bet Max Button
-    file = [NSString stringWithFormat:@"%@%@", @"betMaxOff", [self getImageFileSuffix]];
-    secondFile = [NSString stringWithFormat:@"%@%@", @"betMaxOn", [self getImageFileSuffix]];
+    file = [NSString stringWithFormat:@"%@%@", @"MaxOff", [self getImageFileSuffix]];
+    secondFile = [NSString stringWithFormat:@"%@%@", @"MaxOn", [self getImageFileSuffix]];
     
     CCMenuItem *betMax = [CCMenuItemImage itemWithNormalImage:file selectedImage:secondFile target:self selector:@selector(betMax)];
     
@@ -1169,8 +1277,8 @@ int totalSpend = 0, totalCredits;
     
     // bet Min Button
     
-    file = [NSString stringWithFormat:@"%@%@", @"betMinOff", [self getImageFileSuffix]];
-    secondFile = [NSString stringWithFormat:@"%@%@", @"betMinOn", [self getImageFileSuffix]];
+    file = [NSString stringWithFormat:@"%@%@", @"MinOff", [self getImageFileSuffix]];
+    secondFile = [NSString stringWithFormat:@"%@%@", @"MinOn", [self getImageFileSuffix]];
     
     CCMenuItem *betMin = [CCMenuItemImage itemWithNormalImage:file selectedImage:secondFile target:self selector:@selector(betMin)];
     
@@ -1192,6 +1300,16 @@ int totalSpend = 0, totalCredits;
             return ccp(160,423);
             break;
             
+        case IPHONE5:
+            return ccp(160,501);
+            break;
+            
+        case IPAD:
+        case IPADHD:
+            
+            return ccp(384,890);
+            break;
+            
         default:
             return ccp(0,0);
             break;
@@ -1204,8 +1322,19 @@ int totalSpend = 0, totalCredits;
     switch (deviceTag) {
             
         case IPHONE:
-            //225
-            return ccp(245,49);
+            //225//245
+            return ccp(250,49);
+            break;
+            
+        case IPHONE5:
+            
+            return ccp(250,74);
+            break;
+            
+        case IPAD:
+        case IPADHD:
+            
+            return ccp(562,135);
             break;
             
         default:
@@ -1220,14 +1349,24 @@ int totalSpend = 0, totalCredits;
             
         case IPHONE:
             
-            return ccp(245,111);
+            return ccp(250,111);
+            break;
+            
+        case IPHONE5:
+            
+            return ccp(250,146);
+            break;
+            
+        case IPAD:
+        case IPADHD:
+            
+            return ccp(562,254);
             break;
             
         default:
             return ccp(0,0);
             break;
     }
-    
 }
 
 - (CGPoint) getMaxButtonPosition {
@@ -1237,6 +1376,17 @@ int totalSpend = 0, totalCredits;
         case IPHONE:
             
             return ccp(62,110);
+            break;
+            
+        case IPHONE5:
+            
+            return ccp(62,145);
+            break;
+            
+        case IPAD:
+        case IPADHD:
+            
+            return ccp(193,250);
             break;
             
         default:
@@ -1251,9 +1401,17 @@ int totalSpend = 0, totalCredits;
     switch (deviceTag) {
             
         case IPHONE:
-            
             return ccp(62,48);
             break;
+            
+        case IPHONE5:
+            return ccp(62,73);
+            break;
+            
+        case IPAD:
+        case IPADHD:
+            
+            return ccp(193,131);
             
         default:
             return ccp(0,0);
@@ -1263,21 +1421,34 @@ int totalSpend = 0, totalCredits;
 
 - (void) returnButtonPressed {
     
+    [self playSoundEffect:TOUCH];
+    
+    [SimpleAudioEngine sharedEngine].enabled = NO;
+    
     [prefs synchronize];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
 }
 
 - (void) decreaseBet {
     
-    if (totalCredits > bet) {
+    if (totalCredits >= bet) {
         
         if ((bet % minBet) != 0) {
+            
+            [self playSoundEffect:TOUCH];
             
             bet -= (bet % minBet);
             
         } else if (bet > minBet) {
             
+            [self playSoundEffect:TOUCH];
+            
             bet -= minBet;
+        }
+        
+        if (bet == 0) {
+            
+            bet = totalCredits;
         }
     }
 }
@@ -1288,9 +1459,13 @@ int totalSpend = 0, totalCredits;
         
         if ((bet % minBet) != 0) {
             
+            [self playSoundEffect:TOUCH];
+            
             bet += (bet % minBet);
             
         } else if (bet < maxBet) {
+            
+            [self playSoundEffect:TOUCH];
             
             bet += minBet;
         }
@@ -1299,19 +1474,35 @@ int totalSpend = 0, totalCredits;
 
 - (void) betMin {
     
+    [self playSoundEffect:TOUCH];
+    
     if (!fruitsSpinning) {
         
-        bet = minBet;
-        
+        if (minBet > totalCredits) {
+            
+            bet = totalCredits;
+            
+        } else {
+            
+            bet = minBet;
+        }
     }
 }
 
 - (void) betMax {
     
+    [self playSoundEffect:TOUCH];
+    
     if (!fruitsSpinning) {
         
-        bet = maxBet;
-        
+        if (maxBet > totalCredits) {
+            
+            bet = totalCredits;
+            
+        } else {
+            
+            bet = maxBet;
+        }
     }
 }
 
@@ -1385,7 +1576,17 @@ int totalSpend = 0, totalCredits;
             [self increaseBars];
             [self increaseXPBar:SPIN_XP];
             [self removeCredits];
+            
+            [self playSoundEffect:REELS_SPINNING];
         }
+    }
+}
+
+- (void) playSoundEffect:(NSString*)effect {
+    
+    if ([prefs integerForKey:MUTE_DATA] == UNMUTE) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:effect];
     }
 }
 
@@ -1426,10 +1627,21 @@ int totalSpend = 0, totalCredits;
     if (moveTo == maxHeight) {
         
         [powerBar runAction:[CCRepeatForever actionWithAction:[CCSequence actionOne:[CCFadeTo actionWithDuration:0.5 opacity:110] two:[CCFadeTo actionWithDuration:0.5 opacity:255]]]];
+        
+        if ([prefs integerForKey:MUTE_DATA] == UNMUTE) {
+            
+            [powerSound play];
+            powerSound.looping = YES;
+            
+        }
     }
     
     if (powerBar.position.y >= maxHeight) {
         
+        if ([prefs integerForKey:MUTE_DATA] == UNMUTE) {
+            
+            [powerSound stop];
+        }
         [self activatePowerBar];
         
         [powerBar stopAllActions];
@@ -1481,6 +1693,10 @@ int totalSpend = 0, totalCredits;
 
 - (void) increaseLevel {
     
+    [self playSoundEffect:LEVEL_UP];
+    
+    [levelLabel runAction:[CCSequence actionOne:[CCTintTo actionWithDuration:0.8 red:255 green:2552 blue:255]
+                                            two:[CCTintTo actionWithDuration:0.8 red:0 green:0 blue:0]]];
     currentLevel ++;
     
     [levelLabel setString:[NSString stringWithFormat:@"%i", currentLevel]];
@@ -1492,6 +1708,11 @@ int totalSpend = 0, totalCredits;
     
     [self setMinMaxBets];
     
+    if ((bet % minBet) != 0) {
+        
+        bet += (bet % minBet);
+    }
+    
     [prefs setInteger:currentLevel forKey:CURRENT_LEVEL];
 }
 
@@ -1502,9 +1723,41 @@ int totalSpend = 0, totalCredits;
 
 - (void) activatePowerBar {
     
+    [self activatePowerBarEffect];
+    
+    [self playSoundEffect:ACTIVATE];
+    
     [self increaseXPBar:POWER_XP];
     totalSpend = 0;
     powerActive = YES;
+}
+
+- (void) activatePowerBarEffect {
+    
+    CCParticleSystem *emitter;
+    
+    emitter = [CCParticleRain node];
+    
+    emitter.startColor = ccc4FFromccc3B(ccWHITE);
+    
+    ccColor4F endColor = {XP_R, XP_G, XP_B, 0};
+    emitter.endColor = endColor;
+    
+    emitter.scale = 2.5;
+    
+    emitter.speed = 40.0;
+    
+    emitter.position = ccp(win.width/2, win.height/1.30);
+    
+    emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"levelStar.png"];
+    
+    emitter.life = 5;
+    
+    emitter.duration = 1.6;//2.0;
+    
+    [self addChild:emitter z:-1];
+    
+    emitter.autoRemoveOnFinish = YES;
 }
 
 - (void) resetFruitPositions {
