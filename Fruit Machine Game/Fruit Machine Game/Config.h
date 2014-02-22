@@ -17,6 +17,7 @@
 #define WIN @"win.mp3"
 
 // NSUserDefault
+
 #define MUTE_DATA @"Mute"
 #define MUTE 1
 #define UNMUTE 0
@@ -27,6 +28,7 @@
 #define OPTION_BAR_MOVE_TIME 0.4
 
 // NSUserDefaults File Names
+#define FIRST_RUN @"firstRun"
 #define TOTALCREDITS @"TotalCredits"
 #define CURRENT_LEVEL @"CurrentLevel"
 #define TOTALXP @"TotalXP"

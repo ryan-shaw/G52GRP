@@ -91,6 +91,11 @@
 		DC8D7E8518B88DE500D6F8C0 /* help@ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8318B88DE500D6F8C0 /* help@ipad.png */; };
 		DC8D7E8718B88FBC00D6F8C0 /* help@i5.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8618B88FBC00D6F8C0 /* help@i5.png */; };
 		DC8D7E8918B88FC300D6F8C0 /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8818B88FC300D6F8C0 /* help.png */; };
+		DC8D7E9018B89A6C00D6F8C0 /* payOut.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8B18B89A6C00D6F8C0 /* payOut.png */; };
+		DC8D7E9118B89A6C00D6F8C0 /* payOut@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8C18B89A6C00D6F8C0 /* payOut@2x.png */; };
+		DC8D7E9218B89A6C00D6F8C0 /* payOut@i5.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8D18B89A6C00D6F8C0 /* payOut@i5.png */; };
+		DC8D7E9318B89A6C00D6F8C0 /* payOut@ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8E18B89A6C00D6F8C0 /* payOut@ipad.png */; };
+		DC8D7E9418B89A6C00D6F8C0 /* payOut@ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8F18B89A6C00D6F8C0 /* payOut@ipadhd.png */; };
 		DC985B6B184D315500283E1A /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B6A184D315500283E1A /* MainMenu.m */; };
 		DC985B6E184D321B00283E1A /* MainGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B6D184D321B00283E1A /* MainGameScene.m */; };
 		DC985B71184D323800283E1A /* HorseRacingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B70184D323800283E1A /* HorseRacingGame.m */; };
@@ -338,6 +343,11 @@
 		DC8D7E8318B88DE500D6F8C0 /* help@ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@ipad.png"; sourceTree = "<group>"; };
 		DC8D7E8618B88FBC00D6F8C0 /* help@i5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@i5.png"; sourceTree = "<group>"; };
 		DC8D7E8818B88FC300D6F8C0 /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
+		DC8D7E8B18B89A6C00D6F8C0 /* payOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payOut.png; sourceTree = "<group>"; };
+		DC8D7E8C18B89A6C00D6F8C0 /* payOut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payOut@2x.png"; sourceTree = "<group>"; };
+		DC8D7E8D18B89A6C00D6F8C0 /* payOut@i5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payOut@i5.png"; sourceTree = "<group>"; };
+		DC8D7E8E18B89A6C00D6F8C0 /* payOut@ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payOut@ipad.png"; sourceTree = "<group>"; };
+		DC8D7E8F18B89A6C00D6F8C0 /* payOut@ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payOut@ipadhd.png"; sourceTree = "<group>"; };
 		DC985B69184D315500283E1A /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		DC985B6A184D315500283E1A /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
 		DC985B6C184D321B00283E1A /* MainGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameScene.h; sourceTree = "<group>"; };
@@ -798,6 +808,30 @@
 			name = "Bet Buttons";
 			sourceTree = "<group>";
 		};
+		DC8D7E8A18B892C800D6F8C0 /* Help file */ = {
+			isa = PBXGroup;
+			children = (
+				DC8D7E8818B88FC300D6F8C0 /* help.png */,
+				DC8D7E8618B88FBC00D6F8C0 /* help@i5.png */,
+				DC8D7E8218B88DE500D6F8C0 /* help@2x.png */,
+				DC8D7E8318B88DE500D6F8C0 /* help@ipad.png */,
+				DC8D7E8018B889DC00D6F8C0 /* help@ipadhd.png */,
+			);
+			name = "Help file";
+			sourceTree = "<group>";
+		};
+		DC8D7E9518B89A6E00D6F8C0 /* Payout */ = {
+			isa = PBXGroup;
+			children = (
+				DC8D7E8B18B89A6C00D6F8C0 /* payOut.png */,
+				DC8D7E8C18B89A6C00D6F8C0 /* payOut@2x.png */,
+				DC8D7E8D18B89A6C00D6F8C0 /* payOut@i5.png */,
+				DC8D7E8E18B89A6C00D6F8C0 /* payOut@ipad.png */,
+				DC8D7E8F18B89A6C00D6F8C0 /* payOut@ipadhd.png */,
+			);
+			name = Payout;
+			sourceTree = "<group>";
+		};
 		DC985B7E184D397600283E1A /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,11 +844,7 @@
 		DC9B211B1874EF760012620A /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
-				DC8D7E8818B88FC300D6F8C0 /* help.png */,
-				DC8D7E8618B88FBC00D6F8C0 /* help@i5.png */,
-				DC8D7E8218B88DE500D6F8C0 /* help@2x.png */,
-				DC8D7E8318B88DE500D6F8C0 /* help@ipad.png */,
-				DC8D7E8018B889DC00D6F8C0 /* help@ipadhd.png */,
+				DC8D7E8A18B892C800D6F8C0 /* Help file */,
 				DC53E8E018B403F40050F1C5 /* options */,
 				DC9B212D187510E20012620A /* Background */,
 			);
@@ -824,6 +854,7 @@
 		DC9B212518750ED40012620A /* MainGameScene */ = {
 			isa = PBXGroup;
 			children = (
+				DC8D7E9518B89A6E00D6F8C0 /* Payout */,
 				DC12EB9F18B729CF000DBC5F /* Options */,
 				DC2281B018B465800047D510 /* sounds */,
 				DC21D53E18A246CC009F4C09 /* Other objects */,
@@ -1495,9 +1526,11 @@
 				DC22818518B4339B0047D510 /* question@ipadhd.png in Resources */,
 				DC12EBC918B7A0C8000DBC5F /* backButton@4x.png in Resources */,
 				DC53E8DC18B403D10050F1C5 /* optionBar.png in Resources */,
+				DC8D7E9018B89A6C00D6F8C0 /* payOut.png in Resources */,
 				DC12EBB518B72D18000DBC5F /* GameBackground@i5.png in Resources */,
 				DCA49F911877934C00308254 /* strawberry@2x.png in Resources */,
 				DC12EBB318B72A24000DBC5F /* melon.png in Resources */,
+				DC8D7E9118B89A6C00D6F8C0 /* payOut@2x.png in Resources */,
 				DCEF49B318A2809700F108DF /* NovaSquare.ttf in Resources */,
 				DC2281B618B557170047D510 /* screenTouch.mp3 in Resources */,
 				5CF93BFD18B5BD9B00B61BDF /* MenuBackground@i5.png in Resources */,
@@ -1510,6 +1543,7 @@
 				DC22818918B434500047D510 /* reset@ipadhd.png in Resources */,
 				DC22819618B44A7E0047D510 /* Default@2x.png in Resources */,
 				DCEF953D18B6C19400E50937 /* AppIcon60x60@2x.png in Resources */,
+				DC8D7E9218B89A6C00D6F8C0 /* payOut@i5.png in Resources */,
 				DC22819518B44A7E0047D510 /* Default.png in Resources */,
 				DCA49F971877968600308254 /* apple@2x.png in Resources */,
 				DC22817518B415260047D510 /* reset@2x.png in Resources */,
@@ -1592,6 +1626,8 @@
 				DC12EBBD18B7A00D000DBC5F /* strawberry@4x.png in Resources */,
 				5CF93BFF18B5BDC200B61BDF /* PowerBarSound.mp3 in Resources */,
 				DC22817318B415260047D510 /* muteOn@2x.png in Resources */,
+				DC8D7E9318B89A6C00D6F8C0 /* payOut@ipad.png in Resources */,
+				DC8D7E9418B89A6C00D6F8C0 /* payOut@ipadhd.png in Resources */,
 				DCEF953C18B6C19400E50937 /* AppIcon60x60.png in Resources */,
 				DC2281B418B4FA7A0047D510 /* reelStop.mp3 in Resources */,
 				DC8ACE5218A313070094075B /* backButton@2x.png in Resources */,

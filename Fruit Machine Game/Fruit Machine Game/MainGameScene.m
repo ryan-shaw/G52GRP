@@ -15,7 +15,7 @@ int totalSpend = 0, totalCredits;
 
 @implementation MainGameScene {
     
-    CCSprite *powerBar, *xpBar;
+    CCSprite *powerBar, *xpBar, *payout;
     
     NSMutableArray *fruits;
     NSMutableArray *fruitPositions;
@@ -144,6 +144,7 @@ int totalSpend = 0, totalCredits;
     numberOfReels = NUMBER_OF_REELS;
     numberOfFruits = NUMBER_OF_FRUITS;
     numberOfRows = NUMBER_OF_ROWS;
+    payout = NULL;
 }
 
 - (id) init {
@@ -1073,15 +1074,6 @@ int totalSpend = 0, totalCredits;
 
 - (void) setLevel {
     
-    NSString *file = [NSString stringWithFormat:@"%@%@", @"levelStar", [self getImageFileSuffix]];
-    
-    CCSprite *star = [CCSprite spriteWithFile:file];
-    
-    star.position = ccp(xpBar.position.x, totalCreditsLabel.position.y);
-    
-    [self addChild:star];
-    
-    
     levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", currentLevel] fontName:LEVEL_FONT fontSize:LEVEL_FONTSIZE*iPadScaleFactor];
     
     levelLabel.position = ccp(xpBar.position.x, totalCreditsLabel.position.y - 1);
@@ -1284,12 +1276,43 @@ int totalSpend = 0, totalCredits;
     
     betMin.position = [self getMinButtonPosition];
     
+    // star level image
+    
+    file = [NSString stringWithFormat:@"%@%@", @"levelStar", [self getImageFileSuffix]];
+    
+    CCSprite *sprite1 = [CCSprite spriteWithFile:file];
+    CCSprite *sprite2 = [CCSprite spriteWithFile:file];
+    sprite2.color = ccGRAY;
+    
+    CCMenuItemSprite *levelStar = [CCMenuItemSprite itemWithNormalSprite:sprite1 selectedSprite:sprite2 target:self selector:@selector(showPayout)];
+    
+    levelStar.position = ccp(xpBar.position.x, totalCreditsLabel.position.y);
     
     
-    CCMenu *menu = [CCMenu menuWithItems:returnButton, betMin, betMax, nil];
+    CCMenu *menu = [CCMenu menuWithItems:returnButton, betMin, betMax, levelStar, nil];
     menu.position = CGPointZero;
     
     [self addChild:menu];
+}
+
+- (void) showPayout {
+    
+    if (payout == NULL) {
+        
+        [self playSoundEffect:TOUCH];
+        
+        NSString *file = [NSString stringWithFormat:@"%@%@", @"payOut", [self getBackgroundFileSuffix]];
+        
+        payout = [CCSprite spriteWithFile:file];
+        
+        payout.position = ccp(win.width/2, win.height/2);
+        
+        payout.opacity = 0;
+        
+        [self addChild:payout];
+        
+        [payout runAction:[CCFadeIn actionWithDuration:0.1]];
+    }
 }
 
 - (CGPoint) getTotalCreditPosition {
@@ -1421,17 +1444,20 @@ int totalSpend = 0, totalCredits;
 
 - (void) returnButtonPressed {
     
-    [self playSoundEffect:TOUCH];
-    
-    [SimpleAudioEngine sharedEngine].enabled = NO;
-    
-    [prefs synchronize];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
+    if (payout == NULL) {
+        
+        [self playSoundEffect:TOUCH];
+        
+        [SimpleAudioEngine sharedEngine].enabled = NO;
+        
+        [prefs synchronize];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
+    }
 }
 
 - (void) decreaseBet {
     
-    if (totalCredits >= bet) {
+    if (totalCredits >= bet && payout == NULL) {
         
         if ((bet % minBet) != 0) {
             
@@ -1455,7 +1481,7 @@ int totalSpend = 0, totalCredits;
 
 - (void) increaseBet {
     
-    if (totalCredits > bet) {
+    if (totalCredits > bet && payout == NULL) {
         
         if ((bet % minBet) != 0) {
             
@@ -1474,34 +1500,41 @@ int totalSpend = 0, totalCredits;
 
 - (void) betMin {
     
-    [self playSoundEffect:TOUCH];
-    
-    if (!fruitsSpinning) {
+    if (payout == NULL) {
         
-        if (minBet > totalCredits) {
+        [self playSoundEffect:TOUCH];
+        
+        if (!fruitsSpinning) {
             
-            bet = totalCredits;
-            
-        } else {
-            
-            bet = minBet;
+            if (minBet > totalCredits) {
+                
+                bet = totalCredits;
+                
+            } else {
+                
+                bet = minBet;
+            }
         }
+        
     }
 }
 
 - (void) betMax {
     
-    [self playSoundEffect:TOUCH];
-    
-    if (!fruitsSpinning) {
+    if (payout == NULL) {
         
-        if (maxBet > totalCredits) {
+        [self playSoundEffect:TOUCH];
+        
+        if (!fruitsSpinning) {
             
-            bet = totalCredits;
-            
-        } else {
-            
-            bet = maxBet;
+            if (maxBet > totalCredits) {
+                
+                bet = totalCredits;
+                
+            } else {
+                
+                bet = maxBet;
+            }
         }
     }
 }
@@ -1530,17 +1563,26 @@ int totalSpend = 0, totalCredits;
     lastTouch = [touch locationInView:[touch view]];
     lastTouch = [[CCDirector sharedDirector] convertToGL:lastTouch];
     
-    double touchDifference = lastTouch.y - firstTouch.y;
-    
-    if (!fruitsSpinning && touchDifference <= 20 && touchDifference >= - 20) {
+    if (payout != NULL) {
         
-        if (firstTouch.y <= (startingPosition.y + startingPosition.y/2) && firstTouch.y >= betLabel.position.y) {
+        [self playSoundEffect:TOUCH];
+        [self removeChild:payout cleanup:YES];
+        payout = NULL;
+        
+    } else {
+        
+        double touchDifference = lastTouch.y - firstTouch.y;
+        
+        if (!fruitsSpinning && touchDifference <= 20 && touchDifference >= - 20) {
             
-            [self increaseBet];
-            
-        } else if (firstTouch.y < startingPosition.y && firstTouch.y <= winLabel.position.y) {
-            
-            [self decreaseBet];
+            if (firstTouch.y <= (startingPosition.y + startingPosition.y/2) && firstTouch.y >= betLabel.position.y) {
+                
+                [self increaseBet];
+                
+            } else if (firstTouch.y < startingPosition.y && firstTouch.y <= winLabel.position.y) {
+                
+                [self decreaseBet];
+            }
         }
     }
 }

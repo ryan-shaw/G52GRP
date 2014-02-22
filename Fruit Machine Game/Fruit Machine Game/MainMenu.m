@@ -237,14 +237,17 @@
 
 - (void) reset {
     
-    UIAlertView *myAlert = [[UIAlertView alloc]
-                            initWithTitle:@"Reset Everything"
-                            message:@"Are you sure you want to reset all progress?"
-                            delegate:self
-                            cancelButtonTitle:@"Reset"
-                            otherButtonTitles:@"Cancel",nil];
-    [myAlert show];
-    [myAlert release];
+    if (help == NULL) {
+        
+        UIAlertView *myAlert = [[UIAlertView alloc]
+                                initWithTitle:@"Reset Everything"
+                                message:@"Are you sure you want to reset all progress?"
+                                delegate:self
+                                cancelButtonTitle:@"Reset"
+                                otherButtonTitles:@"Cancel",nil];
+        [myAlert show];
+        [myAlert release];
+    }
 }
 
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -264,7 +267,11 @@
 
 - (void) showLeaderboard {
     
-    [self playSoundEffect:TOUCH];
+    if (help == NULL) {
+        
+        [self playSoundEffect:TOUCH];
+        
+    }
 }
 
 - (void) showHelp {
@@ -289,45 +296,51 @@
 
 - (void) mute {
     
-    [self playSoundEffect:TOUCH];
-    
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == UNMUTE) {
+    if (help == NULL) {
         
-        [[NSUserDefaults standardUserDefaults] setInteger:MUTE forKey:MUTE_DATA];
+        [self playSoundEffect:TOUCH];
         
-        NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOn", [self getImageFileSuffix]];
-        CCSprite *select = [CCSprite spriteWithFile:file];
-        select.color = ccc3(MENU_R, MENU_G, MENU_B);
-        mute.normalImage = select;
-        
-    } else {
-        
-        [[NSUserDefaults standardUserDefaults] setInteger:UNMUTE forKey:MUTE_DATA];
-        
-        NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
-        CCSprite *select = [CCSprite spriteWithFile:file];
-        mute.normalImage = select;
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == UNMUTE) {
+            
+            [[NSUserDefaults standardUserDefaults] setInteger:MUTE forKey:MUTE_DATA];
+            
+            NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOn", [self getImageFileSuffix]];
+            CCSprite *select = [CCSprite spriteWithFile:file];
+            select.color = ccc3(MENU_R, MENU_G, MENU_B);
+            mute.normalImage = select;
+            
+        } else {
+            
+            [[NSUserDefaults standardUserDefaults] setInteger:UNMUTE forKey:MUTE_DATA];
+            
+            NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
+            CCSprite *select = [CCSprite spriteWithFile:file];
+            mute.normalImage = select;
+        }
     }
 }
 
 - (void) extendOptions {
     
-    [self playSoundEffect:TOUCH];
-    
-    if (optionBar.numberOfRunningActions == 0 && menu.numberOfRunningActions == 0) {
+    if (help == NULL) {
         
-        if (optionBar.position.x < 0) {
+        [self playSoundEffect:TOUCH];
+        
+        if (optionBar.numberOfRunningActions == 0 && menu.numberOfRunningActions == 0) {
             
-            [optionBar runAction:[CCMoveTo actionWithDuration:OPTION_BAR_MOVE_TIME position:ccp(optionBar.contentSize.width/2.50, optionBar.position.y)]];
-            
-            menu.enabled = YES;
-            [menu runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:OPTION_BAR_MOVE_TIME] two:[CCFadeIn actionWithDuration:0.1]]];
-            
-        } else {
-            
-            [optionBar runAction:[CCMoveTo actionWithDuration:OPTION_BAR_MOVE_TIME position:ccp(-optionBar.contentSize.width/2.8, optionBar.position.y)]];
-            menu.opacity = 0;
-            menu.enabled = NO;
+            if (optionBar.position.x < 0) {
+                
+                [optionBar runAction:[CCMoveTo actionWithDuration:OPTION_BAR_MOVE_TIME position:ccp(optionBar.contentSize.width/2.50, optionBar.position.y)]];
+                
+                menu.enabled = YES;
+                [menu runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:OPTION_BAR_MOVE_TIME] two:[CCFadeIn actionWithDuration:0.1]]];
+                
+            } else {
+                
+                [optionBar runAction:[CCMoveTo actionWithDuration:OPTION_BAR_MOVE_TIME position:ccp(-optionBar.contentSize.width/2.8, optionBar.position.y)]];
+                menu.opacity = 0;
+                menu.enabled = NO;
+            }
         }
     }
 }
@@ -374,9 +387,29 @@
         
         if (touchLocation.y < win.height/2) {
             
-            [self playSoundEffect:TOUCH];
+            if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
+                
+                [self showHelp];
+                
+            } else {
+                
+                [self playSoundEffect:TOUCH];
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
+            }
+        }
+        
+    } else if (touchLocation.y < win.height/2) {
+        
+        if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
+            
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:FIRST_RUN];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             
+        } else {
+            
+            [self playSoundEffect:TOUCH];
+            [self removeChild:help cleanup:YES];
+            help = NULL;
         }
         
     } else {
