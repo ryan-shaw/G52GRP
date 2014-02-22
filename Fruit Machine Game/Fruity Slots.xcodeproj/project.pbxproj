@@ -86,6 +86,11 @@
 		DC53E8DE18B403D10050F1C5 /* optionBar@ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC53E8D718B403D00050F1C5 /* optionBar@ipadhd.png */; };
 		DC8ACE5218A313070094075B /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8ACE5118A313070094075B /* backButton@2x.png */; };
 		DC8ACE5418A338C70094075B /* levelStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8ACE5318A338C70094075B /* levelStar@2x.png */; };
+		DC8D7E8118B889DC00D6F8C0 /* help@ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8018B889DC00D6F8C0 /* help@ipadhd.png */; };
+		DC8D7E8418B88DE500D6F8C0 /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8218B88DE500D6F8C0 /* help@2x.png */; };
+		DC8D7E8518B88DE500D6F8C0 /* help@ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8318B88DE500D6F8C0 /* help@ipad.png */; };
+		DC8D7E8718B88FBC00D6F8C0 /* help@i5.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8618B88FBC00D6F8C0 /* help@i5.png */; };
+		DC8D7E8918B88FC300D6F8C0 /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8D7E8818B88FC300D6F8C0 /* help.png */; };
 		DC985B6B184D315500283E1A /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B6A184D315500283E1A /* MainMenu.m */; };
 		DC985B6E184D321B00283E1A /* MainGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B6D184D321B00283E1A /* MainGameScene.m */; };
 		DC985B71184D323800283E1A /* HorseRacingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DC985B70184D323800283E1A /* HorseRacingGame.m */; };
@@ -328,6 +333,11 @@
 		DC53E8D718B403D00050F1C5 /* optionBar@ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "optionBar@ipadhd.png"; sourceTree = "<group>"; };
 		DC8ACE5118A313070094075B /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
 		DC8ACE5318A338C70094075B /* levelStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "levelStar@2x.png"; sourceTree = "<group>"; };
+		DC8D7E8018B889DC00D6F8C0 /* help@ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@ipadhd.png"; sourceTree = "<group>"; };
+		DC8D7E8218B88DE500D6F8C0 /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@2x.png"; sourceTree = "<group>"; };
+		DC8D7E8318B88DE500D6F8C0 /* help@ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@ipad.png"; sourceTree = "<group>"; };
+		DC8D7E8618B88FBC00D6F8C0 /* help@i5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@i5.png"; sourceTree = "<group>"; };
+		DC8D7E8818B88FC300D6F8C0 /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
 		DC985B69184D315500283E1A /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		DC985B6A184D315500283E1A /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
 		DC985B6C184D321B00283E1A /* MainGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameScene.h; sourceTree = "<group>"; };
@@ -800,6 +810,11 @@
 		DC9B211B1874EF760012620A /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				DC8D7E8818B88FC300D6F8C0 /* help.png */,
+				DC8D7E8618B88FBC00D6F8C0 /* help@i5.png */,
+				DC8D7E8218B88DE500D6F8C0 /* help@2x.png */,
+				DC8D7E8318B88DE500D6F8C0 /* help@ipad.png */,
+				DC8D7E8018B889DC00D6F8C0 /* help@ipadhd.png */,
 				DC53E8E018B403F40050F1C5 /* options */,
 				DC9B212D187510E20012620A /* Background */,
 			);
@@ -1502,6 +1517,7 @@
 				DCEF953718B6C19400E50937 /* Icon@2x.png in Resources */,
 				DC22817C18B42E690047D510 /* muteOff.png in Resources */,
 				DC2281A918B460C60047D510 /* MaxOn@4x.png in Resources */,
+				DC8D7E8518B88DE500D6F8C0 /* help@ipad.png in Resources */,
 				DC2281AC18B460C60047D510 /* MinOff@4x.png in Resources */,
 				DC12EBA318B729E6000DBC5F /* backButton.png in Resources */,
 				DCEF953F18B6C19400E50937 /* iTunesArtwork@2x.png in Resources */,
@@ -1552,12 +1568,15 @@
 				DCA49F931877955A00308254 /* melon@2x.png in Resources */,
 				DCEF49A418A2640400F108DF /* OstrichSans-Heavy.otf in Resources */,
 				DC53E8DB18B403D10050F1C5 /* option@ipadhd.png in Resources */,
+				DC8D7E8918B88FC300D6F8C0 /* help.png in Resources */,
 				DC12EBB018B72A24000DBC5F /* cherry.png in Resources */,
 				DCEF953818B6C19400E50937 /* AppIcon40x40.png in Resources */,
 				DCA49F9B1877969100308254 /* pear@2x.png in Resources */,
 				DC21D53C18A246C2009F4C09 /* bar@2x.png in Resources */,
 				DC2281B818B55E330047D510 /* win.mp3 in Resources */,
 				DC22817B18B42E690047D510 /* muteOn.png in Resources */,
+				DC8D7E8418B88DE500D6F8C0 /* help@2x.png in Resources */,
+				DC8D7E8718B88FBC00D6F8C0 /* help@i5.png in Resources */,
 				DC53E8CD18B318780050F1C5 /* Surrnd_L.ttf in Resources */,
 				DCA49F981877968600308254 /* banana@2x.png in Resources */,
 				DC12EBAD18B72A24000DBC5F /* banana.png in Resources */,
@@ -1586,6 +1605,7 @@
 				DC12EBCB18B7B847000DBC5F /* GameBackground@ipad.png in Resources */,
 				DCEF953918B6C19400E50937 /* AppIcon40x40@2x.png in Resources */,
 				DC22818018B42FD30047D510 /* leaderboard.png in Resources */,
+				DC8D7E8118B889DC00D6F8C0 /* help@ipadhd.png in Resources */,
 				DCEF953A18B6C19400E50937 /* AppIcon76x76.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

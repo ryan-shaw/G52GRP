@@ -17,7 +17,7 @@
     int deviceTag, scaleFactor;
     CGSize win;
     
-    CCSprite *optionBar;
+    CCSprite *optionBar, *help;
     CCMenu *menu;
     CCMenuItemSprite *mute;
 }
@@ -112,7 +112,9 @@
         
         win = [[CCDirector sharedDirector] winSize];
         
-         [SimpleAudioEngine sharedEngine].enabled = NO;
+        [SimpleAudioEngine sharedEngine].enabled = NO;
+        
+        help = NULL;
         
         [self setDeviceTag];
         
@@ -170,10 +172,10 @@
     
     
     if (![[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] || [[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == UNMUTE) {
-    
+        
         file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
         select = [CCSprite spriteWithFile:file];
-    
+        
         file = [NSString stringWithFormat:@"%@%@", @"muteOn", [self getImageFileSuffix]];
         unselect = [CCSprite spriteWithFile:file];
         unselect.color = ccc3(MENU_R, MENU_G, MENU_B);
@@ -204,7 +206,7 @@
     
     
     file = [NSString stringWithFormat:@"%@%@", @"reset", [self getImageFileSuffix]];
-
+    
     select = [CCSprite spriteWithFile:file];
     unselect = [CCSprite spriteWithFile:file];
     unselect.color = ccc3(MENU_R, MENU_G, MENU_B);
@@ -249,7 +251,7 @@
     
     // the user clicked Reset
     if (buttonIndex == 0) {
-      
+        
         NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
         [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -267,7 +269,22 @@
 
 - (void) showHelp {
     
-    [self playSoundEffect:TOUCH];
+    if (help == NULL) {
+        
+        [self playSoundEffect:TOUCH];
+        
+        NSString *file = [NSString stringWithFormat:@"%@%@", @"help", [self getBackgroundFileSuffix]];
+        
+        help = [CCSprite spriteWithFile:file];
+        
+        help.position = ccp(win.width/2, win.height/2);
+        
+        help.opacity = 0;
+        
+        [self addChild:help];
+        
+        [help runAction:[CCFadeIn actionWithDuration:0.1]];
+    }
 }
 
 - (void) mute {
@@ -353,11 +370,20 @@
     CGPoint touchLocation = [touch locationInView:[touch view]];
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
     
-    if (touchLocation.y < win.height/2) {
+    if (help == NULL) {
+        
+        if (touchLocation.y < win.height/2) {
+            
+            [self playSoundEffect:TOUCH];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
+            
+        }
+        
+    } else {
         
         [self playSoundEffect:TOUCH];
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
-        
+        [self removeChild:help cleanup:YES];
+        help = NULL;
     }
 }
 
