@@ -10,6 +10,7 @@
 #import "MainMenu.h"
 #import "Fruit.h"
 #import "SimpleAudioEngine.h"
+#import "GameKitHelper.h"
 
 int totalSpend = 0, totalCredits;
 
@@ -151,6 +152,8 @@ int totalSpend = 0, totalCredits;
     
 	if( (self=[super init])) {
         
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        
         win = [[CCDirector sharedDirector] winSize];
         
         prefs = [NSUserDefaults standardUserDefaults];
@@ -206,6 +209,9 @@ int totalSpend = 0, totalCredits;
     
     currentLevel = [prefs integerForKey:CURRENT_LEVEL];
     
+    [[GameKitHelper sharedGameKitHelper]
+     submitScore:(int64_t)currentLevel
+     category:GAME_CENTER_CURRENT_LEVEL];
 }
 
 - (void) setTotalCredits {
@@ -223,6 +229,10 @@ int totalSpend = 0, totalCredits;
         
         bet = totalCredits;
     }
+    
+    [[GameKitHelper sharedGameKitHelper]
+     submitScore:(int64_t)totalCredits
+     category:GAME_CENTER_RICH_LIST];
 }
 
 - (void) setMinMaxBets {
@@ -373,6 +383,10 @@ int totalSpend = 0, totalCredits;
         [formatter release];
         
         [winLabel setString:[NSString stringWithFormat:@"$ %@", formatted]];
+        
+        [[GameKitHelper sharedGameKitHelper]
+         submitScore:(int64_t)winnings
+         category:GAME_CENTER_HIGHEST_WIN];
         
     } else {
         
@@ -623,16 +637,16 @@ int totalSpend = 0, totalCredits;
         
         switch (arc4random() % 100) {
                 
-            case 0 ... 29:
+            case 0 ... 39:
                 return CHERRY;
                 
-            case 30 ... 59:
+            case 40 ... 59:
                 return STRAWBERRY;
                 
-            case 60 ... 79:
+            case 60 ... 74:
                 return MELON;
                 
-            case 80 ... 84:
+            case 75 ... 84:
                 return APPLE;
                 
             case 85 ... 90:
@@ -1451,6 +1465,11 @@ int totalSpend = 0, totalCredits;
         [SimpleAudioEngine sharedEngine].enabled = NO;
         
         [prefs synchronize];
+        
+        [[GameKitHelper sharedGameKitHelper]
+         submitScore:(int64_t)totalCredits
+         category:GAME_CENTER_RICH_LIST];
+        
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
     }
 }
@@ -1662,7 +1681,7 @@ int totalSpend = 0, totalCredits;
         moveTo = maxHeight;
     }
     
-    divisionFactor = (moveTo - powerBar.position.y) / 30;
+    divisionFactor = ((moveTo - powerBar.position.y) / 30) / iPadScaleFactor;
     
     [powerBar runAction:[CCMoveTo actionWithDuration:divisionFactor position:ccp(powerBar.position.x, moveTo)]];
     
@@ -1713,7 +1732,7 @@ int totalSpend = 0, totalCredits;
         
         [self increaseLevel];
         
-        xp = (moveTo - xpBar.position.y) / 50;
+        xp = ((moveTo - xpBar.position.y) / 50) / iPadScaleFactor;
         
         [xpBar runAction:[CCSequence actionOne:[CCMoveTo actionWithDuration:xp position:ccp(xpBar.position.x, maxHeight)] two:[CCCallBlockN actionWithBlock:^(CCNode *node) { xpBar.position = ccp(xpBar.position.x, startingHeight); [self increaseXPBar:0]; }]]];
         
@@ -1721,7 +1740,7 @@ int totalSpend = 0, totalCredits;
         
         [xpBar stopActionByTag:1];
         
-        xp = (moveTo - xpBar.position.y) / 20;
+        xp = ((moveTo - xpBar.position.y) / 20) / iPadScaleFactor;
         
         CCMoveTo *move = [CCMoveTo actionWithDuration:xp position:ccp(xpBar.position.x, moveTo)];
         move.tag = 1;
@@ -1756,6 +1775,10 @@ int totalSpend = 0, totalCredits;
     }
     
     [prefs setInteger:currentLevel forKey:CURRENT_LEVEL];
+    
+    [[GameKitHelper sharedGameKitHelper]
+     submitScore:(int64_t)currentLevel
+     category:GAME_CENTER_CURRENT_LEVEL];
 }
 
 - (double) getPowerBarDivisionFactor {
@@ -1776,6 +1799,8 @@ int totalSpend = 0, totalCredits;
 
 - (void) activatePowerBarEffect {
     
+    NSString *file = [NSString stringWithFormat:@"%@%@", @"levelStar", [self getImageFileSuffix]];
+    
     CCParticleSystem *emitter;
     
     emitter = [CCParticleRain node];
@@ -1791,7 +1816,7 @@ int totalSpend = 0, totalCredits;
     
     emitter.position = ccp(win.width/2, win.height/1.30);
     
-    emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"levelStar.png"];
+    emitter.texture = [[CCTextureCache sharedTextureCache] addImage:file];
     
     emitter.life = 5;
     

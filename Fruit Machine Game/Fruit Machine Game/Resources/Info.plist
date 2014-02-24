@@ -148,6 +148,8 @@
 	<dict>
 		<key>accelerometer</key>
 		<true/>
+		<key>gamekit</key>
+		<true/>
 		<key>opengles-2</key>
 		<true/>
 	</dict>
@@ -158,7 +160,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

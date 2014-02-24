@@ -9,6 +9,8 @@
 #import "MainMenu.h"
 #import "MainGameScene.h"
 #import "SimpleAudioEngine.h"
+#import "GameKitHelper.h"
+#import "AppDelegate.h"
 
 
 @implementation MainMenu {
@@ -20,6 +22,9 @@
     CCSprite *optionBar, *help;
     CCMenu *menu;
     CCMenuItemSprite *mute;
+    
+    UIViewController *tempVC;
+    
 }
 
 + (CCScene *) scene {
@@ -110,6 +115,9 @@
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
+        [[GameKitHelper sharedGameKitHelper]
+         authenticateLocalPlayer];
+        
         win = [[CCDirector sharedDirector] winSize];
         
         [SimpleAudioEngine sharedEngine].enabled = NO;
@@ -119,6 +127,15 @@
         [self setDeviceTag];
         
         [self createDisplay];
+        
+        [SimpleAudioEngine sharedEngine].enabled = YES;
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:SOUNDTRACK];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:1.0f];
+        
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == MUTE) {
+            
+            [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+        }
     }
     
     self.touchEnabled = YES;
@@ -245,6 +262,8 @@
                                 delegate:self
                                 cancelButtonTitle:@"Reset"
                                 otherButtonTitles:@"Cancel",nil];
+        myAlert.tag = 1;
+        
         [myAlert show];
         [myAlert release];
     }
@@ -255,13 +274,17 @@
     // the user clicked Reset
     if (buttonIndex == 0) {
         
-        NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
-        CCSprite *select = [CCSprite spriteWithFile:file];
-        mute.normalImage = select;
+        if (alertView.tag == 1) {
+            
+            NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+            [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
+            CCSprite *select = [CCSprite spriteWithFile:file];
+            mute.normalImage = select;
+            
+        }
     }
 }
 
@@ -271,6 +294,57 @@
         
         [self playSoundEffect:TOUCH];
         
+        if ([GKLocalPlayer localPlayer].isAuthenticated == YES) {
+            
+            // Create leaderboard view w/ default Game Center style
+            GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];;
+            
+            // If view controller was successfully created...
+            if (leaderboardController != nil)
+            {
+                // Leaderboard config
+                leaderboardController.leaderboardDelegate = self;   // The leaderboard view controller will send messages to this object
+                leaderboardController.category = GAME_CENTER_RICH_LIST;  // Set category here
+                leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;    // GKLeaderboardTimeScopeToday, GKLeaderboardTimeScopeWeek, GKLeaderboardTimeScopeAllTime
+                
+                // Create an additional UIViewController to attach the GKLeaderboardViewController to
+                tempVC = [[UIViewController alloc] init];
+                
+                // Add the temporary UIViewController to the main OpenGL view
+                [[[[CCDirector sharedDirector] view] window] addSubview:tempVC.view];
+                
+                // Tell UIViewController to present the leaderboard
+                [tempVC presentViewController:leaderboardController animated:YES completion:nil];
+                
+            }
+            
+        } else {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Center Unavailable" message:@"Player is not signed in"
+                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            alert.tag = 2;
+            [alert show];
+            [alert release];
+        }
+    }
+}
+
+- (void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController {
+    
+    NSString *version = [[UIDevice currentDevice] systemVersion];
+    BOOL isAtLeast7 = [version floatValue] >= 7.0;
+    
+    if (isAtLeast7) {
+        
+        [tempVC dismissViewControllerAnimated:YES completion:nil];
+        [tempVC.view removeFromSuperview];
+        [tempVC release];
+        
+    } else {
+        
+        [viewController.view removeFromSuperview];
+        [viewController release];
     }
 }
 
@@ -309,6 +383,8 @@
             select.color = ccc3(MENU_R, MENU_G, MENU_B);
             mute.normalImage = select;
             
+            [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+            
         } else {
             
             [[NSUserDefaults standardUserDefaults] setInteger:UNMUTE forKey:MUTE_DATA];
@@ -316,6 +392,8 @@
             NSString *file = [NSString stringWithFormat:@"%@%@", @"muteOff", [self getImageFileSuffix]];
             CCSprite *select = [CCSprite spriteWithFile:file];
             mute.normalImage = select;
+            
+            [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
         }
     }
 }
@@ -393,6 +471,7 @@
                 
             } else {
                 
+                [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.1f];
                 [self playSoundEffect:TOUCH];
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             }

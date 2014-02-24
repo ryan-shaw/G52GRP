@@ -6,8 +6,16 @@
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
+// game center
+
+#define GAME_CENTER_HIGHEST_WIN @"Fruity_Slots_Highest_Win"
+#define GAME_CENTER_CURRENT_LEVEL @"Fruity_Slots_Current_Level"
+#define GAME_CENTER_RICH_LIST @"Fruity_Slots_Rich_List"
+
+
 //sound effects
 
+#define SOUNDTRACK @"FruitySlotGamescore.mp3"
 #define ACTIVATE @"ActivatePower.mp3"
 #define LEVEL_UP @"LevelUp.mp3"
 #define POWERBAR_SOUND @"PowerBarSound.mp3"

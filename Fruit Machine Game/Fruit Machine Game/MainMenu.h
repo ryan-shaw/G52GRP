@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import <GameKit/GameKit.h>
 
-@interface MainMenu : CCLayer <UIAlertViewDelegate> {
+@interface MainMenu : CCLayer <UIApplicationDelegate, UIAlertViewDelegate, GKLeaderboardViewControllerDelegate> {
     
 }
 
