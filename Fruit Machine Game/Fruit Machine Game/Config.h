@@ -6,6 +6,9 @@
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
+#define MIN_VOLUME 0.1
+#define VOLUME_CHANGE 0.02
+
 // game center
 
 #define GAME_CENTER_HIGHEST_WIN @"Fruity_Slots_Highest_Win"

@@ -24,7 +24,6 @@
     CCMenuItemSprite *mute;
     
     UIViewController *tempVC;
-    
 }
 
 + (CCScene *) scene {
@@ -130,7 +129,7 @@
         
         [SimpleAudioEngine sharedEngine].enabled = YES;
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:SOUNDTRACK];
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:1.0f];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.1f];
         
         if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == MUTE) {
             
@@ -250,6 +249,13 @@
     
     [self addChild:menu];
     menu.opacity = 0;
+    
+    if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
+        
+        optionBar.position = ccp(optionBar.contentSize.width/2.50, optionBar.position.y);
+        menu.enabled = YES;
+        menu.opacity = 255;
+    }
 }
 
 - (void) reset {
@@ -326,6 +332,7 @@
             alert.tag = 2;
             [alert show];
             [alert release];
+
         }
     }
 }
@@ -471,7 +478,6 @@
                 
             } else {
                 
-                [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.1f];
                 [self playSoundEffect:TOUCH];
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             }

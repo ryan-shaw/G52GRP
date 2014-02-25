@@ -248,7 +248,6 @@ int totalSpend = 0, totalCredits;
     [self spinReels];
     
     [self correctCredits];
-    
 }
 
 - (void) correctCredits {
@@ -1470,6 +1469,8 @@ int totalSpend = 0, totalCredits;
          submitScore:(int64_t)totalCredits
          category:GAME_CENTER_RICH_LIST];
         
+        [self stopAllActions];
+        
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
     }
 }
@@ -1810,9 +1811,11 @@ int totalSpend = 0, totalCredits;
     ccColor4F endColor = {XP_R, XP_G, XP_B, 0};
     emitter.endColor = endColor;
     
-    emitter.scale = 2.5;
+    emitter.scale = 1.5;//2.5;
     
-    emitter.speed = 40.0;
+    emitter.startSize = 6.0*iPadScaleFactor;
+    
+    emitter.speed = 80.0*iPadScaleFactor;
     
     emitter.position = ccp(win.width/2, win.height/1.30);
     
@@ -1820,7 +1823,7 @@ int totalSpend = 0, totalCredits;
     
     emitter.life = 5;
     
-    emitter.duration = 1.6;//2.0;
+    emitter.duration = 2.0;//2.0;
     
     [self addChild:emitter z:-1];
     
