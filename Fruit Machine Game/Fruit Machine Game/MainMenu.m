@@ -129,7 +129,7 @@
         
         [SimpleAudioEngine sharedEngine].enabled = YES;
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:SOUNDTRACK];
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.1f];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:1.0f];//0.1f];
         
         if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == MUTE) {
             
@@ -479,6 +479,7 @@
             } else {
                 
                 [self playSoundEffect:TOUCH];
+                [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             }
         }
@@ -488,6 +489,7 @@
         if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
             
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:FIRST_RUN];
+            [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             
         } else {

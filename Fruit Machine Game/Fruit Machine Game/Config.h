@@ -6,9 +6,6 @@
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
-#define MIN_VOLUME 0.1
-#define VOLUME_CHANGE 0.02
-
 // game center
 
 #define GAME_CENTER_HIGHEST_WIN @"Fruity_Slots_Highest_Win"
@@ -27,30 +24,32 @@
 #define TOUCH @"screenTouch.mp3"
 #define WIN @"win.mp3"
 
-// NSUserDefault
+// NSUserDefaults File Names
+
+#define FIRST_RUN @"firstRun"
+#define FIRST_GAME_RUN @"gameRun"
+#define TOTALCREDITS @"TotalCredits"
+#define CURRENT_LEVEL @"CurrentLevel"
+#define TOTALXP @"TotalXP"
 
 #define MUTE_DATA @"Mute"
 #define MUTE 1
 #define UNMUTE 0
 
+// FONTS AND FONTSIZES
+
 #define PLAY_LABEL_FONT @"Heiti TC"
 #define PLAY_LABEL_TEXT @"insert coin to play"
+#define LEVEL_FONT @"Ostrich Sans"
+#define LEVEL_FONTSIZE 20
 
-#define OPTION_BAR_MOVE_TIME 0.4
+#define CREDITS_FONT @"Nova Square"
+#define POINTS_FONTSIZE 20
 
-// NSUserDefaults File Names
-#define FIRST_RUN @"firstRun"
-#define TOTALCREDITS @"TotalCredits"
-#define CURRENT_LEVEL @"CurrentLevel"
-#define TOTALXP @"TotalXP"
-
-
-#define STARTING_CREDITS 2000
-#define STARTING_LEVEL 1
-#define STARTING_XP 0
-
+#define INSERT_COIN_FONTSIZE 16
 
 // fruit multipliers
+
 #define CHERRY_MULT 2
 #define STRAWBERRY_MULT 5
 #define MELON_MULT 10
@@ -59,26 +58,28 @@
 #define BANANA_MULT 25
 #define ORANGE_MULT 50
 
+// XP VALUES
+
 #define POWER_XP 120
 #define WIN_XP 75
 #define SPIN_XP 25
-
+#define STARTING_XP 0
 #define LEVEL_XP_INCREASE 500
 
-#define COMBO_AMOUNT_TO_SPEND 1000
+// LEVEL INFO
 
-#define MIN_STARTING_CREDITS 100
+#define STARTING_LEVEL 1
 
-#define LEVEL_FONT @"Ostrich Sans"
-#define LEVEL_FONTSIZE 20
-
-#define CREDITS_FONT @"Nova Square"
-#define POINTS_FONTSIZE 20
+// CREDITS
 
 #define NUMBER_OF_DIFFERENT_BETS 5
 #define CREDITS_CHANGE 50
 
-#define STOP_ANIMATION_Y_MOVEMENT 6
+#define COMBO_AMOUNT_TO_SPEND 1400
+#define MIN_STARTING_CREDITS 100
+#define STARTING_CREDITS 2000
+
+// REEL SETTINGS
 
 #define NUMBER_OF_REELS 3
 #define NUMBER_OF_FRUITS 7
@@ -97,15 +98,20 @@
 
 #define FADE_IN_OUT_TIME 1.0
 
-#define INSERT_COIN_FONTSIZE 16
+// MISCELLANEOUS
+
+#define OPTION_BAR_MOVE_TIME 0.4
+#define STOP_ANIMATION_Y_MOVEMENT 6
 
 // Device Tags
+
 #define IPADHD 4
 #define IPAD 3
 #define IPHONE5 2
 #define IPHONE 1
 
 // Fruit Tags
+
 #define CHERRY 1
 #define STRAWBERRY 2
 #define MELON 3

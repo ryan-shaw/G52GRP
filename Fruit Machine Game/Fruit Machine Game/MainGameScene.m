@@ -216,8 +216,9 @@ int totalSpend = 0, totalCredits;
 
 - (void) setTotalCredits {
     
-    if (![prefs integerForKey:TOTALCREDITS]) {
+    if (![prefs integerForKey:TOTALCREDITS] && ![prefs integerForKey:FIRST_GAME_RUN]) {
         
+        [prefs setInteger:1 forKey:FIRST_GAME_RUN];
         [prefs setInteger:STARTING_CREDITS forKey:TOTALCREDITS];
         totalSpend = 0;
     }
@@ -273,7 +274,7 @@ int totalSpend = 0, totalCredits;
             totalCredits = MIN_STARTING_CREDITS * currentLevel;
             [self setMinMaxBets];
             
-            bet = minBet;
+            bet = totalCredits;
         }
     }
 }
@@ -639,19 +640,19 @@ int totalSpend = 0, totalCredits;
             case 0 ... 39:
                 return CHERRY;
                 
-            case 40 ... 59:
+            case 41 ... 63:
                 return STRAWBERRY;
                 
-            case 60 ... 74:
+            case 64 ... 75:
                 return MELON;
                 
-            case 75 ... 84:
+            case 76 ... 83:
                 return APPLE;
                 
-            case 85 ... 90:
+            case 84 ... 91:
                 return PEAR;
                 
-            case 91 ... 95:
+            case 92 ... 95:
                 return BANANA;
                 
             case 96 ... 99:
@@ -675,7 +676,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 44:
+                    case 0 ... 48:
                         return CHERRY;
                         break;
                 }
@@ -686,7 +687,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 39:
+                    case 0 ... 37:
                         return STRAWBERRY;
                         break;
                 }
@@ -697,7 +698,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 34:
+                    case 0 ... 37:
                         return MELON;
                         break;
                 }
@@ -708,7 +709,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 29:
+                    case 0 ... 32:
                         return APPLE;
                         break;
                 }
@@ -719,7 +720,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 24:
+                    case 0 ... 27:
                         return PEAR;
                         break;
                 }
@@ -730,7 +731,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 19:
+                    case 0 ... 25:
                         return BANANA;
                         break;
                 }
@@ -741,7 +742,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 14:
+                    case 0 ... 13:
                         return ORANGE;
                         break;
                 }
@@ -782,7 +783,7 @@ int totalSpend = 0, totalCredits;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 42:
+                        case 0 ... 44:
                             return STRAWBERRY;
                             break;
                     }
@@ -793,7 +794,7 @@ int totalSpend = 0, totalCredits;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 33:
+                        case 0 ... 38:
                             return MELON;
                             break;
                     }
@@ -804,7 +805,7 @@ int totalSpend = 0, totalCredits;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 26:
+                        case 0 ... 30:
                             return APPLE;
                             break;
                     }
@@ -815,7 +816,7 @@ int totalSpend = 0, totalCredits;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 22:
+                        case 0 ... 25:
                             return PEAR;
                             break;
                     }
@@ -826,7 +827,7 @@ int totalSpend = 0, totalCredits;
                     
                     switch (arc4random() % 100) {
                             
-                        case 0 ... 17:
+                        case 0 ... 18:
                             return BANANA;
                             break;
                     }
