@@ -16,29 +16,16 @@
 		<string>AppIcon29x29</string>
 		<string>AppIcon60x60</string>
 		<string>Icon</string>
-		<string>Icon-iOS7</string>
-		<string>Icon.png</string>
-		<string>Icon@2x.png</string>
-		<string>Icon-72.png</string>
-		<string>Icon-Small-50.png</string>
-		<string>Icon-Small.png</string>
-		<string>Icon-Small@2x.png</string>
 	</array>
 	<key>CFBundleIconFiles~ipad</key>
 	<array>
 		<string>AppIcon29x29</string>
 		<string>AppIcon40x40</string>
+		<string>Icon-72</string>
 		<string>AppIcon76x76</string>
 		<string>Icon-Small-50</string>
 		<string>AppIcon60x60</string>
 		<string>Icon</string>
-		<string>Icon-iOS7</string>
-		<string>Icon.png</string>
-		<string>Icon@2x.png</string>
-		<string>Icon-72.png</string>
-		<string>Icon-Small-50.png</string>
-		<string>Icon-Small.png</string>
-		<string>Icon-Small@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.StephenSowole.${PRODUCT_NAME:rfc1034identifier}</string>
@@ -54,6 +41,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>

@@ -303,7 +303,7 @@
         if ([GKLocalPlayer localPlayer].isAuthenticated == YES) {
             
             // Create leaderboard view w/ default Game Center style
-            GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];;
+            GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
             
             // If view controller was successfully created...
             if (leaderboardController != nil)

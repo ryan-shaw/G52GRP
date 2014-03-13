@@ -687,7 +687,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 37:
+                    case 0 ... 35:
                         return STRAWBERRY;
                         break;
                 }
@@ -698,7 +698,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 37:
+                    case 0 ... 32:
                         return MELON;
                         break;
                 }
@@ -709,7 +709,7 @@ int totalSpend = 0, totalCredits;
                 
                 switch (arc4random() % 100) {
                         
-                    case 0 ... 32:
+                    case 0 ... 29:
                         return APPLE;
                         break;
                 }
