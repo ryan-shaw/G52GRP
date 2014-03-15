@@ -159,3 +159,17 @@ body {
     width: 700px;
   }
 }
+
+.contributors-list{
+  width:400px;
+  text-align: center;
+  margin: 0 auto; 
+}
+
+.contributors-list ul{
+  text-align: left;
+}
+
+.supervisor{
+  font-size: 15px;
+}
