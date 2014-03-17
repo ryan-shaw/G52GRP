@@ -11,7 +11,7 @@
 #import "SimpleAudioEngine.h"
 #import "GameKitHelper.h"
 #import "AppDelegate.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation MainMenu {
     
@@ -135,11 +135,24 @@
             
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
         }
+     
+        
+        FBLoginView *loginView = [[FBLoginView alloc] init];
+        [[[[CCDirector sharedDirector] view] window] addSubview:loginView];
+        
     }
     
     self.touchEnabled = YES;
     return self;
     
+}
+
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [FBLoginView class];
+    
+    return YES;
 }
 
 - (void) createDisplay {
