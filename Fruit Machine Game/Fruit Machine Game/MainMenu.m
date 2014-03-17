@@ -138,8 +138,13 @@
      
         
         FBLoginView *loginView = [[FBLoginView alloc] init];
-        [[[[CCDirector sharedDirector] view] window] addSubview:loginView];
         
+        UIView *view = [[[CCDirector sharedDirector] view] window];
+        
+        [view addSubview:loginView];
+        
+        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 150);
+
     }
     
     self.touchEnabled = YES;
