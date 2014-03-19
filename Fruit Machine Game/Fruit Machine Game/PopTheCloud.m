@@ -29,6 +29,30 @@
     
 	if( (self=[super init])) {
         
+        CGSize window = [[CCDirector sharedDirector] winSize];
+        
+        CCSprite *background;
+        
+        background = [CCLayerColor layerWithColor:ccc4(100,255,255,255)];
+        
+        [self addChild:background z:-1];
+        
+        CCSprite *cloud1 = [CCSprite spriteWithFile:@"cloud.png"];
+        CCSprite *cloud2 = [CCSprite spriteWithFile:@"cloud.png"];
+        CCSprite *cloud3 = [CCSprite spriteWithFile:@"cloud.png"];
+        
+        cloud1.anchorPoint = ccp(0,0);
+        cloud2.anchorPoint = ccp(0,0);
+        cloud3.anchorPoint = ccp(0,0);
+        
+        cloud1.position = ccp(window.height / 3 , 10);
+        cloud1.position = ccp((window.height / 3) * 2, 15);
+        cloud1.position = ccp(window.height, 20);
+        
+        [self addChild:cloud1 z:1];
+        [self addChild:cloud2 z:1];
+        [self addChild:cloud3 z:1];
+        
         
     }
     
