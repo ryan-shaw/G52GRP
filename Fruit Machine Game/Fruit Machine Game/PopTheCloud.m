@@ -41,13 +41,16 @@
         CCSprite *cloud2 = [CCSprite spriteWithFile:@"cloud.png"];
         CCSprite *cloud3 = [CCSprite spriteWithFile:@"cloud.png"];
         
-        cloud1.anchorPoint = ccp(0,0);
-        cloud2.anchorPoint = ccp(0,0);
-        cloud3.anchorPoint = ccp(0,0);
+        //cloud1.anchorPoint = ccp(0,0);
+        //cloud2.anchorPoint = ccp(0,0);
+        //cloud3.anchorPoint = ccp(0,0);
         
-        cloud1.position = ccp(window.height / 3 , 10);
-        cloud1.position = ccp((window.height / 3) * 2, 15);
-        cloud1.position = ccp(window.height, 20);
+        int y = window.height / 2;
+        int x = window.width / 2;
+        
+        cloud1.position = ccp(x, y - (y / 1.5));
+        cloud2.position = ccp(x, y);
+        cloud3.position = ccp(x, y + (y / 1.5));
         
         [self addChild:cloud1 z:1];
         [self addChild:cloud2 z:1];
