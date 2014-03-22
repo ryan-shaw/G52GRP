@@ -33,21 +33,20 @@
         
         CCSprite *background;
         
-        background = [CCLayerColor layerWithColor:ccc4(100,255,255,255)];
+        background = [CCLayerColor layerWithColor:ccc4(100,255,255,255)]; //blue
         
         [self addChild:background z:-1];
         
+        // clouds
         CCSprite *cloud1 = [CCSprite spriteWithFile:@"cloud.png"];
         CCSprite *cloud2 = [CCSprite spriteWithFile:@"cloud.png"];
         CCSprite *cloud3 = [CCSprite spriteWithFile:@"cloud.png"];
         
-        //cloud1.anchorPoint = ccp(0,0);
-        //cloud2.anchorPoint = ccp(0,0);
-        //cloud3.anchorPoint = ccp(0,0);
-        
+        // middle x, y
         int y = window.height / 2;
         int x = window.width / 2;
         
+        // position them all spaced out evenly
         cloud1.position = ccp(x, y - (y / 1.5));
         cloud2.position = ccp(x, y);
         cloud3.position = ccp(x, y + (y / 1.5));
