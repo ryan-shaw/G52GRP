@@ -136,21 +136,31 @@
             
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
         }
-     
-        [FBSession openActiveSessionWithAllowLoginUI:YES];
-        loginView = [[FBLoginView alloc] init];
+        if(![FBSession activeSession].isOpen){
+                [FBSession openActiveSessionWithAllowLoginUI:YES];
+            loginView = [[FBLoginView alloc] init];
+            [self hideFB];
+            UIView *view = [[[CCDirector sharedDirector] view] window];
         
-        UIView *view = [[[CCDirector sharedDirector] view] window];
+            [view addSubview:loginView];
         
-        [view addSubview:loginView];
-        
-        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125);
+            loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125);
+        }
+        [self schedule:@selector(update)];
 
     }
     
     self.touchEnabled = YES;
     return self;
     
+}
+
+- (void) update{
+    if([FBSession activeSession].isOpen){
+        [loginView setHidden:YES];
+    }else{
+        [loginView setHidden:NO];
+    }
 }
 
 - (void) loginViewShowingLoggedInUser:(FBLoginView *)loginView
@@ -396,7 +406,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 - (void) showHelp {
     
     if (help == NULL) {
-        
+        [self hideFB];
         [self playSoundEffect:TOUCH];
         
         NSString *file = [NSString stringWithFormat:@"%@%@", @"help", [self getBackgroundFileSuffix]];
