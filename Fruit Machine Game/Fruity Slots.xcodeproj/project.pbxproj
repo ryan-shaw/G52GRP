@@ -256,7 +256,7 @@
 		DCEF954018B6C19400E50937 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF953118B6C19400E50937 /* AppIcon29x29.png */; };
 		DCEF954118B6C19400E50937 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF953218B6C19400E50937 /* AppIcon29x29@2x.png */; };
 		DCEF954318B6C25500E50937 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF954218B6C25500E50937 /* Icon-72@2x.png */; };
-		DF08E89618D74B6B009AC315 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E89518D74B6B009AC315 /* FacebookSDK.framework */; };
+		DF58E6E218E2F49C00D0C437 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -663,7 +663,7 @@
 		DCEF953118B6C19400E50937 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		DCEF953218B6C19400E50937 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		DCEF954218B6C25500E50937 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
-		DF08E89518D74B6B009AC315 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -679,7 +679,7 @@
 				DCA62F25182B92750053BCD0 /* CoreGraphics.framework in Frameworks */,
 				DCA62F27182B92750053BCD0 /* CoreText.framework in Frameworks */,
 				DCA62F19182B92740053BCD0 /* OpenGLES.framework in Frameworks */,
-				DF08E89618D74B6B009AC315 /* FacebookSDK.framework in Frameworks */,
+				DF58E6E218E2F49C00D0C437 /* FacebookSDK.framework in Frameworks */,
 				DCA62F23182B92750053BCD0 /* Foundation.framework in Frameworks */,
 				DCA62F1D182B92740053BCD0 /* AudioToolbox.framework in Frameworks */,
 			);
@@ -967,7 +967,7 @@
 		DCA62F15182B92740053BCD0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF08E89518D74B6B009AC315 /* FacebookSDK.framework */,
+				DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */,
 				DCA62F16182B92740053BCD0 /* QuartzCore.framework */,
 				DCA62F18182B92740053BCD0 /* OpenGLES.framework */,
 				DCA62F1A182B92740053BCD0 /* OpenAL.framework */,
@@ -1836,6 +1836,7 @@
 					"$(inherited)",
 					/Users/rxs62u/Documents/FacebookSDK,
 					"/Users/rxs62u/Documents/GRP-Fruit-Machine/Fruit\\ Machine\\ Game",
+					"/Users/rxs62u/Documents/ryan-dev/Fruit\\ Machine\\ Game",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1865,6 +1866,7 @@
 					"$(inherited)",
 					/Users/rxs62u/Documents/FacebookSDK,
 					"/Users/rxs62u/Documents/GRP-Fruit-Machine/Fruit\\ Machine\\ Game",
+					"/Users/rxs62u/Documents/ryan-dev/Fruit\\ Machine\\ Game",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fruit Machine Game/Prefix.pch";

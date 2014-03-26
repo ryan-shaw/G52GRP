@@ -24,6 +24,7 @@
     CCMenuItemSprite *mute;
     
     UIViewController *tempVC;
+    FBLoginView *loginView;
 }
 
 + (CCScene *) scene {
@@ -136,20 +137,39 @@
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
         }
      
-        
-        FBLoginView *loginView = [[FBLoginView alloc] init];
+        [FBSession openActiveSessionWithAllowLoginUI:YES];
+        loginView = [[FBLoginView alloc] init];
         
         UIView *view = [[[CCDirector sharedDirector] view] window];
         
         [view addSubview:loginView];
         
-        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 150);
+        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125);
 
     }
     
     self.touchEnabled = YES;
     return self;
     
+}
+
+- (void) loginViewShowingLoggedInUser:(FBLoginView *)loginView
+{
+    
+}
+
+- (void) loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
+{
+    self.loggedInUser = user;
+}
+
+- (void) loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+    self.loggedInUser = nil;
+}
+
+- (void) hideFB {
+    [loginView setHidden:YES];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -496,6 +516,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                 
             } else {
                 
+                [self hideFB];
                 [self playSoundEffect:TOUCH];
                 [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
@@ -506,6 +527,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
         if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
             
+            [self hideFB];
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:FIRST_RUN];
             [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
