@@ -114,10 +114,16 @@
         [self addChild:label z:10];
         
         [self schedule:@selector(tryPopMoles:) interval:0.5];
+        [self schedule:@selector(update)];
     }
     
     self.touchEnabled = YES;
     return self;
+}
+
+- (void) update {
+    
+    [label setString:[NSString stringWithFormat:@"Score: %d", score]];
 }
 
 - (void) popMole:(CCSprite *)mole {
@@ -155,7 +161,7 @@
         molesMissed += 1;
         
         if (molesMissed <= 15) {
-            [label setString:[NSString stringWithFormat:@"Score: %d", score]];
+           // [label setString:[NSString stringWithFormat:@"Score: %d", score]];
             label.opacity = 255;
         }
         
@@ -190,7 +196,7 @@
         molesMissed += 1;
         
         if (molesMissed <= 15) {
-            [label setString:[NSString stringWithFormat:@"Score: %d", score]];
+            //[label setString:[NSString stringWithFormat:@"Score: %d", score]];
             label.opacity = 255;
         }
     }
