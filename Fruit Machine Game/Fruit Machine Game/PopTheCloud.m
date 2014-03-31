@@ -2,7 +2,7 @@
 //  PopTheCloud.m
 //  Fruit Machine Game
 //
-//  Created by Stephen Sowole on 02/12/2013.
+//  Created by Matthew Herod.
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
@@ -39,10 +39,18 @@
         
         [self addChild:background z:-1];
         
+        clouds = [[NSMutableArray alloc] init];
+       
+        // Add Sprites to Array.
+        
         // clouds
         CCSprite *cloud1 = [CCSprite spriteWithFile:@"cloud.png"];
         CCSprite *cloud2 = [CCSprite spriteWithFile:@"cloud.png"];
         CCSprite *cloud3 = [CCSprite spriteWithFile:@"cloud.png"];
+        
+        [clouds addObject:cloud1];
+        [clouds addObject:cloud2];
+        [clouds addObject:cloud3];
         
         // middle x, y
         int y = window.height / 2;
@@ -64,6 +72,8 @@
         
         [self addChild:scoreLabel z:10];
         
+        [self schedule:@selector(moveClouds:)];
+        
     }
     
     self.touchEnabled = YES;
@@ -77,7 +87,32 @@
 
 - (void) update {
     
+}
+
+- (void) moveClouds {
+    
+    for (CCSprite *cloud in clouds) {
+        if (cloud.numberOfRunningActions == 0) {
+            [self moveClouds:cloud];
+        }
+    }
    
+}
+
+- (void) moveClouds:(CCSprite *)cloud0 {
+    
+    CCMoveBy *moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, cloud0.contentSize.width)];
+    CCEaseInOut *easeMoveUp = [CCEaseInOut actionWithAction:moveUp rate:3.0];
+    CCAction *easeMoveDown = [easeMoveUp reverse];
+    
+    [cloud0 runAction:[CCSequence actions:easeMoveUp, easeMoveDown,
+                     
+                     [CCCallBlockN actionWithBlock:^(CCNode *node) {
+        
+    }],
+                     
+                     nil]];
+
 }
 
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
