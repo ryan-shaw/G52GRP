@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "MainMenu.h"
 #import "PopTheCloud.h"
+#import "HorseRacingGame.h"
+#import "WackAmoleGame.h"
 
 @implementation MyNavigationController
 
