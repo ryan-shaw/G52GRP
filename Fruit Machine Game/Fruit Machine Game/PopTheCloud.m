@@ -57,18 +57,18 @@
         int x = window.width / 2;
         
         // position them all spaced out evenly
-        cloud1.position = ccp(x, y - (y / 1.5));
-        cloud2.position = ccp(x, y);
-        cloud3.position = ccp(x, y + (y / 1.5));
+        cloud1.position = ccp(x, y - (y / 1.5) - 0);
+        cloud2.position = ccp(x, y - 15);
+        cloud3.position = ccp(x, y + (y / 1.5) - 20);
         
         [self addChild:cloud1 z:1];
         [self addChild:cloud2 z:1];
         [self addChild:cloud3 z:1];
         
-        scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana" fontSize:25.0];
+        scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Verdana" fontSize:72.0];
         scoreLabel.anchorPoint = ccp(0, 0);
-        scoreLabel.color = ccc3(255,0,0);
-        scoreLabel.position = ccp(window.width/4, window.height/2);
+        scoreLabel.color = ccc3(230,230,230);
+        scoreLabel.position = ccp(0, window.height - 72);
         
         [self addChild:scoreLabel z:10];
         
@@ -81,8 +81,8 @@
 }
 
 - (void) score {
-        score += 10;
-        [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
+        score += 1;
+        [scoreLabel setString:[NSString stringWithFormat:@"%d", score]];
 }
 
 - (void) tryMoveClouds {
@@ -97,24 +97,24 @@
 
 - (void) tryMoveCloud:(CCSprite *)cloud0 {
     int move = 0;
-    int random = arc4random() % 4;
-    if (random == 0) {
-        move = cloud0.contentSize.width / 2;
-    } else if (random == 1) {
-        move = 0 - cloud0.contentSize.width / 2;
-    } else if (random == 2) {
-        move = cloud0.contentSize.width / 3;
-    } else if (random == 3) {
-        move = 0 - cloud0.contentSize.width / 3;
+    int random = (arc4random() % 5) + 3;
+    
+    double moveX = (arc4random() % 3) * 1.0;
+    
+    if ((random % 2) == 0){
+          move = 0 - cloud0.contentSize.width / random;
+    } else {
+          move = 0 + cloud0.contentSize.width / random;
     }
-    CCMoveBy *moveSide = [CCMoveBy actionWithDuration:3.0 position:ccp(move, 0)];
+    
+    CCMoveBy *moveSide = [CCMoveBy actionWithDuration:moveX position:ccp(move, 0)];
     CCEaseInOut *easeSide = [CCEaseInOut actionWithAction:moveSide rate:1.0];
     CCAction *easeBack = [easeSide reverse];
     
     [cloud0 runAction:[CCSequence actions:easeSide, easeBack,
                      
                      [CCCallBlockN actionWithBlock:^(CCNode *node) {
-        printf("loL");
+        [cloud0 setVisible:YES];
     }],
                      
                      nil]];
@@ -130,6 +130,7 @@
     for (CCSprite *cloud in clouds) {
         if (CGRectContainsPoint(cloud.boundingBox, firstTouch)) {
             [self score];
+            [cloud setVisible:NO];
         }
     }
     
