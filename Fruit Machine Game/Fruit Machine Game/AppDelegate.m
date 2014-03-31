@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "MainMenu.h"
+#import "PopTheCloud.h"
 #import "HorseRacingGame.h"
 #import "WackAmoleGame.h"
 
@@ -41,7 +42,7 @@
 	return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
-// This is needed for iOS4 and iOS5 in order to ensure
+// This is needed for iOS4 and iOS5 in order tßo ensure
 // that the 1st scene has the correct dimensions
 // This is not needed on iOS6 and could be added to the application:didFinish...
 -(void) directorDidReshapeProjection:(CCDirector*)director
