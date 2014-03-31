@@ -72,7 +72,7 @@
         
         [self addChild:scoreLabel z:10];
         
-        [self schedule:@selector(moveClouds:)];
+        [self schedule:@selector(tryMoveClouds)];
         
     }
     
@@ -85,11 +85,7 @@
         [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
 }
 
-- (void) update {
-    
-}
-
-- (void) moveClouds {
+- (void) tryMoveClouds {
     
     for (CCSprite *cloud in clouds) {
         if (cloud.numberOfRunningActions == 0) {
@@ -99,15 +95,26 @@
    
 }
 
-- (void) tryMoveCloud:(CCSprite *)cloud0 {    
-    CCMoveBy *moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, cloud0.contentSize.width)];
-    CCEaseInOut *easeMoveUp = [CCEaseInOut actionWithAction:moveUp rate:3.0];
-    CCAction *easeMoveDown = [easeMoveUp reverse];
+- (void) tryMoveCloud:(CCSprite *)cloud0 {
+    int move = 0;
+    int random = arc4random() % 4;
+    if (random == 0) {
+        move = cloud0.contentSize.width / 2;
+    } else if (random == 1) {
+        move = 0 - cloud0.contentSize.width / 2;
+    } else if (random == 2) {
+        move = cloud0.contentSize.width / 3;
+    } else if (random == 3) {
+        move = 0 - cloud0.contentSize.width / 3;
+    }
+    CCMoveBy *moveSide = [CCMoveBy actionWithDuration:3.0 position:ccp(move, 0)];
+    CCEaseInOut *easeSide = [CCEaseInOut actionWithAction:moveSide rate:1.0];
+    CCAction *easeBack = [easeSide reverse];
     
-    [cloud0 runAction:[CCSequence actions:easeMoveUp, easeMoveDown,
+    [cloud0 runAction:[CCSequence actions:easeSide, easeBack,
                      
                      [CCCallBlockN actionWithBlock:^(CCNode *node) {
-        
+        printf("loL");
     }],
                      
                      nil]];
