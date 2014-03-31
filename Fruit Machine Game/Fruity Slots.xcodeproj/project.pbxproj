@@ -1853,10 +1853,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
 					"$(inherited)",
-					/Users/rxs62u/Documents/FacebookSDK,
-					"/Users/rxs62u/Documents/GRP-Fruit-Machine/Fruit\\ Machine\\ Game",
-					"/Users/rxs62u/Documents/ryan-dev/Fruit\\ Machine\\ Game",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1883,10 +1881,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
 					"$(inherited)",
-					/Users/rxs62u/Documents/FacebookSDK,
-					"/Users/rxs62u/Documents/GRP-Fruit-Machine/Fruit\\ Machine\\ Game",
-					"/Users/rxs62u/Documents/ryan-dev/Fruit\\ Machine\\ Game",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fruit Machine Game/Prefix.pch";
