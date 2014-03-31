@@ -156,9 +156,7 @@
         
         [self schedule:@selector(updateFacebookLoginShow) interval:0.2];
 
-    }
-    
-    
+    }    
     
     menu.enabled = NO; // the menu starts not enabled
     
@@ -173,23 +171,23 @@
             [loginView setHidden:YES];
             showFBState = 1;
         }
-         printf("1");
+        // printf("1");
     } else if (menu.enabled) {
         if (loginView.isHidden) {
             [loginView setHidden:NO];
             showFBState = 2;
         }
-        printf("2");
+        // printf("2");
     } else if (![FBSession activeSession].isOpen) {
         if (loginView.isHidden) {
             [loginView setHidden:NO];
             showFBState = 3;
         }
-         printf("3");
+        // printf("3");
     } else {
         [loginView setHidden:YES];
         showFBState = 0;
-         printf("4");
+        // printf("4");
     }
 }
 
