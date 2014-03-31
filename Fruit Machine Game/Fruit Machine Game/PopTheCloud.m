@@ -93,14 +93,13 @@
     
     for (CCSprite *cloud in clouds) {
         if (cloud.numberOfRunningActions == 0) {
-            [self moveClouds:cloud];
+            [self tryMoveCloud:cloud];
         }
     }
    
 }
 
-- (void) moveClouds:(CCSprite *)cloud0 {
-    
+- (void) tryMoveCloud:(CCSprite *)cloud0 {    
     CCMoveBy *moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, cloud0.contentSize.width)];
     CCEaseInOut *easeMoveUp = [CCEaseInOut actionWithAction:moveUp rate:3.0];
     CCAction *easeMoveDown = [easeMoveUp reverse];
