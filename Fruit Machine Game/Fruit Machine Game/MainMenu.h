@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <FacebookSDK/FacebookSDK.h>
 #import "cocos2d.h"
 #import <GameKit/GameKit.h>
 
-@interface MainMenu : CCLayer <UIApplicationDelegate, UIAlertViewDelegate, GKLeaderboardViewControllerDelegate> {
-    
+
+@interface MainMenu : CCLayer <UIApplicationDelegate, UIAlertViewDelegate, GKLeaderboardViewControllerDelegate, FBLoginViewDelegate> {
 }
+@property (strong, nonatomic) id<FBGraphUser> loggedInUser;
 
 + (CCScene *) scene;
 

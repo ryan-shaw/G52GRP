@@ -11,7 +11,7 @@
 #import "SimpleAudioEngine.h"
 #import "GameKitHelper.h"
 #import "AppDelegate.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation MainMenu {
     
@@ -24,6 +24,7 @@
     CCMenuItemSprite *mute;
     
     UIViewController *tempVC;
+    FBLoginView *loginView;
 }
 
 + (CCScene *) scene {
@@ -135,11 +136,58 @@
             
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
         }
+        if(![FBSession activeSession].isOpen){
+                [FBSession openActiveSessionWithAllowLoginUI:YES];
+            loginView = [[FBLoginView alloc] init];
+            [self hideFB];
+            UIView *view = [[[CCDirector sharedDirector] view] window];
+        
+            [view addSubview:loginView];
+        
+            loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125);
+        }
+        [self schedule:@selector(update)];
+
     }
     
     self.touchEnabled = YES;
     return self;
     
+}
+
+- (void) update{
+    if([FBSession activeSession].isOpen){
+        [loginView setHidden:YES];
+    }else{
+        [loginView setHidden:NO];
+    }
+}
+
+- (void) loginViewShowingLoggedInUser:(FBLoginView *)loginView
+{
+    
+}
+
+- (void) loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
+{
+    self.loggedInUser = user;
+}
+
+- (void) loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+    self.loggedInUser = nil;
+}
+
+- (void) hideFB {
+    [loginView setHidden:YES];
+}
+
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [FBLoginView class];
+    
+    return YES;
 }
 
 - (void) createDisplay {
@@ -358,7 +406,7 @@
 - (void) showHelp {
     
     if (help == NULL) {
-        
+        [self hideFB];
         [self playSoundEffect:TOUCH];
         
         NSString *file = [NSString stringWithFormat:@"%@%@", @"help", [self getBackgroundFileSuffix]];
@@ -478,6 +526,7 @@
                 
             } else {
                 
+                [self hideFB];
                 [self playSoundEffect:TOUCH];
                 [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
@@ -488,6 +537,7 @@
         
         if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
             
+            [self hideFB];
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:FIRST_RUN];
             [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];

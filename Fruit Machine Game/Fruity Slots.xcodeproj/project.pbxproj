@@ -257,6 +257,7 @@
 		DCEF954018B6C19400E50937 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF953118B6C19400E50937 /* AppIcon29x29.png */; };
 		DCEF954118B6C19400E50937 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF953218B6C19400E50937 /* AppIcon29x29@2x.png */; };
 		DCEF954318B6C25500E50937 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF954218B6C25500E50937 /* Icon-72@2x.png */; };
+		DF58E6E218E2F49C00D0C437 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -664,6 +665,7 @@
 		DCEF953118B6C19400E50937 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		DCEF953218B6C19400E50937 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		DCEF954218B6C25500E50937 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -679,6 +681,7 @@
 				DCA62F25182B92750053BCD0 /* CoreGraphics.framework in Frameworks */,
 				DCA62F27182B92750053BCD0 /* CoreText.framework in Frameworks */,
 				DCA62F19182B92740053BCD0 /* OpenGLES.framework in Frameworks */,
+				DF58E6E218E2F49C00D0C437 /* FacebookSDK.framework in Frameworks */,
 				DCA62F23182B92750053BCD0 /* Foundation.framework in Frameworks */,
 				DCA62F1D182B92740053BCD0 /* AudioToolbox.framework in Frameworks */,
 			);
@@ -966,6 +969,7 @@
 		DCA62F15182B92740053BCD0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */,
 				DCA62F16182B92740053BCD0 /* QuartzCore.framework */,
 				DCA62F18182B92740053BCD0 /* OpenGLES.framework */,
 				DCA62F1A182B92740053BCD0 /* OpenAL.framework */,
@@ -1571,6 +1575,7 @@
 				DCEF953418B6C19400E50937 /* Icon-Small-50.png in Resources */,
 				DC9B212C187510DF0012620A /* MenuBackground.png in Resources */,
 				DC9B212F1875182C0012620A /* GameBackground@2x.png in Resources */,
+				05616F2718D76043009EFEBA /* upper_upper.png in Resources */,
 				DC22819718B44A7E0047D510 /* Default~ipad.png in Resources */,
 				DCEF49AD18A26CD400F108DF /* Klill-Light.ttf in Resources */,
 				DCEF954118B6C19400E50937 /* AppIcon29x29@2x.png in Resources */,
@@ -1588,8 +1593,10 @@
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
 				DC2281AA18B460C60047D510 /* MinOff.png in Resources */,
 				DC12EBB218B72A24000DBC5F /* apple.png in Resources */,
+				05616F2918D76048009EFEBA /* lower_lower.png in Resources */,
 				DC53E8C918B316DC0050F1C5 /* Arialic Hollow.ttf in Resources */,
 				DCEF49AF18A26D8700F108DF /* SourceSansPro-Regular.otf in Resources */,
+				05616F2B18D76109009EFEBA /* mole_thump4.png in Resources */,
 				DC22818418B4339B0047D510 /* question.png in Resources */,
 				DC22817418B415260047D510 /* question@2x.png in Resources */,
 				DC12EBAF18B72A24000DBC5F /* pear.png in Resources */,
@@ -1616,8 +1623,10 @@
 				DCA49F9B1877969100308254 /* pear@2x.png in Resources */,
 				DC21D53C18A246C2009F4C09 /* bar@2x.png in Resources */,
 				DC2281B818B55E330047D510 /* win.mp3 in Resources */,
+				05616F1B18D74668009EFEBA /* mole_1.png in Resources */,
 				DC22817B18B42E690047D510 /* muteOn.png in Resources */,
 				DC8D7E8418B88DE500D6F8C0 /* help@2x.png in Resources */,
+				05616F2518D75DBB009EFEBA /* bg_dirt.png in Resources */,
 				DC8D7E8718B88FBC00D6F8C0 /* help@i5.png in Resources */,
 				DC53E8CD18B318780050F1C5 /* Surrnd_L.ttf in Resources */,
 				DCA49F981877968600308254 /* banana@2x.png in Resources */,
@@ -1832,6 +1841,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/rxs62u/Documents/FacebookSDK,
+					"/Users/rxs62u/Documents/GRP-Fruit-Machine/Fruit\\ Machine\\ Game",
+					"/Users/rxs62u/Documents/ryan-dev/Fruit\\ Machine\\ Game",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fruit Machine Game/Prefix.pch";
@@ -1856,6 +1871,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/rxs62u/Documents/FacebookSDK,
+					"/Users/rxs62u/Documents/GRP-Fruit-Machine/Fruit\\ Machine\\ Game",
+					"/Users/rxs62u/Documents/ryan-dev/Fruit\\ Machine\\ Game",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fruit Machine Game/Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Fruit Machine Game/libs/kazmath/include\"";
