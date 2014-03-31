@@ -1474,7 +1474,7 @@ int totalSpend = 0, totalCredits;
         
         [self stopAllActions];
         
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.2 scene:[MainMenu scene]]];
     }
 }
 

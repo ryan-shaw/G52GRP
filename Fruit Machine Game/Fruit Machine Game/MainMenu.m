@@ -3,6 +3,7 @@
 //  Fruit Machine Game
 //
 //  Created by Stephen Sowole on 02/12/2013.
+//  Contributions from Ryan Shaw and Matthew Herod
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
@@ -25,6 +26,7 @@
     
     UIViewController *tempVC;
     FBLoginView *loginView;
+    int showFBState;
 }
 
 + (CCScene *) scene {
@@ -137,29 +139,55 @@
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
         }
         if(![FBSession activeSession].isOpen){
-                [FBSession openActiveSessionWithAllowLoginUI:YES];
+            // [FBSession openActiveSessionWithAllowLoginUI:YES];
+            // uncommenting this forces the user straight into logging in - perhaps annoying
+            
             loginView = [[FBLoginView alloc] init];
-            [self hideFB];
+            
             UIView *view = [[[CCDirector sharedDirector] view] window];
-        
+            
+            [loginView setHidden:YES]; // start hidden - updateFacebookLoginShow will make it visible
+            
             [view addSubview:loginView];
-        
+            
             loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125);
         }
-        [self schedule:@selector(update)];
+        
+        [self schedule:@selector(updateFacebookLoginShow) interval:0.2];
 
     }
+    
+    
+    menu.enabled = NO; // the menu starts not enabled
     
     self.touchEnabled = YES;
     return self;
     
 }
 
-- (void) update{
-    if([FBSession activeSession].isOpen){
+- (void) updateFacebookLoginShow {
+    if (help != NULL) {
+        if (!loginView.isHidden) {
+            [loginView setHidden:YES];
+            showFBState = 1;
+        }
+        // printf("1");
+    } else if (menu.enabled) {
+        if (loginView.isHidden) {
+            [loginView setHidden:NO];
+            showFBState = 2;
+        }
+       // printf("2");
+    } else if (![FBSession activeSession].isOpen) {
+        if (loginView.isHidden) {
+            [loginView setHidden:NO];
+            showFBState = 3;
+        }
+        // printf("3");
+    } else {
         [loginView setHidden:YES];
-    }else{
-        [loginView setHidden:NO];
+        showFBState = 0;
+        // printf("4");
     }
 }
 
@@ -176,10 +204,6 @@
 - (void) loginViewShowingLoggedOutUser:(FBLoginView *)loginView
 {
     self.loggedInUser = nil;
-}
-
-- (void) hideFB {
-    [loginView setHidden:YES];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -406,7 +430,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 - (void) showHelp {
     
     if (help == NULL) {
-        [self hideFB];
         [self playSoundEffect:TOUCH];
         
         NSString *file = [NSString stringWithFormat:@"%@%@", @"help", [self getBackgroundFileSuffix]];
@@ -419,7 +442,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
         [self addChild:help];
         
+        [loginView setHidden:YES];
+        
         [help runAction:[CCFadeIn actionWithDuration:0.1]];
+        
     }
 }
 
@@ -526,9 +552,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                 
             } else {
                 
-                [self hideFB];
                 [self playSoundEffect:TOUCH];
                 [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
+                [loginView setHidden:YES]; // hide Facebook login
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             }
         }
@@ -537,9 +563,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
         if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
             
-            [self hideFB];
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:FIRST_RUN];
             [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
+            [loginView setHidden:YES]; // hide Facebook login
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             
         } else {
