@@ -26,7 +26,6 @@
     
     UIViewController *tempVC;
     FBLoginView *loginView;
-    int showFBState;
 }
 
 + (CCScene *) scene {
@@ -169,24 +168,20 @@
     if (help != NULL) {
         if (!loginView.isHidden) {
             [loginView setHidden:YES];
-            showFBState = 1;
         }
         // printf("1");
     } else if (menu.enabled) {
         if (loginView.isHidden) {
             [loginView setHidden:NO];
-            showFBState = 2;
         }
         // printf("2");
     } else if (![FBSession activeSession].isOpen) {
         if (loginView.isHidden) {
             [loginView setHidden:NO];
-            showFBState = 3;
         }
         // printf("3");
     } else {
         [loginView setHidden:YES];
-        showFBState = 0;
         // printf("4");
     }
 }

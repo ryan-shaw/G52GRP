@@ -14,7 +14,12 @@
     NSMutableArray *clouds;
     CCLabelTTF *scoreLabel;
     
+    CCSprite* crowcoin;
+    CCSprite* coin;
+    
     int popped, score;
+    
+    int x, y;
     
 }
 
