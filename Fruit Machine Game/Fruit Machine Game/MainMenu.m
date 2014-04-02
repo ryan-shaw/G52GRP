@@ -172,7 +172,7 @@
             
         [view addSubview:loginView];
             
-        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125);
+        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), win.height/4);
         
         [self schedule:@selector(updateFacebookLoginShow) interval:0.2];
 
@@ -180,7 +180,6 @@
     
     menu.enabled = NO; // the menu starts not enabled
     
-    // set the touch to be enabled
     self.touchEnabled = YES;
     return self;
     
