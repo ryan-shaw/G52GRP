@@ -21,6 +21,7 @@
 		9364405118EA32A8000C2271 /* crowcoin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9364404F18EA32A8000C2271 /* crowcoin1.png */; };
 		9364405218EA32A8000C2271 /* crowcoin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9364405018EA32A8000C2271 /* crowcoin2.png */; };
 		9364405418EA549F000C2271 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 9364405318EA549F000C2271 /* coin.png */; };
+		9364405618EBFB60000C2271 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 9364405518EBFB5F000C2271 /* cross.png */; };
 		DC12EBA218B729E6000DBC5F /* levelStar.png in Resources */ = {isa = PBXBuildFile; fileRef = DC12EBA018B729E6000DBC5F /* levelStar.png */; };
 		DC12EBA318B729E6000DBC5F /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DC12EBA118B729E6000DBC5F /* backButton.png */; };
 		DC12EBA518B729F3000DBC5F /* GameBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DC12EBA418B729F3000DBC5F /* GameBackground.png */; };
@@ -284,6 +285,7 @@
 		9364404F18EA32A8000C2271 /* crowcoin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin1.png; sourceTree = "<group>"; };
 		9364405018EA32A8000C2271 /* crowcoin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin2.png; sourceTree = "<group>"; };
 		9364405318EA549F000C2271 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
+		9364405518EBFB5F000C2271 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		DC12EBA018B729E6000DBC5F /* levelStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelStar.png; sourceTree = "<group>"; };
 		DC12EBA118B729E6000DBC5F /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
 		DC12EBA418B729F3000DBC5F /* GameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameBackground.png; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 		DCA62F2B182B92750053BCD0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9364405518EBFB5F000C2271 /* cross.png */,
 				9364405318EA549F000C2271 /* coin.png */,
 				9364404F18EA32A8000C2271 /* crowcoin1.png */,
 				9364405018EA32A8000C2271 /* crowcoin2.png */,
@@ -1616,6 +1619,7 @@
 				9364405218EA32A8000C2271 /* crowcoin2.png in Resources */,
 				DC53E8D918B403D00050F1C5 /* option.png in Resources */,
 				DC12EBC118B7A00D000DBC5F /* apple@4x.png in Resources */,
+				9364405618EBFB60000C2271 /* cross.png in Resources */,
 				DC53E8DA18B403D10050F1C5 /* option@2x.png in Resources */,
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
 				DC2281AA18B460C60047D510 /* MinOff.png in Resources */,

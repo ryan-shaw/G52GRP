@@ -14,8 +14,9 @@
     NSMutableArray *clouds;
     CCLabelTTF *scoreLabel;
     
-    CCSprite* crowcoin;
-    CCSprite* coin;
+    CCSprite *crowcoin;
+    CCSprite *coin;
+    CCSprite *cross;
     
     int popped, score;
     
