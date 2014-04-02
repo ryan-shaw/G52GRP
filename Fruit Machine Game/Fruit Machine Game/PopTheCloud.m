@@ -11,8 +11,8 @@
 
 @implementation PopTheCloud {
     
-    int deviceTag;
     double iPadScaleFactor;
+    CGSize window;
     
 }
 
@@ -37,9 +37,9 @@
         popped = 0;
         score = 0;
         
-        [self setDeviceTag];
-       
-        CGSize window = [[CCDirector sharedDirector] winSize];
+        window = [[CCDirector sharedDirector] winSize];
+        
+        [self setDeviceScale];
         
         CCSprite *background;
         
@@ -59,7 +59,7 @@
         [self addChild:cross z:3];
         
         clouds = [[NSMutableArray alloc] init];
-       
+        
         // Add Sprites to Array.
         
         // clouds
@@ -113,29 +113,37 @@
     return self;
 }
 
-- (void) setDeviceTag {    
+- (void) setDeviceScale {
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         iPadScaleFactor = 1;
-        if ([[UIScreen mainScreen] bounds].size.height == 568) {
-            deviceTag = IPHONE5;
+        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+            ([UIScreen mainScreen].scale == 2.0)) {
+            
+            iPadScaleFactor = 1;
+            
         } else {
-            deviceTag = IPHONE;
+            
+            iPadScaleFactor = 0.5;
         }
+        
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [UIScreen mainScreen].scale > 1) {
-            deviceTag = IPADHD;
             iPadScaleFactor = 2;
         } else {
-            deviceTag = IPAD;
             iPadScaleFactor = 1.2;
         }
     }
 }
 
 - (void) raiseScore {
-        popped += 1;
-        score += 50 * popped;
-        [scoreLabel setString:[NSString stringWithFormat:@"%d", score]];
+    
+    int multiplier = [[NSUserDefaults standardUserDefaults] integerForKey:CURRENT_LEVEL];
+    
+    popped += 1;
+    score += 50 * popped * multiplier;
+    [scoreLabel setString:[NSString stringWithFormat:@"%d", score]];
 }
 
 - (void) tryAnims {
@@ -149,28 +157,29 @@
     [self tryMoveCrow:crowcoin];
     
     
-   
+    
 }
 
 - (void) tryMoveCloud:(CCSprite *)cloud0 {
+    
     int move = 0;
     if ((arc4random() % 2) == 0){
-          move = 0 - cloud0.contentSize.width / 10;
+        move = 0 - cloud0.contentSize.width / 10;
     } else {
-          move = 0 + cloud0.contentSize.width / 10;
+        move = 0 + cloud0.contentSize.width / 10;
     }
     CCMoveBy *moveSide = [CCMoveBy actionWithDuration:3.0 position:ccp(move, 0)];
     CCEaseInOut *easeSide = [CCEaseInOut actionWithAction:moveSide rate:1.0];
     CCAction *easeBack = [easeSide reverse];
     
     [cloud0 runAction:[CCSequence actions:easeSide, easeBack,
-                     
-                     [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                       
+                       [CCCallBlockN actionWithBlock:^(CCNode *node) {
         //[cloud0 setVisible:YES];
     }],
-                     
-                     nil]];
-
+                       
+                       nil]];
+    
 }
 
 - (void) tryMoveCrow:(CCSprite *)crow {
@@ -186,15 +195,17 @@
         [crow runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:0.8f animation:crowcoinanim restoreOriginalFrame:NO]]];
         
     }
- 
 }
 
 - (void) backToGame {
     
+    int total = [[NSUserDefaults standardUserDefaults] integerForKey:TOTALCREDITS];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:(total + score) forKey:TOTALCREDITS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
 }
-
-
 
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -215,42 +226,42 @@
             coin.position = cloud.position;
             cross.position = cloud.position;
             
-             [cloud setVisible:NO];
+            [cloud setVisible:NO];
+            
+            if ((arc4random() % 4) != 0){
                 
-                if ((arc4random() % 4) != 0){
-                
-                    CCMoveBy *moveSide = [CCMoveBy actionWithDuration:1.0 position:ccp(-(x*2), 0)];
-                    CCEaseInOut *easeSide = [CCEaseInOut actionWithAction:moveSide rate:5.0];
-                    [coin runAction:[CCSequence actions:easeSide,
+                CCMoveBy *moveSide = [CCMoveBy actionWithDuration:1.0 position:ccp(-(x*2), 0)];
+                CCEaseInOut *easeSide = [CCEaseInOut actionWithAction:moveSide rate:5.0];
+                [coin runAction:[CCSequence actions:easeSide,
                                  
-                                     [CCCallBlockN actionWithBlock:^(CCNode *node) {
-                                            [coin setVisible:NO];
-                                            [cloud setVisible:YES];
-                                        }]
+                                 [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                    [coin setVisible:NO];
+                    [cloud setVisible:YES];
+                }]
                                  
-                                     , nil]];
+                                 , nil]];
                 
-                    [coin setVisible:YES];
+                [coin setVisible:YES];
                 
-                    [self raiseScore];
+                [self raiseScore];
                 
-                } else {
+            } else {
                 
-                    CCMoveBy *moveSide = [CCMoveBy actionWithDuration:1.0 position:ccp(-(x*2), 0)];
-                    CCEaseInOut *easeSide = [CCEaseInOut actionWithAction:moveSide rate:5.0];
-                    [cross runAction:[CCSequence actions:easeSide,
+                CCMoveBy *moveSide = [CCMoveBy actionWithDuration:1.0 position:ccp(-(x*2), 0)];
+                CCEaseInOut *easeSide = [CCEaseInOut actionWithAction:moveSide rate:5.0];
+                [cross runAction:[CCSequence actions:easeSide,
                                   
-                                        [CCCallBlockN actionWithBlock:^(CCNode *node) {
-                                            [cross setVisible:NO];
-                                            [cloud setVisible:YES];
-                                            [self backToGame];
-                                        }]
+                                  [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                    [cross setVisible:NO];
+                    [cloud setVisible:YES];
+                    [self backToGame];
+                }]
                                   
-                                      , nil]];
+                                  , nil]];
                 
-                    [cross setVisible:YES];
+                [cross setVisible:YES];
                 
-                }
+            }
             
             
         }
