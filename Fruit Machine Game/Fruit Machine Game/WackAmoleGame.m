@@ -7,6 +7,7 @@
 //
 
 #import "WackAmoleGame.h"
+#import "MainGameScene.h"
 
 #define TOUCHED 1
 #define UNTOUCHED 2
@@ -171,8 +172,12 @@
         [self addChild:uplower z:1];
         [self addChild:lowlower z:1];
         
-        [self schedule:@selector(tryPopMoles:) interval:0.5];
-        [self schedule:@selector(update)];
+        [self runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:1.5] two:[CCCallBlockN actionWithBlock:^(CCNode *node) {
+            
+            [self schedule:@selector(tryPopMoles:) interval:0.5];
+            [self schedule:@selector(update)];
+            
+        }]]];
     }
     
     self.touchEnabled = YES;
@@ -181,7 +186,7 @@
 
 - (void) update {
     
-    [label setString:[NSString stringWithFormat:@"Score: %d", score]];
+    [label setString:[NSString stringWithFormat:@"Coins: %d", score]];
 }
 
 - (void) popMole:(CCSprite *)mole {
@@ -225,8 +230,7 @@
         molesMissed += 1;
         
         if (molesMissed >= 15) {
-            printf("GAME OVER");
-            // Back to game screen and add coins
+            [self backToGame];
         }
         
     }
@@ -246,7 +250,7 @@
     for (CCSprite *mole in moles) {
         
         if (CGRectContainsPoint(mole.boundingBox, firstTouch) && mole.numberOfRunningActions != 0) {
-            score += 10;
+            score += 100;
             
             mole.tag = TOUCHED;
             
@@ -257,6 +261,16 @@
     if (screenTouched) {
         molesMissed += 1;
     }
+}
+
+- (void) backToGame {
+    
+    int total = [[NSUserDefaults standardUserDefaults] integerForKey:TOTALCREDITS];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:(total + score) forKey:TOTALCREDITS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
 }
 
 - (void) setDeviceTag {
