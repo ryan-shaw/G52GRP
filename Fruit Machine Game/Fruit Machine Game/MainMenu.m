@@ -172,7 +172,7 @@
             
         [view addSubview:loginView]; // Add view to the screen
             
-        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), win.height/4);
+        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125); // Put the button in the correct place on screen
         
         [self schedule:@selector(updateFacebookLoginShow) interval:0.2]; // Facebook button visiblity updater
 
@@ -519,6 +519,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void) extendOptions {
     
+    // if help is null is here because i do not want any other buttons to be pressable when the help screen is shown
     if (help == NULL) {
         
         [self playSoundEffect:TOUCH];
@@ -544,6 +545,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void) setPlayLabel {
     
+    // set the 'insert coin to play' label at the bottom of the screen and set it to fade in and out forever
+    
     playLabel = [CCLabelTTF labelWithString:PLAY_LABEL_TEXT fontName:PLAY_LABEL_FONT fontSize:INSERT_COIN_FONTSIZE*scaleFactor];
     
     playLabel.color = ccWHITE;
@@ -566,8 +569,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void) playSoundEffect:(NSString*)effect {
     
+    // this is the method that plays sound effects if the mute button has not been pressed.
+    
     [SimpleAudioEngine sharedEngine].enabled = YES;
     
+    // check file to see if mute is on
     if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == UNMUTE) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:effect];
@@ -576,19 +582,26 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    // convert the screen touch into coordinates
     UITouch *touch = [touches anyObject];
     CGPoint touchLocation = [touch locationInView:[touch view]];
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
     
+    // if the help screen is not being shown then...
     if (help == NULL) {
         
+        // if the user touches the bottom half of the screen
         if (touchLocation.y < win.height/2) {
             
+            // if it is the first time that the user is running the game
             if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
                 
+                // then show help
                 [self showHelp];
                 
             } else {
+                
+                // if its not the first time running the game then lower the game volume and move to the main game scene
                 
                 [self playSoundEffect:TOUCH];
                 [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
@@ -599,8 +612,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
     } else if (touchLocation.y < win.height/2) {
         
+        // if the help screen is visible AND its the first time the user is running the application then..
         if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
             
+            // move to the main game scene
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:FIRST_RUN];
             [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
             [loginView setHidden:YES]; // hide Facebook login
@@ -608,13 +623,14 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
             
         } else {
             
+            // if it is not the first time running the application then return to the current scene.
             [self playSoundEffect:TOUCH];
             [self removeChild:help cleanup:YES];
             help = NULL;
         }
         
     } else {
-        
+        // remove the help screen if it is being shown and the user touches anywhere on the screen
         [self playSoundEffect:TOUCH];
         [self removeChild:help cleanup:YES];
         help = NULL;
