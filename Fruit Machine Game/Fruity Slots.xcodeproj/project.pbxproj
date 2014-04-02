@@ -10,6 +10,7 @@
 		05616F1B18D74668009EFEBA /* mole_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F1A18D74668009EFEBA /* mole_1.png */; };
 		05616F2518D75DBB009EFEBA /* bg_dirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2418D75DBB009EFEBA /* bg_dirt.png */; };
 <<<<<<< HEAD
+<<<<<<< HEAD
 		05D8CF8118EC3B670037B772 /* iphone4S.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF8018EC3B670037B772 /* iphone4S.png */; };
 		05D8CF8718EC3F270037B772 /* loweriphone4S.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF8618EC3F270037B772 /* loweriphone4S.png */; };
 		05D8CF9318EC4D540037B772 /* loweripadMini.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF9218EC4D540037B772 /* loweripadMini.png */; };
@@ -22,6 +23,11 @@
 		05D8CFA518EC5E900037B772 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CFA118EC5E900037B772 /* cross.png */; };
 		05D8CFA618EC5E900037B772 /* crowcoin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CFA218EC5E900037B772 /* crowcoin1.png */; };
 		05D8CFA718EC5E900037B772 /* crowcoin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CFA318EC5E900037B772 /* crowcoin2.png */; };
+=======
+		05616F2718D76043009EFEBA /* upper_upper.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2618D76043009EFEBA /* upper_upper.png */; };
+		05616F2918D76048009EFEBA /* lower_lower.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2818D76048009EFEBA /* lower_lower.png */; };
+		05616F2B18D76109009EFEBA /* mole_thump4.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2A18D76109009EFEBA /* mole_thump4.png */; };
+>>>>>>> parent of cde7268... Moles mini game added
 =======
 		05616F2718D76043009EFEBA /* upper_upper.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2618D76043009EFEBA /* upper_upper.png */; };
 		05616F2918D76048009EFEBA /* lower_lower.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2818D76048009EFEBA /* lower_lower.png */; };
@@ -287,6 +293,7 @@
 		05616F1A18D74668009EFEBA /* mole_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mole_1.png; sourceTree = "<group>"; };
 		05616F2418D75DBB009EFEBA /* bg_dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_dirt.png; path = Art/background/bg_dirt.png; sourceTree = "<group>"; };
 <<<<<<< HEAD
+<<<<<<< HEAD
 		05D8CF8018EC3B670037B772 /* iphone4S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone4S.png; sourceTree = "<group>"; };
 		05D8CF8618EC3F270037B772 /* loweriphone4S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loweriphone4S.png; sourceTree = "<group>"; };
 		05D8CF9218EC4D540037B772 /* loweripadMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loweripadMini.png; sourceTree = "<group>"; };
@@ -299,6 +306,11 @@
 		05D8CFA118EC5E900037B772 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		05D8CFA218EC5E900037B772 /* crowcoin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin1.png; sourceTree = "<group>"; };
 		05D8CFA318EC5E900037B772 /* crowcoin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin2.png; sourceTree = "<group>"; };
+=======
+		05616F2618D76043009EFEBA /* upper_upper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upper_upper.png; path = Art/foreground/upper_upper.png; sourceTree = "<group>"; };
+		05616F2818D76048009EFEBA /* lower_lower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lower_lower.png; path = Art/foreground/lower_lower.png; sourceTree = "<group>"; };
+		05616F2A18D76109009EFEBA /* mole_thump4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mole_thump4.png; path = Art/sprites/mole_thump4.png; sourceTree = "<group>"; };
+>>>>>>> parent of cde7268... Moles mini game added
 =======
 		05616F2618D76043009EFEBA /* upper_upper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upper_upper.png; path = Art/foreground/upper_upper.png; sourceTree = "<group>"; };
 		05616F2818D76048009EFEBA /* lower_lower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lower_lower.png; path = Art/foreground/lower_lower.png; sourceTree = "<group>"; };
@@ -1053,6 +1065,7 @@
 			isa = PBXGroup;
 			children = (
 <<<<<<< HEAD
+<<<<<<< HEAD
 				05D8CFA018EC5E900037B772 /* coin.png */,
 				05D8CFA118EC5E900037B772 /* cross.png */,
 				05D8CFA218EC5E900037B772 /* crowcoin1.png */,
@@ -1065,6 +1078,11 @@
 				05D8CF9418EC4EEE0037B772 /* loweriphone5.png */,
 				05D8CF9818EC51A00037B772 /* ipadMini.png */,
 				05D8CF8618EC3F270037B772 /* loweriphone4S.png */,
+=======
+				05616F2A18D76109009EFEBA /* mole_thump4.png */,
+				05616F2818D76048009EFEBA /* lower_lower.png */,
+				05616F2618D76043009EFEBA /* upper_upper.png */,
+>>>>>>> parent of cde7268... Moles mini game added
 =======
 				05616F2A18D76109009EFEBA /* mole_thump4.png */,
 				05616F2818D76048009EFEBA /* lower_lower.png */,
@@ -1700,8 +1718,11 @@
 				DC8D7E8418B88DE500D6F8C0 /* help@2x.png in Resources */,
 				05616F2518D75DBB009EFEBA /* bg_dirt.png in Resources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				05D8CF8718EC3F270037B772 /* loweriphone4S.png in Resources */,
 				05D8CFA718EC5E900037B772 /* crowcoin2.png in Resources */,
+=======
+>>>>>>> parent of cde7268... Moles mini game added
 =======
 >>>>>>> parent of cde7268... Moles mini game added
 				DC8D7E8718B88FBC00D6F8C0 /* help@i5.png in Resources */,
