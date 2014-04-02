@@ -9,7 +9,12 @@
 #import "PopTheCloud.h"
 #import "MainGameScene.h"
 
-@implementation PopTheCloud
+@implementation PopTheCloud {
+    
+    int deviceTag;
+    double iPadScaleFactor;
+    
+}
 
 + (CCScene *) scene {
 	// 'scene' is an autorelease object.
@@ -31,6 +36,8 @@
         
         popped = 0;
         score = 0;
+        
+        [self setDeviceTag];
        
         CGSize window = [[CCDirector sharedDirector] winSize];
         
@@ -42,6 +49,8 @@
         
         coin = [CCSprite spriteWithFile:@"coin.png"];
         cross =  [CCSprite spriteWithFile:@"cross.png"];
+        
+        cross.scale = coin.scale = iPadScaleFactor;
         
         [coin setVisible:NO];
         [cross setVisible:NO];
@@ -75,20 +84,24 @@
         cloud2.position = ccp(x, y - 15);
         cloud3.position = ccp(x, y + (y / 1.5) - 20);
         
+        for (CCSprite *cloud in clouds) {
+            cloud.scale = cloud.scale * iPadScaleFactor;
+        }
+        
         [self addChild:cloud1 z:4];
         [self addChild:cloud2 z:4];
         [self addChild:cloud3 z:4];
         
         crowcoin = [[CCSprite alloc] init];
-        crowcoin.scaleX = crowcoin.scaleY = 0.4;
-        crowcoin.position = ccp(window.width - 40, window.height - 40);
+        crowcoin.scale = 0.4 * iPadScaleFactor;
+        crowcoin.position = ccp(window.width, window.height);
         
         [self addChild:crowcoin z:5];
         
-        scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Verdana" fontSize:72.0];
+        scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Verdana" fontSize:(72.0 * iPadScaleFactor)];
         scoreLabel.anchorPoint = ccp(0, 0);
         scoreLabel.color = ccc3(240,240,100);
-        scoreLabel.position = ccp(0, window.height - 72);
+        scoreLabel.position = ccp(0, window.height - (72 * iPadScaleFactor));
         
         [self addChild:scoreLabel z:10];
         
@@ -98,6 +111,25 @@
     
     self.touchEnabled = YES;
     return self;
+}
+
+- (void) setDeviceTag {    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        iPadScaleFactor = 1;
+        if ([[UIScreen mainScreen] bounds].size.height == 568) {
+            deviceTag = IPHONE5;
+        } else {
+            deviceTag = IPHONE;
+        }
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [UIScreen mainScreen].scale > 1) {
+            deviceTag = IPADHD;
+            iPadScaleFactor = 2;
+        } else {
+            deviceTag = IPAD;
+            iPadScaleFactor = 1.2;
+        }
+    }
 }
 
 - (void) raiseScore {
@@ -149,7 +181,7 @@
         [crowcoinanim addSpriteFrameWithFilename:@"crowcoin1.png"];
         [crowcoinanim addSpriteFrameWithFilename:@"crowcoin2.png"];
         
-        crowcoin.anchorPoint = ccp(0.5, 0.5);
+        crowcoin.anchorPoint = ccp(1, 1);
         
         [crow runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:0.8f animation:crowcoinanim restoreOriginalFrame:NO]]];
         
