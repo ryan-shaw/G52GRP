@@ -1812,7 +1812,8 @@ int totalSpend = 0, totalCredits;
     [levelLabel runAction:[CCSequence actionOne:[CCTintTo actionWithDuration:0.8 red:255 green:2552 blue:255]
                                             two:[CCTintTo actionWithDuration:0.8 red:0 green:0 blue:0]]];
     currentLevel ++;
-    [self sendFacebookLevelup];
+    if([FBSession activeSession].isOpen)
+        [self sendFacebookLevelup];
     [levelLabel setString:[NSString stringWithFormat:@"%i", currentLevel]];
     
     totalSpend = COMBO_AMOUNT_TO_SPEND * currentLevel;
