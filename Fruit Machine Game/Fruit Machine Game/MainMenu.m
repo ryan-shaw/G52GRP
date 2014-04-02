@@ -26,6 +26,8 @@
     
     UIViewController *tempVC;
     FBLoginView *loginView;
+    
+    bool forceHideFacebook;
 }
 
 + (CCScene *) scene {
@@ -157,6 +159,7 @@
 
     }    
     
+    forceHideFacebook = NO;
     menu.enabled = NO; // the menu starts not enabled
     
     self.touchEnabled = YES;
@@ -166,7 +169,12 @@
 
 - (void) updateFacebookLoginShow {
     // Only show the Facebook login/logout button on the homescreen
-    if (help != NULL) {
+    
+    if (forceHideFacebook) {
+        if (!loginView.isHidden) {
+            [loginView setHidden:YES];
+        }
+    } else if (help != NULL) {
         if (!loginView.isHidden) {
             [loginView setHidden:YES];
         }
@@ -175,6 +183,9 @@
             [loginView setHidden:NO];
         }
     } else if (![FBSession activeSession].isOpen) {
+        
+        //[[CCDirector sharedDirector] CC:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
+
         if (loginView.isHidden) {
             [loginView setHidden:NO];
         }
@@ -546,7 +557,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                 
                 [self playSoundEffect:TOUCH];
                 [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
+                
                 [loginView setHidden:YES]; // hide Facebook login
+                forceHideFacebook = YES;
+                
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             }
         }
@@ -557,7 +571,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
             
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:FIRST_RUN];
             [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
+            
             [loginView setHidden:YES]; // hide Facebook login
+            forceHideFacebook = YES;
+            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             
         } else {
