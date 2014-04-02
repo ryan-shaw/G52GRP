@@ -183,9 +183,6 @@
             [loginView setHidden:NO];
         }
     } else if (![FBSession activeSession].isOpen) {
-        
-        //[[CCDirector sharedDirector] CC:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
-
         if (loginView.isHidden) {
             [loginView setHidden:NO];
         }
