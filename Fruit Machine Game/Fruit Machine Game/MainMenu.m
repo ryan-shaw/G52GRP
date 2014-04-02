@@ -3,6 +3,7 @@
 //  Fruit Machine Game
 //
 //  Created by Stephen Sowole on 02/12/2013.
+//  Contributions from Ryan Shaw and Matthew Herod
 //  Copyright 2013 G52GRP. All rights reserved.
 //
 
@@ -11,7 +12,7 @@
 #import "SimpleAudioEngine.h"
 #import "GameKitHelper.h"
 #import "AppDelegate.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation MainMenu {
     
@@ -26,6 +27,7 @@
     CCMenuItemSprite *mute;
     
     UIViewController *tempVC;
+    FBLoginView *loginView;
 }
 
 + (CCScene *) scene {
@@ -156,12 +158,77 @@
             
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
         }
-    }
+        
+       // if(![FBSession activeSession].isOpen){
+       //     [FBSession openActiveSessionWithAllowLoginUI:YES];
+       //     uncommenting this forces the user straight into logging in - perhaps annoying
+       // }
+            
+        loginView = [[FBLoginView alloc] init];
+            
+        UIView *view = [[[CCDirector sharedDirector] view] window];
+            
+        [loginView setHidden:YES]; // start hidden - updateFacebookLoginShow will make it visible
+            
+        [view addSubview:loginView];
+            
+        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125);
+        
+        [self schedule:@selector(updateFacebookLoginShow) interval:0.2];
+
+    }    
+    
+    menu.enabled = NO; // the menu starts not enabled
     
     // set the touch to be enabled
     self.touchEnabled = YES;
     return self;
     
+}
+
+- (void) updateFacebookLoginShow {
+    if (help != NULL) {
+        if (!loginView.isHidden) {
+            [loginView setHidden:YES];
+        }
+        // printf("1");
+    } else if (menu.enabled) {
+        if (loginView.isHidden) {
+            [loginView setHidden:NO];
+        }
+        // printf("2");
+    } else if (![FBSession activeSession].isOpen) {
+        if (loginView.isHidden) {
+            [loginView setHidden:NO];
+        }
+        // printf("3");
+    } else {
+        [loginView setHidden:YES];
+        // printf("4");
+    }
+}
+
+- (void) loginViewShowingLoggedInUser:(FBLoginView *)loginView
+{
+    
+}
+
+- (void) loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
+{
+    self.loggedInUser = user;
+}
+
+- (void) loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+    self.loggedInUser = nil;
+}
+
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [FBLoginView class];
+    
+    return YES;
 }
 
 - (void) createDisplay {
@@ -401,7 +468,6 @@
 - (void) showHelp {
     
     if (help == NULL) {
-        
         [self playSoundEffect:TOUCH];
         
         NSString *file = [NSString stringWithFormat:@"%@%@", @"help", [self getBackgroundFileSuffix]];
@@ -414,7 +480,10 @@
         
         [self addChild:help];
         
+        [loginView setHidden:YES];
+        
         [help runAction:[CCFadeIn actionWithDuration:0.1]];
+        
     }
 }
 
@@ -523,6 +592,7 @@
                 
                 [self playSoundEffect:TOUCH];
                 [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
+                [loginView setHidden:YES]; // hide Facebook login
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             }
         }
@@ -533,6 +603,7 @@
             
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:FIRST_RUN];
             [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
+            [loginView setHidden:YES]; // hide Facebook login
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
             
         } else {

@@ -183,6 +183,8 @@ int totalSpend = 0, totalCredits;
         [self setMinMaxBets];
         
         [self schedule:@selector(update)];
+        
+        
     }
     
     self.touchEnabled = YES;
@@ -1472,7 +1474,7 @@ int totalSpend = 0, totalCredits;
         
         [self stopAllActions];
         
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainMenu scene]]];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.2 scene:[MainMenu scene]]];
     }
 }
 
@@ -1761,7 +1763,7 @@ int totalSpend = 0, totalCredits;
     [levelLabel runAction:[CCSequence actionOne:[CCTintTo actionWithDuration:0.8 red:255 green:2552 blue:255]
                                             two:[CCTintTo actionWithDuration:0.8 red:0 green:0 blue:0]]];
     currentLevel ++;
-    
+    [self sendFacebookLevelup];
     [levelLabel setString:[NSString stringWithFormat:@"%i", currentLevel]];
     
     totalSpend = COMBO_AMOUNT_TO_SPEND * currentLevel;
@@ -1777,10 +1779,68 @@ int totalSpend = 0, totalCredits;
     }
     
     [prefs setInteger:currentLevel forKey:CURRENT_LEVEL];
-    
     [[GameKitHelper sharedGameKitHelper]
      submitScore:(int64_t)currentLevel
      category:GAME_CENTER_CURRENT_LEVEL];
+}
+
+- (void) sendFacebookLevelup{
+    // This function will invoke the Feed Dialog to post to a user's Timeline and News Feed
+    // It will attemnt to use the Facebook Native Share dialog
+    // If that's not supported we'll fall back to the web based dialog.
+    NSString *linkURL = @"http://bit.ly/fruityslots";
+    NSString *pictureURL = @"http://fruityslots.net/apple.png";
+    
+    // Prepare the native share dialog parameters
+    FBShareDialogParams *shareParams = [[FBShareDialogParams alloc] init];
+    shareParams.link = [NSURL URLWithString:linkURL];
+    shareParams.name = @"I just leveled up on FruitySlots!";
+    shareParams.caption= @"Spin some fruits!";
+    shareParams.picture= [NSURL URLWithString:pictureURL];
+    shareParams.description =
+    [NSString stringWithFormat:@"I just reached level %d!", currentLevel];
+    
+    if ([FBDialogs canPresentShareDialogWithParams:shareParams]){
+        
+        [FBDialogs presentShareDialogWithParams:shareParams
+                                    clientState:nil
+                                        handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                            if(error) {
+                                                NSLog(@"Error publishing story.");
+                                            } else if (results[@"completionGesture"] && [results[@"completionGesture"] isEqualToString:@"cancel"]) {
+                                                NSLog(@"User canceled story publishing.");
+                                            } else {
+                                                NSLog(@"Story published.");
+                                            }
+                                        }];
+        
+    } else {
+        
+        // Prepare the web dialog parameters
+        NSDictionary *params = @{
+                                 @"name" : shareParams.name,
+                                 @"caption" : shareParams.caption,
+                                 @"description" : shareParams.description,
+                                 @"picture" : pictureURL,
+                                 @"link" : linkURL
+                                 };
+        
+        // Invoke the dialog
+        [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                               parameters:params
+                                                  handler:
+         ^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+             if (error) {
+                 NSLog(@"Error publishing story.");
+             } else {
+                 if (result == FBWebDialogResultDialogNotCompleted) {
+                     NSLog(@"User canceled story publishing.");
+                 } else {
+                     NSLog(@"Story published.");
+                 }
+             }}];
+    }
+
 }
 
 - (double) getPowerBarDivisionFactor {

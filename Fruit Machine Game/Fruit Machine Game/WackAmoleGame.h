@@ -10,7 +10,11 @@
 #import "cocos2d.h"
 
 @interface WackAmoleGame : CCLayer {
-    
+    NSMutableArray *moles;
+    CCAnimation *laughAnim;
+    CCAnimation *hitAnim;
+    CCLabelTTF *label;
+    int score;
 }
 
 + (CCScene *) scene;

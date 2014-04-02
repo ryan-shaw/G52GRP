@@ -10,6 +10,9 @@
 
 #import "AppDelegate.h"
 #import "MainMenu.h"
+#import "PopTheCloud.h"
+#import "HorseRacingGame.h"
+#import "WackAmoleGame.h"
 
 @implementation MyNavigationController
 
@@ -88,7 +91,7 @@
 	director_.wantsFullScreenLayout = YES;
 	
 	// Display FSP and SPF
-	[director_ setDisplayStats:NO];
+	[director_ setDisplayStats:YES];
 	
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];
@@ -153,6 +156,8 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];	
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
+    [FBAppEvents activateApp];
+    [FBAppCall handleDidBecomeActive];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
@@ -170,6 +175,7 @@
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [FBSession.activeSession close];
     [[NSUserDefaults standardUserDefaults] synchronize];
 	CC_DIRECTOR_END();
 }
@@ -193,4 +199,12 @@
 	
 	[super dealloc];
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication fallbackHandler:^(FBAppCall *call){
+            NSLog(@"Facebook handler");
+        }];
+}
+
+
 @end
