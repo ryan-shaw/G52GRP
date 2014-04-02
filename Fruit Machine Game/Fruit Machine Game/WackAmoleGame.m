@@ -251,15 +251,11 @@
             mole.tag = TOUCHED;
             
             screenTouched = NO;
-            
         }
     }
     
     if (screenTouched) {
-        
         molesMissed += 1;
-        
-        
     }
 }
 
@@ -270,16 +266,10 @@
         iPadScaleFactor = 1;
         
         if ([[UIScreen mainScreen] bounds].size.height == 568) {
-            
             deviceTag = IPHONE5;
-            printf("iPhone 5");
-            
         } else {
-            
             deviceTag = IPHONE;
-            
             printf("iPhone 4S");
-            
         }
         
         
@@ -288,15 +278,9 @@
         iPadScaleFactor = 2;
         
         if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [UIScreen mainScreen].scale > 1) {
-            
             deviceTag = IPADHD;
-            printf("iPad HD");
-            
         } else {
-            
             deviceTag = IPAD;
-            printf("iPad");
-            
         }
     }
 }
