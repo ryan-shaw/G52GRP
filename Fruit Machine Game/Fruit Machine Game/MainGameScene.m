@@ -11,6 +11,7 @@
 #import "Fruit.h"
 #import "SimpleAudioEngine.h"
 #import "GameKitHelper.h"
+#import "PopTheCloud.h"
 
 int totalSpend = 0, totalCredits;
 
@@ -370,6 +371,10 @@ int totalSpend = 0, totalCredits;
             case ORANGE:
                 winnings = bet * ORANGE_MULT;
                 break;
+            
+            case STAR:
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[PopTheCloud scene]]];
+                break;
                 
             default:
                 break;
@@ -597,6 +602,17 @@ int totalSpend = 0, totalCredits;
                 return [self randomFruit:fruit];
             }
             
+        case 7:
+            
+            if (fruit != STAR) {
+                
+                return STAR;
+                
+            } else {
+                
+                return [self randomFruit:fruit];
+            }
+            
         default:
             return NULL;
             break;
@@ -609,7 +625,10 @@ int totalSpend = 0, totalCredits;
         
         switch (arc4random() % 100) {
                 
-            case 0 ... 29:
+            case 0 ... 9:
+                return STAR;
+                
+            case 10 ... 29:
                 return CHERRY;
                 
             case 40 ... 49:
@@ -638,7 +657,7 @@ int totalSpend = 0, totalCredits;
     } else {
         
         switch (arc4random() % 100) {
-                
+
             case 0 ... 39:
                 return CHERRY;
                 
@@ -751,6 +770,18 @@ int totalSpend = 0, totalCredits;
                 
                 return [self randomFruit:ORANGE];
                 
+            case STAR:
+                
+                switch (arc4random() % 100) {
+                        
+                    case 0 ... 60:
+                        return STAR;
+                        break;
+                }
+                
+                return [self randomFruit:STAR];
+
+                
             default:
                 return [self randomFruit:ORANGE];
                 break;
@@ -846,6 +877,17 @@ int totalSpend = 0, totalCredits;
                     }
                     
                     return [self randomFruit:ORANGE];
+                    
+                case STAR:
+                    
+                    switch (arc4random() % 100) {
+                            
+                        case 0 ... 60:
+                            return STAR;
+                            break;
+                    }
+                    
+                    return [self randomFruit:STAR];
                     
                 default:
                     return [self randomFruit:ORANGE];
@@ -949,6 +991,13 @@ int totalSpend = 0, totalCredits;
     fruit = [Fruit spriteWithFile:file];
     fruit.tag = BANANA;
     [fruitImages addObject:fruit];
+    
+    file = [NSString stringWithFormat:@"%@%@", @"levelStar", [self getImageFileSuffix]];
+    fruit = [Fruit spriteWithFile:file];
+    fruit.tag = STAR;
+    [fruitImages addObject:fruit];
+    
+    
 }
 
 - (void) setFruitPositions {
