@@ -82,7 +82,7 @@
 // REEL SETTINGS
 
 #define NUMBER_OF_REELS 3
-#define NUMBER_OF_FRUITS 7
+#define NUMBER_OF_FRUITS 8
 #define NUMBER_OF_ROWS 3
 
 #define FIRST_REEL 1
@@ -119,6 +119,7 @@
 #define PEAR 5
 #define ORANGE 6
 #define BANANA 7
+#define STAR 8
 
 // XP BAR COLOUR
 
