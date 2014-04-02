@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+// this fruit class inherits off the ccsprite class and is used to check the reel number of each fruit
+
 @interface Fruit : CCSprite {
 }
 

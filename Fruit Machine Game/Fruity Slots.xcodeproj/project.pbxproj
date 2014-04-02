@@ -21,6 +21,10 @@
 		5C0CA4BF18B5DA060066FDE3 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CA4BE18B5DA060066FDE3 /* GameKitHelper.m */; };
 		5CF93BFD18B5BD9B00B61BDF /* MenuBackground@i5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF93BFC18B5BD9B00B61BDF /* MenuBackground@i5.png */; };
 		5CF93BFF18B5BDC200B61BDF /* PowerBarSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF93BFE18B5BDC200B61BDF /* PowerBarSound.mp3 */; };
+		9364405118EA32A8000C2271 /* crowcoin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9364404F18EA32A8000C2271 /* crowcoin1.png */; };
+		9364405218EA32A8000C2271 /* crowcoin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9364405018EA32A8000C2271 /* crowcoin2.png */; };
+		9364405418EA549F000C2271 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 9364405318EA549F000C2271 /* coin.png */; };
+		9364405618EBFB60000C2271 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 9364405518EBFB5F000C2271 /* cross.png */; };
 		DC12EBA218B729E6000DBC5F /* levelStar.png in Resources */ = {isa = PBXBuildFile; fileRef = DC12EBA018B729E6000DBC5F /* levelStar.png */; };
 		DC12EBA318B729E6000DBC5F /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DC12EBA118B729E6000DBC5F /* backButton.png */; };
 		DC12EBA518B729F3000DBC5F /* GameBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DC12EBA418B729F3000DBC5F /* GameBackground.png */; };
@@ -265,6 +269,7 @@
 		DCEF954018B6C19400E50937 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF953118B6C19400E50937 /* AppIcon29x29.png */; };
 		DCEF954118B6C19400E50937 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF953218B6C19400E50937 /* AppIcon29x29@2x.png */; };
 		DCEF954318B6C25500E50937 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCEF954218B6C25500E50937 /* Icon-72@2x.png */; };
+		DF58E6E218E2F49C00D0C437 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -283,6 +288,10 @@
 		5C0CA4BE18B5DA060066FDE3 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
 		5CF93BFC18B5BD9B00B61BDF /* MenuBackground@i5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBackground@i5.png"; sourceTree = "<group>"; };
 		5CF93BFE18B5BDC200B61BDF /* PowerBarSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PowerBarSound.mp3; sourceTree = "<group>"; };
+		9364404F18EA32A8000C2271 /* crowcoin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin1.png; sourceTree = "<group>"; };
+		9364405018EA32A8000C2271 /* crowcoin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin2.png; sourceTree = "<group>"; };
+		9364405318EA549F000C2271 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
+		9364405518EBFB5F000C2271 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		DC12EBA018B729E6000DBC5F /* levelStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelStar.png; sourceTree = "<group>"; };
 		DC12EBA118B729E6000DBC5F /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
 		DC12EBA418B729F3000DBC5F /* GameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameBackground.png; sourceTree = "<group>"; };
@@ -680,6 +689,7 @@
 		DCEF953118B6C19400E50937 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		DCEF953218B6C19400E50937 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		DCEF954218B6C25500E50937 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -695,6 +705,7 @@
 				DCA62F25182B92750053BCD0 /* CoreGraphics.framework in Frameworks */,
 				DCA62F27182B92750053BCD0 /* CoreText.framework in Frameworks */,
 				DCA62F19182B92740053BCD0 /* OpenGLES.framework in Frameworks */,
+				DF58E6E218E2F49C00D0C437 /* FacebookSDK.framework in Frameworks */,
 				DCA62F23182B92750053BCD0 /* Foundation.framework in Frameworks */,
 				DCA62F1D182B92740053BCD0 /* AudioToolbox.framework in Frameworks */,
 			);
@@ -956,8 +967,8 @@
 				DC985B73184D326100283E1A /* WackAmoleGame.m */,
 				DC985B75184D355500283E1A /* SpinTheWheel.h */,
 				DC985B76184D355500283E1A /* SpinTheWheel.m */,
-				DC985B7B184D35D000283E1A /* PopTheCloud.h */,
 				DC985B7C184D35D000283E1A /* PopTheCloud.m */,
+				DC985B7B184D35D000283E1A /* PopTheCloud.h */,
 			);
 			name = MiniGames;
 			sourceTree = "<group>";
@@ -982,6 +993,7 @@
 		DCA62F15182B92740053BCD0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF58E6E118E2F49C00D0C437 /* FacebookSDK.framework */,
 				DCA62F16182B92740053BCD0 /* QuartzCore.framework */,
 				DCA62F18182B92740053BCD0 /* OpenGLES.framework */,
 				DCA62F1A182B92740053BCD0 /* OpenAL.framework */,
@@ -1577,12 +1589,14 @@
 				05D8CF9518EC4EEE0037B772 /* loweriphone5.png in Resources */,
 				DC22819618B44A7E0047D510 /* Default@2x.png in Resources */,
 				DCEF953D18B6C19400E50937 /* AppIcon60x60@2x.png in Resources */,
+				9364405118EA32A8000C2271 /* crowcoin1.png in Resources */,
 				DC8D7E9218B89A6C00D6F8C0 /* payOut@i5.png in Resources */,
 				DC22819518B44A7E0047D510 /* Default.png in Resources */,
 				DCA49F971877968600308254 /* apple@2x.png in Resources */,
 				DC22817518B415260047D510 /* reset@2x.png in Resources */,
 				DC12EBC518B7A02E000DBC5F /* GameBackground@ipadhd.png in Resources */,
 				DCEF953718B6C19400E50937 /* Icon@2x.png in Resources */,
+				14971EB318D9D38C00EEFA42 /* cloud.png in Resources */,
 				DC22817C18B42E690047D510 /* muteOff.png in Resources */,
 				DC2281A918B460C60047D510 /* MaxOn@4x.png in Resources */,
 				DC8D7E8518B88DE500D6F8C0 /* help@ipad.png in Resources */,
@@ -1590,6 +1604,7 @@
 				DC12EBA318B729E6000DBC5F /* backButton.png in Resources */,
 				DCEF953F18B6C19400E50937 /* iTunesArtwork@2x.png in Resources */,
 				DC12EBC218B7A00D000DBC5F /* cherry@4x.png in Resources */,
+				9364405418EA549F000C2271 /* coin.png in Resources */,
 				DCEF49A918A2689700F108DF /* Odin Rounded - Bold.otf in Resources */,
 				DC53E8D018B3D8470050F1C5 /* MenuBackground@ipad.png in Resources */,
 				DC53E8DE18B403D10050F1C5 /* optionBar@ipadhd.png in Resources */,
@@ -1608,8 +1623,10 @@
 				DCEF953318B6C19400E50937 /* Icon-72.png in Resources */,
 				5C0CA4B918B5CBDF0066FDE3 /* LevelUp.mp3 in Resources */,
 				DC2281AE18B460C60047D510 /* MinOn@2x.png in Resources */,
+				9364405218EA32A8000C2271 /* crowcoin2.png in Resources */,
 				DC53E8D918B403D00050F1C5 /* option.png in Resources */,
 				DC12EBC118B7A00D000DBC5F /* apple@4x.png in Resources */,
+				9364405618EBFB60000C2271 /* cross.png in Resources */,
 				DC53E8DA18B403D10050F1C5 /* option@2x.png in Resources */,
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
 				DC2281AA18B460C60047D510 /* MinOff.png in Resources */,
@@ -1864,6 +1881,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(inherited)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fruit Machine Game/Prefix.pch";
@@ -1888,6 +1909,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(inherited)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fruit Machine Game/Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Fruit Machine Game/libs/kazmath/include\"";

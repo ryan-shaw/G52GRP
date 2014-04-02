@@ -142,8 +142,19 @@
 		<key>opengles-2</key>
 		<true/>
 	</dict>
+	<key>FacebookAppID</key>
+	<string>235859759909476</string>
+	<key>FacebookDisplayName</key>
+	<string>FruitySlots</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>URL schemes</key>
+			<array/>
+		</dict>
+	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>

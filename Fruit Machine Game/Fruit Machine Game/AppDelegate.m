@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "MainMenu.h"
+#import "PopTheCloud.h"
 #import "HorseRacingGame.h"
 #import "WackAmoleGame.h"
 
@@ -49,7 +50,7 @@
 	if(director.runningScene == nil) {
 		// Add the first scene to the stack. The director will draw it immediately into the framebuffer. (Animation is started automatically when the view is displayed.)
 		// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-		[director runWithScene: [WackAmoleGame scene]];
+		[director runWithScene: [MainMenu scene]];
 	}
 }
 @end
@@ -155,6 +156,8 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];	
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
+    [FBAppEvents activateApp];
+    [FBAppCall handleDidBecomeActive];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
@@ -172,6 +175,7 @@
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [FBSession.activeSession close];
     [[NSUserDefaults standardUserDefaults] synchronize];
 	CC_DIRECTOR_END();
 }
@@ -195,4 +199,12 @@
 	
 	[super dealloc];
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication fallbackHandler:^(FBAppCall *call){
+            NSLog(@"Facebook handler");
+        }];
+}
+
+
 @end

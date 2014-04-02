@@ -172,10 +172,16 @@
         [self addChild:lowlower z:1];
         
         [self schedule:@selector(tryPopMoles:) interval:0.5];
+        [self schedule:@selector(update)];
     }
     
     self.touchEnabled = YES;
     return self;
+}
+
+- (void) update {
+    
+    [label setString:[NSString stringWithFormat:@"Score: %d", score]];
 }
 
 - (void) popMole:(CCSprite *)mole {

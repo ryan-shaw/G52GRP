@@ -11,6 +11,17 @@
 
 @interface PopTheCloud : CCLayer {
     
+    NSMutableArray *clouds;
+    CCLabelTTF *scoreLabel;
+    
+    CCSprite *crowcoin;
+    CCSprite *coin;
+    CCSprite *cross;
+    
+    int popped, score;
+    
+    int x, y;
+    
 }
 
 + (CCScene *) scene;
