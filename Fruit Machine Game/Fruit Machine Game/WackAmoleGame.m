@@ -7,6 +7,7 @@
 //
 
 #import "WackAmoleGame.h"
+#import "MainGameScene.h"
 
 #define TOUCHED 1
 #define UNTOUCHED 2
@@ -15,6 +16,9 @@
 @implementation WackAmoleGame {
     int molesMissed;
     bool screenTouched;
+    int deviceTag;
+    int iPadScaleFactor;
+    StringPtr file;
 }
 
 + (CCScene *) scene {
@@ -44,6 +48,8 @@
     
 	if( (self=[super init])) {
         
+        [self setDeviceTag];
+        
         CGSize window = [[CCDirector sharedDirector] winSize];
         
         molesMissed = 0;
@@ -54,23 +60,9 @@
         holeBack.scale = 2.0;
         holeBack.position = ccp(window.width/2, window.height/2);
         
-        CCSprite *lowerDown = [CCSprite spriteWithFile:@"lower_lower.png"];
-        lowerDown.anchorPoint = ccp(0.5, 1);
-        lowerDown.position = ccp(window.width/2, window.height/4);
-        
-        CCSprite *upperDown = [CCSprite spriteWithFile:@"upper_upper.png"];
-        upperDown.anchorPoint = ccp(0.5, 0);
-        upperDown.position = ccp(window.width/2, window.height/4);
-        
-        CCSprite *lowerTop = [CCSprite spriteWithFile:@"lower_lower.png"];
-        lowerTop.anchorPoint = ccp(0.5, 0);
-        lowerTop.position = ccp(window.width/2, window.height/2.33);
-        
-        CCSprite *upperTop = [CCSprite spriteWithFile:@"upper_upper.png"];
-        upperTop.anchorPoint = ccp(0.5, 1);
-        upperTop.position = ccp(window.width/2, window.height);
-        
-        moles = [[NSMutableArray alloc] init];
+        CCSprite *background;
+        CCSprite *uplower;
+        CCSprite *lowlower;
         
         CCSprite *mole1 = [CCSprite spriteWithFile:@"mole_1.png"];
         mole1.position = ccp(window.width/3.8, window.height/1.7);
@@ -84,6 +76,76 @@
         CCSprite *mole4 = [CCSprite spriteWithFile:@"mole_1.png"];
         mole4.position = ccp(window.width/1.35, window.height/10);
         
+        switch (deviceTag) {
+            case IPHONE:
+                background = [CCSprite spriteWithFile:@"iphone4S.png"];
+                
+                lowlower = [CCSprite spriteWithFile:@"loweriphone4S.png"];
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/2, 30);
+                
+                uplower = [CCSprite spriteWithFile:@"loweriphone4S.png"];
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/2, window.height/1.85);
+                break;
+            case IPHONE5:
+                background = [CCSprite spriteWithFile:@"iphone5.png"];
+                
+                lowlower = [CCSprite spriteWithFile:@"loweriphone5.png"];
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/2, 68);
+                
+                uplower = [CCSprite spriteWithFile:@"loweriphone5.png"];
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/2, window.height/1.66);
+                break;
+            case IPAD:
+                background = [CCSprite spriteWithFile:@"ipadMini.png"];
+                
+                lowlower = [CCSprite spriteWithFile:@"loweripadMini.png"];
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/1.98, 139);
+                
+                uplower = [CCSprite spriteWithFile:@"loweripadMini.png"];
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/1.98, window.height/1.66);
+                break;
+            case IPADHD:
+                background = [CCSprite spriteWithFile:@"ipadMini.png"];
+                background.scale = iPadScaleFactor;
+                
+                mole1.scale = iPadScaleFactor;
+                mole1.position = ccp(window.width/3.8, window.height/1.66);
+                mole2.scale = iPadScaleFactor;
+                mole2.position = ccp(window.width/1.35, window.height/1.66);
+                mole3.scale = iPadScaleFactor;
+                mole3.position = ccp(window.width/3.8, window.height/7.5);
+                mole4.scale = iPadScaleFactor;
+                mole4.position = ccp(window.width/1.35, window.height/7.5);
+                
+                lowlower = [CCSprite spriteWithFile:@"loweripadMini.png"];
+                lowlower.scale = iPadScaleFactor;
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/1.98, 139);
+                
+                uplower = [CCSprite spriteWithFile:@"loweripadMini.png"];
+                uplower.scale = iPadScaleFactor;
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/1.98, window.height/1.66);
+                break;
+            default:
+                break;
+        }
+        
+        background.anchorPoint = ccp(0.5, 0.5);
+        background.position = ccp(window.width/2, window.height/2);
+
+        
+        
+        moles = [[NSMutableArray alloc] init];
+        
+        
+        
         // Add Sprites to Array.
         
         mole1.tag = TOUCHED;
@@ -96,25 +158,26 @@
         [moles addObject:mole3];
         [moles addObject:mole4];
         
-        label = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana" fontSize:25.0];
-        label.anchorPoint = ccp(0, 0);
-        label.position = ccp(window.width/2.8, window.height/2);
-        label.opacity = 0;
+        label = [CCLabelTTF labelWithString:@"Coins: 0" fontName:@"Verdana" fontSize:25.0];
+        label.anchorPoint = ccp(0.5, 0.5);
+        label.position = ccp(window.width/2, window.height/2);
         
         // Add Sprites to scene.
         [self addChild:mole1];
         [self addChild:mole2];
         [self addChild:mole3];
         [self addChild:mole4];
-        [self addChild:holeBack z:-2];
-        [self addChild:lowerDown z:1];
-        [self addChild:upperDown z:-1];
-        [self addChild:lowerTop z:1];
-        [self addChild:upperTop z:-1];
         [self addChild:label z:10];
+        [self addChild:background z:-1];
+        [self addChild:uplower z:1];
+        [self addChild:lowlower z:1];
         
-        [self schedule:@selector(tryPopMoles:) interval:0.5];
-        [self schedule:@selector(update)];
+        [self runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:1.5] two:[CCCallBlockN actionWithBlock:^(CCNode *node) {
+            
+            [self schedule:@selector(tryPopMoles:) interval:0.5];
+            [self schedule:@selector(update)];
+            
+        }]]];
     }
     
     self.touchEnabled = YES;
@@ -123,12 +186,17 @@
 
 - (void) update {
     
-    [label setString:[NSString stringWithFormat:@"Score: %d", score]];
+    [label setString:[NSString stringWithFormat:@"Coins: %d", score]];
 }
 
 - (void) popMole:(CCSprite *)mole {
     
-    CCMoveBy *moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height)];
+    CCMoveBy *moveUp;
+    if(deviceTag == IPADHD) {
+        moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height + 70)];
+    } else {
+        moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height)];
+    }
     CCEaseInOut *easeMoveUp = [CCEaseInOut actionWithAction:moveUp rate:3.0];
     CCAction *easeMoveDown = [easeMoveUp reverse];
     
@@ -155,14 +223,14 @@
 
 - (void) hasMoleBeenTouched:(CCSprite*)mole {
     
+     [label setString:[NSString stringWithFormat:@"Coins: %d", score]];
     
     if (mole.tag == UNTOUCHED) {
         
         molesMissed += 1;
         
-        if (molesMissed <= 15) {
-           // [label setString:[NSString stringWithFormat:@"Score: %d", score]];
-            label.opacity = 255;
+        if (molesMissed >= 15) {
+            [self backToGame];
         }
         
     }
@@ -182,24 +250,55 @@
     for (CCSprite *mole in moles) {
         
         if (CGRectContainsPoint(mole.boundingBox, firstTouch) && mole.numberOfRunningActions != 0) {
-            score += 10;
+            score += 100;
             
             mole.tag = TOUCHED;
             
             screenTouched = NO;
-            
         }
     }
     
     if (screenTouched) {
-        
         molesMissed += 1;
+    }
+}
+
+- (void) backToGame {
+    
+    int total = [[NSUserDefaults standardUserDefaults] integerForKey:TOTALCREDITS];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:(total + score) forKey:TOTALCREDITS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
+}
+
+- (void) setDeviceTag {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
-        if (molesMissed <= 15) {
-            //[label setString:[NSString stringWithFormat:@"Score: %d", score]];
-            label.opacity = 255;
+        iPadScaleFactor = 1;
+        
+        if ([[UIScreen mainScreen] bounds].size.height == 568) {
+            deviceTag = IPHONE5;
+        } else {
+            deviceTag = IPHONE;
+            printf("iPhone 4S");
+        }
+        
+        
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        iPadScaleFactor = 2;
+        
+        if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [UIScreen mainScreen].scale > 1) {
+            deviceTag = IPADHD;
+        } else {
+            deviceTag = IPAD;
         }
     }
 }
+
+
 
 @end

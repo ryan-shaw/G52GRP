@@ -12,6 +12,7 @@
 #import "SimpleAudioEngine.h"
 #import "GameKitHelper.h"
 #import "PopTheCloud.h"
+#import "WackAmoleGame.h"
 
 // set totalSpend as a global variable; this is here as i want the totalSpend to stay consistent regardless of the
 // new instances that are created
@@ -377,7 +378,12 @@ int totalSpend = 0, totalCredits;
                 break;
             
             case STAR:
-                [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[PopTheCloud scene]]];
+                
+                if(arc4random() % 2 == 0) {
+                    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[PopTheCloud scene]]];
+                } else {
+                    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[WackAmoleGame scene]]];
+                }
                 break;
                 
             default:
@@ -1816,7 +1822,8 @@ int totalSpend = 0, totalCredits;
     [levelLabel runAction:[CCSequence actionOne:[CCTintTo actionWithDuration:0.8 red:255 green:2552 blue:255]
                                             two:[CCTintTo actionWithDuration:0.8 red:0 green:0 blue:0]]];
     currentLevel ++;
-    [self sendFacebookLevelup];
+    if([FBSession activeSession].isOpen)
+        [self sendFacebookLevelup];
     [levelLabel setString:[NSString stringWithFormat:@"%i", currentLevel]];
     
     totalSpend = COMBO_AMOUNT_TO_SPEND * currentLevel;

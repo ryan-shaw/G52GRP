@@ -39,6 +39,8 @@
         popped = 0;
         score = 0;
         
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        
         window = [[CCDirector sharedDirector] winSize];
         
         [self setDeviceScale];
