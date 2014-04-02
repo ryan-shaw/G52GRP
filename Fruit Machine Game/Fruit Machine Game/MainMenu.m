@@ -446,7 +446,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController {
     
-    // dependent on the current
+    // dependent on the current iOS version, the view closes and returns back to the main screen
     
     NSString *version = [[UIDevice currentDevice] systemVersion];
     BOOL isAtLeast7 = [version floatValue] >= 7.0;
@@ -469,6 +469,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     if (help == NULL) {
         [self playSoundEffect:TOUCH];
         
+        // set the help global sprite to be the help menu and show the menu
+        
         NSString *file = [NSString stringWithFormat:@"%@%@", @"help", [self getBackgroundFileSuffix]];
         
         help = [CCSprite spriteWithFile:file];
@@ -487,6 +489,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 }
 
 - (void) mute {
+    
+    // this method checks if the mute button is currently pressed or not and sets it to be the opposite image
     
     if (help == NULL) {
         
