@@ -143,17 +143,17 @@
        //     uncommenting this forces the user straight into logging in - perhaps annoying
        // }
             
-        loginView = [[FBLoginView alloc] init];
+        loginView = [[FBLoginView alloc] init]; // Initialise Facebook login view
             
         UIView *view = [[[CCDirector sharedDirector] view] window];
             
         [loginView setHidden:YES]; // start hidden - updateFacebookLoginShow will make it visible
             
-        [view addSubview:loginView];
+        [view addSubview:loginView]; // Add view to the screen
             
-        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125);
+        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125); // Put the button in the correct place on screen
         
-        [self schedule:@selector(updateFacebookLoginShow) interval:0.2];
+        [self schedule:@selector(updateFacebookLoginShow) interval:0.2]; // Facebook button visiblity updater
 
     }    
     
@@ -165,24 +165,21 @@
 }
 
 - (void) updateFacebookLoginShow {
+    // Only show the Facebook login/logout button on the homescreen
     if (help != NULL) {
         if (!loginView.isHidden) {
             [loginView setHidden:YES];
         }
-        // printf("1");
     } else if (menu.enabled) {
         if (loginView.isHidden) {
             [loginView setHidden:NO];
         }
-        // printf("2");
     } else if (![FBSession activeSession].isOpen) {
         if (loginView.isHidden) {
             [loginView setHidden:NO];
         }
-        // printf("3");
     } else {
         [loginView setHidden:YES];
-        // printf("4");
     }
 }
 
@@ -193,12 +190,12 @@
 
 - (void) loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
 {
-    self.loggedInUser = user;
+    self.loggedInUser = user; // User logged in, store user ID
 }
 
 - (void) loginViewShowingLoggedOutUser:(FBLoginView *)loginView
 {
-    self.loggedInUser = nil;
+    self.loggedInUser = nil; // User logged out, clear user ID
 }
 
 - (BOOL)application:(UIApplication *)application
