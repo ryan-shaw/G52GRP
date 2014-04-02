@@ -532,6 +532,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         
         [self playSoundEffect:TOUCH];
         
+        // only allow the optionbar to be moved when it is not moving
         if (optionBar.numberOfRunningActions == 0 && menu.numberOfRunningActions == 0) {
             
             if (optionBar.position.x < 0) {
@@ -539,11 +540,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                 [optionBar runAction:[CCMoveTo actionWithDuration:OPTION_BAR_MOVE_TIME position:ccp(optionBar.contentSize.width/2.50, optionBar.position.y)]];
                 
                 menu.enabled = YES;
+                // show the buttons once the option bar has been extended
                 [menu runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:OPTION_BAR_MOVE_TIME] two:[CCFadeIn actionWithDuration:0.1]]];
                 
             } else {
                 
                 [optionBar runAction:[CCMoveTo actionWithDuration:OPTION_BAR_MOVE_TIME position:ccp(-optionBar.contentSize.width/2.8, optionBar.position.y)]];
+                // hide buttons when option bar is not showing
                 menu.opacity = 0;
                 menu.enabled = NO;
             }
