@@ -15,6 +15,8 @@
 
 @implementation MainMenu {
     
+    // set instance variables
+    
     CCLabelTTF *playLabel;
     int deviceTag, scaleFactor;
     CGSize win;
@@ -42,7 +44,11 @@
 
 - (void) setDeviceTag {
     
+    // finds out what the current iOS device is and sets the deviceTag to be a unique number
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        // if iphone
         
         if ([[UIScreen mainScreen] bounds].size.height == 568) {
             
@@ -54,9 +60,12 @@
             
         }
         
+        // set the scale factor to 1 (used for conversion to iPad).
         scaleFactor = 1;
         
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        // if ipad
         
         if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [UIScreen mainScreen].scale > 1) {
             
@@ -68,12 +77,16 @@
             
         }
         
+        // set the scale factor to 2 when the device is an ipad
         scaleFactor = 2;
     }
     
 }
 
 - (NSString*) getBackgroundFileSuffix {
+    
+    // checks the device tag and returns the ending prefix for the image/background
+    // there are 5 unique background types for iOS devices
     
     switch (deviceTag) {
             
@@ -97,6 +110,8 @@
 
 - (NSString*) getImageFileSuffix {
     
+    // there are 3 unique scale types for iOS devices (xcode automatically converts retina devices to non retina).
+    
     switch (deviceTag) {
             
         case IPADHD:
@@ -111,14 +126,18 @@
     
 	if( (self=[super init])) {
         
+        // add the status indicator and set the colour to be white
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
+        // log the player in for game center
         [[GameKitHelper sharedGameKitHelper]
          authenticateLocalPlayer];
         
+        // get the current screen dimensions
         win = [[CCDirector sharedDirector] winSize];
         
+        // disable sound engine (used for when returning back to the menu from the game screen).
         [SimpleAudioEngine sharedEngine].enabled = NO;
         
         help = NULL;
@@ -127,22 +146,27 @@
         
         [self createDisplay];
         
+        // play the background music
         [SimpleAudioEngine sharedEngine].enabled = YES;
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:SOUNDTRACK];
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:1.0f];//0.1f];
         
+        // if the mute button has already been pressed then pause the background music
         if ([[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == MUTE) {
             
             [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
         }
     }
     
+    // set the touch to be enabled
     self.touchEnabled = YES;
     return self;
     
 }
 
 - (void) createDisplay {
+    
+    // get the background image and add it to the screen
     
     NSString *file = [NSString stringWithFormat:@"%@%@", @"MenuBackground", [self getBackgroundFileSuffix]];
     
@@ -159,6 +183,8 @@
 
 - (void) setOptions {
     
+    // add the option bar to the screen
+    
     NSString *file = [NSString stringWithFormat:@"%@%@", @"optionBar", [self getImageFileSuffix]];
     
     CCSprite *select, *unselect;
@@ -169,13 +195,15 @@
     
     [self addChild:optionBar];
     
-    
+    // add the orange fruit as the option button to be pressed
     
     file = [NSString stringWithFormat:@"%@%@", @"option", [self getImageFileSuffix]];
     
     select = [CCSprite spriteWithFile:file];
     unselect = [CCSprite spriteWithFile:file];
     unselect.scale = 0.85;
+    
+    // add it as a ccmenuitem object
     
     CCMenuItemSprite *optionButton = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(extendOptions)];
     optionButton.position = ccp(optionBar.contentSize.width/16, optionBar.position.y);
@@ -185,7 +213,7 @@
     
     [self addChild:otherMenu];
     
-    
+    // check the system file and check if the mute is currently active (if it is then load the muted image instead of the unmuted)
     
     if (![[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] || [[NSUserDefaults standardUserDefaults] integerForKey:MUTE_DATA] == UNMUTE) {
         
@@ -209,6 +237,7 @@
     mute = [CCMenuItemSprite itemWithNormalSprite:select selectedSprite:unselect target:self selector:@selector(mute)];
     mute.position = ccp(optionButton.position.x*1.5 + optionBar.contentSize.width/6, optionBar.position.y);
     
+    // add the leaderboard, reset and question buttons
     
     
     file = [NSString stringWithFormat:@"%@%@", @"leaderboard", [self getImageFileSuffix]];
@@ -250,6 +279,8 @@
     [self addChild:menu];
     menu.opacity = 0;
     
+    // if its the first time that the user is running the game then show all buttons
+    
     if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
         
         optionBar.position = ccp(optionBar.contentSize.width/2.50, optionBar.position.y);
@@ -260,6 +291,8 @@
 
 - (void) reset {
     
+    // if the help menu is not currently being shown then ask the user if they want to remove all of their progress
+    
     if (help == NULL) {
         
         UIAlertView *myAlert = [[UIAlertView alloc]
@@ -268,6 +301,8 @@
                                 delegate:self
                                 cancelButtonTitle:@"Reset"
                                 otherButtonTitles:@"Cancel",nil];
+        
+        // set the tag to identify the id of the alert respnose
         myAlert.tag = 1;
         
         [myAlert show];
@@ -280,8 +315,10 @@
     // the user clicked Reset
     if (buttonIndex == 0) {
         
+        // if the reset alert is the first to show up
         if (alertView.tag == 1) {
             
+            // remove all the data saved on the system file and unmute the screen
             NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
             [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -296,10 +333,13 @@
 
 - (void) showLeaderboard {
     
+    // show the game center leaderboard
     if (help == NULL) {
         
+        // play the soundeffect for button presses
         [self playSoundEffect:TOUCH];
         
+        // check if the player has been authenticated
         if ([GKLocalPlayer localPlayer].isAuthenticated == YES) {
             
             // Create leaderboard view w/ default Game Center style
@@ -326,6 +366,7 @@
             
         } else {
             
+            // if the user has not been logged in then show an error message
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Center Unavailable" message:@"Player is not signed in"
                                                            delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             
@@ -338,6 +379,8 @@
 }
 
 - (void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController {
+    
+    // dependent on the current
     
     NSString *version = [[UIDevice currentDevice] systemVersion];
     BOOL isAtLeast7 = [version floatValue] >= 7.0;
