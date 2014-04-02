@@ -947,13 +947,13 @@
 		DC9B2135187693A30012620A /* MiniGames */ = {
 			isa = PBXGroup;
 			children = (
-				DC985B7C184D35D000283E1A /* PopTheCloud.m */,
 				DC985B6F184D323800283E1A /* HorseRacingGame.h */,
 				DC985B70184D323800283E1A /* HorseRacingGame.m */,
 				DC985B72184D326100283E1A /* WackAmoleGame.h */,
 				DC985B73184D326100283E1A /* WackAmoleGame.m */,
 				DC985B75184D355500283E1A /* SpinTheWheel.h */,
 				DC985B76184D355500283E1A /* SpinTheWheel.m */,
+				DC985B7C184D35D000283E1A /* PopTheCloud.m */,
 				DC985B7B184D35D000283E1A /* PopTheCloud.h */,
 			);
 			name = MiniGames;
