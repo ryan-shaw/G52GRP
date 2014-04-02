@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		05616F1B18D74668009EFEBA /* mole_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F1A18D74668009EFEBA /* mole_1.png */; };
 		05616F2518D75DBB009EFEBA /* bg_dirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2418D75DBB009EFEBA /* bg_dirt.png */; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		05D8CF8118EC3B670037B772 /* iphone4S.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF8018EC3B670037B772 /* iphone4S.png */; };
 		05D8CF8718EC3F270037B772 /* loweriphone4S.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF8618EC3F270037B772 /* loweriphone4S.png */; };
 		05D8CF9318EC4D540037B772 /* loweripadMini.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF9218EC4D540037B772 /* loweripadMini.png */; };
@@ -287,9 +284,7 @@
 /* Begin PBXFileReference section */
 		05616F1A18D74668009EFEBA /* mole_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mole_1.png; sourceTree = "<group>"; };
 		05616F2418D75DBB009EFEBA /* bg_dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_dirt.png; path = Art/background/bg_dirt.png; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		05D8CF8018EC3B670037B772 /* iphone4S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone4S.png; sourceTree = "<group>"; };
 		05D8CF8618EC3F270037B772 /* loweriphone4S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loweriphone4S.png; sourceTree = "<group>"; };
 		05D8CF9218EC4D540037B772 /* loweripadMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loweripadMini.png; sourceTree = "<group>"; };
@@ -1053,9 +1048,6 @@
 		DCA62F2B182B92750053BCD0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 				05D8CFA018EC5E900037B772 /* coin.png */,
 				05D8CFA118EC5E900037B772 /* cross.png */,
 				05D8CFA218EC5E900037B772 /* crowcoin1.png */,
