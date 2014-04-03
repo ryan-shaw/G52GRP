@@ -134,10 +134,6 @@
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
-        // log the player in for game center
-        [[GameKitHelper sharedGameKitHelper]
-         authenticateLocalPlayer];
-        
         // get the current screen dimensions
         win = [[CCDirector sharedDirector] winSize];
         
@@ -175,6 +171,10 @@
         [view addSubview:loginView]; // Add view to the screen
             
         loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125); // Put the button in the correct place on screen
+        
+        // log the player in for game center
+        [[GameKitHelper sharedGameKitHelper]
+         authenticateLocalPlayer];
         
         [self schedule:@selector(updateFacebookLoginShow) interval:0.2]; // Facebook button visiblity updater
 
@@ -357,6 +357,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         optionBar.position = ccp(optionBar.contentSize.width/2.50, optionBar.position.y);
         menu.enabled = YES;
         menu.opacity = 255;
+        help = NULL;
     }
 }
 

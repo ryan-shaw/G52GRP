@@ -13,7 +13,6 @@
 		05616F1B18D74668009EFEBA /* mole_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F1A18D74668009EFEBA /* mole_1.png */; };
 		05616F2518D75DBB009EFEBA /* bg_dirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2418D75DBB009EFEBA /* bg_dirt.png */; };
 		05616F2718D76043009EFEBA /* upper_upper.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2618D76043009EFEBA /* upper_upper.png */; };
-		05616F2918D76048009EFEBA /* lower_lower.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2818D76048009EFEBA /* lower_lower.png */; };
 		05616F2B18D76109009EFEBA /* mole_thump4.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2A18D76109009EFEBA /* mole_thump4.png */; };
 		05D8CF8718EC3F270037B772 /* loweriphone4S.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF8618EC3F270037B772 /* loweriphone4S.png */; };
 		05D8CF9F18EC5E810037B772 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF9E18EC5E810037B772 /* cloud.png */; };
@@ -245,6 +244,7 @@
 		DCA630BA182B927A0053BCD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630B9182B927A0053BCD0 /* main.m */; };
 		DCA630BD182B927A0053BCD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA630BC182B927A0053BCD0 /* AppDelegate.m */; };
 		DCA8648718B9A506009A490B /* FruitySlotGamescore.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DCA8648618B9A506009A490B /* FruitySlotGamescore.mp3 */; };
+		DCB293B718ED72F500C181C4 /* lower_lower.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB293B618ED72F500C181C4 /* lower_lower.png */; };
 		DCEF49A418A2640400F108DF /* OstrichSans-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = DCEF49A318A2640400F108DF /* OstrichSans-Heavy.otf */; };
 		DCEF49A918A2689700F108DF /* Odin Rounded - Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DCEF49A818A2689700F108DF /* Odin Rounded - Bold.otf */; };
 		DCEF49AD18A26CD400F108DF /* Klill-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCEF49AC18A26CD400F108DF /* Klill-Light.ttf */; };
@@ -277,7 +277,6 @@
 		05616F1A18D74668009EFEBA /* mole_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mole_1.png; sourceTree = "<group>"; };
 		05616F2418D75DBB009EFEBA /* bg_dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_dirt.png; path = Art/background/bg_dirt.png; sourceTree = "<group>"; };
 		05616F2618D76043009EFEBA /* upper_upper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upper_upper.png; path = Art/foreground/upper_upper.png; sourceTree = "<group>"; };
-		05616F2818D76048009EFEBA /* lower_lower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lower_lower.png; path = Art/foreground/lower_lower.png; sourceTree = "<group>"; };
 		05616F2A18D76109009EFEBA /* mole_thump4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mole_thump4.png; path = Art/sprites/mole_thump4.png; sourceTree = "<group>"; };
 		05D8CF8018EC3B670037B772 /* iphone4S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone4S.png; sourceTree = "<group>"; };
 		05D8CF8618EC3F270037B772 /* loweriphone4S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loweriphone4S.png; sourceTree = "<group>"; };
@@ -669,6 +668,7 @@
 		DCA630BB182B927A0053BCD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DCA630BC182B927A0053BCD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DCA8648618B9A506009A490B /* FruitySlotGamescore.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FruitySlotGamescore.mp3; sourceTree = "<group>"; };
+		DCB293B618ED72F500C181C4 /* lower_lower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lower_lower.png; sourceTree = "<group>"; };
 		DCEF49A318A2640400F108DF /* OstrichSans-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OstrichSans-Heavy.otf"; sourceTree = "<group>"; };
 		DCEF49A818A2689700F108DF /* Odin Rounded - Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Odin Rounded - Bold.otf"; sourceTree = "<group>"; };
 		DCEF49AC18A26CD400F108DF /* Klill-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Klill-Light.ttf"; sourceTree = "<group>"; };
@@ -1032,6 +1032,7 @@
 			isa = PBXGroup;
 			children = (
 				053C529718EC61C6009FC37C /* crowcoin1.png */,
+				DCB293B618ED72F500C181C4 /* lower_lower.png */,
 				053C529018EC5FB6009FC37C /* crowcoin2.png */,
 				05D8CF9E18EC5E810037B772 /* cloud.png */,
 				053C529B18EC638A009FC37C /* coin.png */,
@@ -1044,7 +1045,6 @@
 				05D8CF9818EC51A00037B772 /* ipadMini.png */,
 				05D8CF8618EC3F270037B772 /* loweriphone4S.png */,
 				05616F2A18D76109009EFEBA /* mole_thump4.png */,
-				05616F2818D76048009EFEBA /* lower_lower.png */,
 				05616F2618D76043009EFEBA /* upper_upper.png */,
 				05616F2418D75DBB009EFEBA /* bg_dirt.png */,
 				05616F1A18D74668009EFEBA /* mole_1.png */,
@@ -1634,7 +1634,6 @@
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
 				DC2281AA18B460C60047D510 /* MinOff.png in Resources */,
 				DC12EBB218B72A24000DBC5F /* apple.png in Resources */,
-				05616F2918D76048009EFEBA /* lower_lower.png in Resources */,
 				DC53E8C918B316DC0050F1C5 /* Arialic Hollow.ttf in Resources */,
 				DCEF49AF18A26D8700F108DF /* SourceSansPro-Regular.otf in Resources */,
 				05616F2B18D76109009EFEBA /* mole_thump4.png in Resources */,
@@ -1686,6 +1685,7 @@
 				DC12EBBD18B7A00D000DBC5F /* strawberry@4x.png in Resources */,
 				5CF93BFF18B5BDC200B61BDF /* PowerBarSound.mp3 in Resources */,
 				DC22817318B415260047D510 /* muteOn@2x.png in Resources */,
+				DCB293B718ED72F500C181C4 /* lower_lower.png in Resources */,
 				DC8D7E9318B89A6C00D6F8C0 /* payOut@ipad.png in Resources */,
 				053C529C18EC638A009FC37C /* coin.png in Resources */,
 				DC8D7E9418B89A6C00D6F8C0 /* payOut@ipadhd.png in Resources */,
