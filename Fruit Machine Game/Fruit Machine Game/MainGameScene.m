@@ -634,9 +634,9 @@ int totalSpend = 0, totalCredits;
         
         switch (arc4random() % 100) {
                 
-            case 0 ... 9:
+            case 0 ... 99:
                 return STAR;
-                
+/*
             case 10 ... 29:
                 return CHERRY;
                 
@@ -657,7 +657,7 @@ int totalSpend = 0, totalCredits;
                 
             case 90 ... 99:
                 return ORANGE;
-                
+                */
             default:
                 return [self randomFruit:ORANGE];
                 break;

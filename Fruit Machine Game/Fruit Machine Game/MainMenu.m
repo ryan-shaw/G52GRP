@@ -164,13 +164,15 @@
             
         loginView = [[FBLoginView alloc] init]; // Initialise Facebook login view
             
-        UIView *view = [[[CCDirector sharedDirector] view] window];
+        UIView *view = [[CCDirector sharedDirector] view];
             
         [loginView setHidden:YES]; // start hidden - updateFacebookLoginShow will make it visible
-            
+        
+        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), win.height/4); // Put the button in the correct place on screen
+        
+        loginView.delegate = self;
+        
         [view addSubview:loginView]; // Add view to the screen
-            
-        loginView.frame = CGRectOffset(loginView.frame, (view.center.x - (loginView.frame.size.width / 2)), 125); // Put the button in the correct place on screen
         
         // log the player in for game center
         [[GameKitHelper sharedGameKitHelper]
@@ -214,7 +216,6 @@
 
 - (void) loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
-    
 }
 
 - (void) loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
@@ -230,6 +231,7 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
     [FBLoginView class];
     
     return YES;
@@ -598,6 +600,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     // if the help screen is not being shown then...
     if (help == NULL) {
+        
+        
+        
         
         // if the user touches the bottom half of the screen
         if (touchLocation.y < win.height/2) {
