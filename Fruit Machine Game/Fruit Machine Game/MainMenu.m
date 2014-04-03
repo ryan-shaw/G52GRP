@@ -356,10 +356,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
         
-        optionBar.position = ccp(optionBar.contentSize.width/2.50, optionBar.position.y);
-        menu.enabled = YES;
-        menu.opacity = 255;
-        help = NULL;
+     //   optionBar.position = ccp(optionBar.contentSize.width/2.50, optionBar.position.y);
+     //   menu.enabled = YES;
+     //   menu.opacity = 255;
+     //   help = NULL;
     }
 }
 
@@ -601,9 +601,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     // if the help screen is not being shown then...
     if (help == NULL) {
         
-        
-        
-        
         // if the user touches the bottom half of the screen
         if (touchLocation.y < win.height/2) {
             
@@ -627,7 +624,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
             }
         }
         
-    } else if (touchLocation.y < win.height/2) {
+    } else {
         
         // if the help screen is visible AND its the first time the user is running the application then..
         if (![[NSUserDefaults standardUserDefaults] integerForKey:FIRST_RUN]) {
@@ -648,12 +645,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
             [self removeChild:help cleanup:YES];
             help = NULL;
         }
-        
-    } else {
-        // remove the help screen if it is being shown and the user touches anywhere on the screen
-        [self playSoundEffect:TOUCH];
-        [self removeChild:help cleanup:YES];
-        help = NULL;
     }
 }
 
