@@ -34,6 +34,8 @@
     
 	if( (self=[super init])) {
         
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        
         popped = 0;
         score = 0;
         
