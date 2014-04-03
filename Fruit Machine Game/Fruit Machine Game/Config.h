@@ -109,6 +109,7 @@
 #define IPAD 3
 #define IPHONE5 2
 #define IPHONE 1
+#define NONRETINA 0
 
 // Fruit Tags
 

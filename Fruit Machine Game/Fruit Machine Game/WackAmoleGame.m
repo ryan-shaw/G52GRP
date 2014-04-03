@@ -219,12 +219,27 @@
         
         iPadScaleFactor = 1;
         
+       
+        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+            ([UIScreen mainScreen].scale == 2.0)) {
+            
+            
+            
+            iPadScaleFactor = 1;
+            deviceTag = IPHONE;
+            
+        } else {
+            iPadScaleFactor = 0.5;
+            deviceTag = NONRETINA;
+        }
+        
         if ([[UIScreen mainScreen] bounds].size.height == 568) {
             deviceTag = IPHONE5;
-        } else {
-            deviceTag = IPHONE;
-            printf("iPhone 4S");
         }
+        
+        
+       
         
         
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
