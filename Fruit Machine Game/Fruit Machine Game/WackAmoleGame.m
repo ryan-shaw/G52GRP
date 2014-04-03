@@ -88,6 +88,100 @@
         CCSprite *mole4 = [CCSprite spriteWithFile:@"mole_1.png"];
         mole4.position = ccp(window.width/1.35, window.height/10);
         
+        CCSprite *background;
+        CCSprite *lowlower;
+        CCSprite *uplower;
+        
+        switch (deviceTag) {
+            case NONRETINA:
+                background = [CCSprite spriteWithFile:@"iphone4S.png"];
+                background.scale = 0.5;
+                
+                lowlower = [CCSprite spriteWithFile:@"loweriphone4S.png"];
+                lowlower.scale = 0.5;
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/2, 30);
+                
+                uplower = [CCSprite spriteWithFile:@"loweriphone4S.png"];
+                uplower.scale = 0.5;
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/2, window.height/1.85);
+                
+                mole1.scale = 0.5;
+                mole2.scale = 0.5;
+                mole3.scale = 0.5;
+                mole4.scale = 0.5;
+                break;
+            case IPHONE:
+                background = [CCSprite spriteWithFile:@"iphone4S.png"];
+                
+                lowlower = [CCSprite spriteWithFile:@"loweriphone4S.png"];
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/2, 30);
+                
+                uplower = [CCSprite spriteWithFile:@"loweriphone4S.png"];
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/2, window.height/1.85);
+                break;
+            case IPHONE5:
+                background = [CCSprite spriteWithFile:@"iphone5.png"];
+                
+                lowlower = [CCSprite spriteWithFile:@"loweriphone5.png"];
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/2, 68);
+                
+                printf("here");
+                uplower = [CCSprite spriteWithFile:@"loweriphone5.png"];
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/2, window.height/1.66);
+                break;
+            case IPAD:
+                background = [CCSprite spriteWithFile:@"ipadMini.png"];
+                
+                lowlower = [CCSprite spriteWithFile:@"loweripadMini.png"];
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/1.98, 139);
+                
+                uplower = [CCSprite spriteWithFile:@"loweripadMini.png"];
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/1.98, window.height/1.66);
+                break;
+            case IPADHD:
+                background = [CCSprite spriteWithFile:@"ipadMini.png"];
+                background.scale = iPadScaleFactor;
+                
+                mole1.scale = iPadScaleFactor;
+                mole1.position = ccp(window.width/3.8, window.height/1.66);
+                mole2.scale = iPadScaleFactor;
+                mole2.position = ccp(window.width/1.35, window.height/1.66);
+                mole3.scale = iPadScaleFactor;
+                mole3.position = ccp(window.width/3.8, window.height/7.5);
+                mole4.scale = iPadScaleFactor;
+                mole4.position = ccp(window.width/1.35, window.height/7.5);
+                
+                lowlower = [CCSprite spriteWithFile:@"loweripadMini.png"];
+                lowlower.scale = iPadScaleFactor;
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/1.98, 139);
+                
+                uplower = [CCSprite spriteWithFile:@"loweripadMini.png"];
+                uplower.scale = iPadScaleFactor;
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/1.98, window.height/1.66);
+                break;
+            default:
+                break;
+        }
+        
+        background.anchorPoint = ccp(0.5, 0.5);
+        background.position = ccp(window.width/2, window.height/2);
+
+        
+        
+        moles = [[NSMutableArray alloc] init];
+        
+        
+        
         // Add Sprites to Array.
         
         mole1.tag = TOUCHED;
@@ -136,7 +230,14 @@
 
 - (void) popMole:(CCSprite *)mole {
     
-    CCMoveBy *moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height)];
+    CCMoveBy *moveUp;
+    if(deviceTag == IPADHD) {
+        moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height + 70)];
+    } else if (deviceTag == NONRETINA){
+        moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height - 100)];
+    } else {
+        moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height)];
+    }
     CCEaseInOut *easeMoveUp = [CCEaseInOut actionWithAction:moveUp rate:3.0];
     CCAction *easeMoveDown = [easeMoveUp reverse];
     
