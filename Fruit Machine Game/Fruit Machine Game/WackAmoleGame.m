@@ -16,6 +16,9 @@
 @implementation WackAmoleGame {
     int molesMissed;
     bool screenTouched;
+    int deviceTag;
+    int iPadScaleFactor;
+    StringPtr file;
 }
 
 + (CCScene *) scene {
@@ -160,14 +163,14 @@
 
 - (void) hasMoleBeenTouched:(CCSprite*)mole {
     
+     [label setString:[NSString stringWithFormat:@"Coins: %d", score]];
     
     if (mole.tag == UNTOUCHED) {
         
         molesMissed += 1;
         
-        if (molesMissed <= 15) {
-            [label setString:[NSString stringWithFormat:@"Score: %d", score]];
-            label.opacity = 255;
+        if (molesMissed >= 15) {
+            [self backToGame];
         }
         
     }
@@ -197,10 +200,41 @@
     
     if (screenTouched) {
         molesMissed += 1;
+    }
+}
+
+- (void) backToGame {
+    
+    int total = [[NSUserDefaults standardUserDefaults] integerForKey:TOTALCREDITS];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:(total + score) forKey:TOTALCREDITS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[MainGameScene scene]]];
+}
+
+- (void) setDeviceTag {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
-        if (molesMissed <= 15) {
-            [label setString:[NSString stringWithFormat:@"Score: %d", score]];
-            label.opacity = 255;
+        iPadScaleFactor = 1;
+        
+        if ([[UIScreen mainScreen] bounds].size.height == 568) {
+            deviceTag = IPHONE5;
+        } else {
+            deviceTag = IPHONE;
+            printf("iPhone 4S");
+        }
+        
+        
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        iPadScaleFactor = 2;
+        
+        if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [UIScreen mainScreen].scale > 1) {
+            deviceTag = IPADHD;
+        } else {
+            deviceTag = IPAD;
         }
     }
 }

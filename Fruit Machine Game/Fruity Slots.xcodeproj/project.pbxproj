@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		053C528E18EC5F9E009FC37C /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C528D18EC5F9E009FC37C /* cross.png */; };
-		053C529218EC5FB6009FC37C /* crowcoin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C529018EC5FB6009FC37C /* crowcoin2.png */; };
 		053C529818EC61C6009FC37C /* crowcoin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C529718EC61C6009FC37C /* crowcoin1.png */; };
 		053C529C18EC638A009FC37C /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C529B18EC638A009FC37C /* coin.png */; };
 		05616F1B18D74668009EFEBA /* mole_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F1A18D74668009EFEBA /* mole_1.png */; };
@@ -294,10 +293,6 @@
 		5C0CA4BE18B5DA060066FDE3 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
 		5CF93BFC18B5BD9B00B61BDF /* MenuBackground@i5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBackground@i5.png"; sourceTree = "<group>"; };
 		5CF93BFE18B5BDC200B61BDF /* PowerBarSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PowerBarSound.mp3; sourceTree = "<group>"; };
-		93C995B518ED663300EF565A /* crowcoin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crowcoin1.png; path = "Fruit Machine Game/crowcoin1.png"; sourceTree = "<group>"; };
-		93C995B618ED663F00EF565A /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = "Fruit Machine Game/coin.png"; sourceTree = "<group>"; };
-		93C995B718ED666400EF565A /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cross.png; path = "Fruit Machine Game/cross.png"; sourceTree = "<group>"; };
-		93C995B818ED666C00EF565A /* crowcoin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crowcoin2.png; path = "Fruit Machine Game/crowcoin2.png"; sourceTree = "<group>"; };
 		DC12EBA018B729E6000DBC5F /* levelStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelStar.png; sourceTree = "<group>"; };
 		DC12EBA118B729E6000DBC5F /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
 		DC12EBA418B729F3000DBC5F /* GameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameBackground.png; sourceTree = "<group>"; };
@@ -982,10 +977,6 @@
 		DCA62F0A182B92740053BCD0 = {
 			isa = PBXGroup;
 			children = (
-				93C995B818ED666C00EF565A /* crowcoin2.png */,
-				93C995B718ED666400EF565A /* cross.png */,
-				93C995B618ED663F00EF565A /* coin.png */,
-				93C995B518ED663300EF565A /* crowcoin1.png */,
 				DCA62F2A182B92750053BCD0 /* Fruit Machine Game */,
 				DCA62F15182B92740053BCD0 /* Frameworks */,
 				DCA62F14182B92740053BCD0 /* Products */,
@@ -1605,7 +1596,6 @@
 				DC22818918B434500047D510 /* reset@ipadhd.png in Resources */,
 				DC22819618B44A7E0047D510 /* Default@2x.png in Resources */,
 				DCEF953D18B6C19400E50937 /* AppIcon60x60@2x.png in Resources */,
-				05D8CFA618EC5E900037B772 /* crowcoin1.png in Resources */,
 				DC8D7E9218B89A6C00D6F8C0 /* payOut@i5.png in Resources */,
 				DC22819518B44A7E0047D510 /* Default.png in Resources */,
 				DCA49F971877968600308254 /* apple@2x.png in Resources */,
@@ -1619,7 +1609,6 @@
 				DC12EBA318B729E6000DBC5F /* backButton.png in Resources */,
 				DCEF953F18B6C19400E50937 /* iTunesArtwork@2x.png in Resources */,
 				DC12EBC218B7A00D000DBC5F /* cherry@4x.png in Resources */,
-				05D8CFA418EC5E900037B772 /* coin.png in Resources */,
 				DCEF49A918A2689700F108DF /* Odin Rounded - Bold.otf in Resources */,
 				DC53E8D018B3D8470050F1C5 /* MenuBackground@ipad.png in Resources */,
 				DC53E8DE18B403D10050F1C5 /* optionBar@ipadhd.png in Resources */,
@@ -1639,10 +1628,8 @@
 				DCEF953318B6C19400E50937 /* Icon-72.png in Resources */,
 				5C0CA4B918B5CBDF0066FDE3 /* LevelUp.mp3 in Resources */,
 				DC2281AE18B460C60047D510 /* MinOn@2x.png in Resources */,
-				05D8CFA718EC5E900037B772 /* crowcoin2.png in Resources */,
 				DC53E8D918B403D00050F1C5 /* option.png in Resources */,
 				DC12EBC118B7A00D000DBC5F /* apple@4x.png in Resources */,
-				05D8CFA518EC5E900037B772 /* cross.png in Resources */,
 				DC53E8DA18B403D10050F1C5 /* option@2x.png in Resources */,
 				DCA6309B182B927A0053BCD0 /* ChangeLog in Resources */,
 				DC2281AA18B460C60047D510 /* MinOff.png in Resources */,
