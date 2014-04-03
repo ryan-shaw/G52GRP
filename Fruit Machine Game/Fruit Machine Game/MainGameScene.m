@@ -12,6 +12,7 @@
 #import "SimpleAudioEngine.h"
 #import "GameKitHelper.h"
 #import "PopTheCloud.h"
+#import "WackAmoleGame.h"
 
 int totalSpend = 0, totalCredits;
 
@@ -373,7 +374,12 @@ int totalSpend = 0, totalCredits;
                 break;
             
             case STAR:
-                [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[PopTheCloud scene]]];
+                
+                if(arc4random() % 2 == 0) {
+                    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[PopTheCloud scene]]];
+                } else {
+                    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[WackAmoleGame scene]]];
+                }
                 break;
                 
             default:

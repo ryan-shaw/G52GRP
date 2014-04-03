@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053C528E18EC5F9E009FC37C /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C528D18EC5F9E009FC37C /* cross.png */; };
+		053C529218EC5FB6009FC37C /* crowcoin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C529018EC5FB6009FC37C /* crowcoin2.png */; };
+		053C529818EC61C6009FC37C /* crowcoin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C529718EC61C6009FC37C /* crowcoin1.png */; };
+		053C529C18EC638A009FC37C /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C529B18EC638A009FC37C /* coin.png */; };
 		05616F1B18D74668009EFEBA /* mole_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F1A18D74668009EFEBA /* mole_1.png */; };
 		05616F2518D75DBB009EFEBA /* bg_dirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2418D75DBB009EFEBA /* bg_dirt.png */; };
 		05616F2718D76043009EFEBA /* upper_upper.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2618D76043009EFEBA /* upper_upper.png */; };
@@ -14,10 +18,6 @@
 		05616F2B18D76109009EFEBA /* mole_thump4.png in Resources */ = {isa = PBXBuildFile; fileRef = 05616F2A18D76109009EFEBA /* mole_thump4.png */; };
 		05D8CF8718EC3F270037B772 /* loweriphone4S.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF8618EC3F270037B772 /* loweriphone4S.png */; };
 		05D8CF9F18EC5E810037B772 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CF9E18EC5E810037B772 /* cloud.png */; };
-		05D8CFA418EC5E900037B772 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CFA018EC5E900037B772 /* coin.png */; };
-		05D8CFA518EC5E900037B772 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CFA118EC5E900037B772 /* cross.png */; };
-		05D8CFA618EC5E900037B772 /* crowcoin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CFA218EC5E900037B772 /* crowcoin1.png */; };
-		05D8CFA718EC5E900037B772 /* crowcoin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D8CFA318EC5E900037B772 /* crowcoin2.png */; };
 		5C0CA4B918B5CBDF0066FDE3 /* LevelUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0CA4B818B5CBDF0066FDE3 /* LevelUp.mp3 */; };
 		5C0CA4BB18B5D5550066FDE3 /* ActivatePower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0CA4BA18B5D5550066FDE3 /* ActivatePower.mp3 */; };
 		5C0CA4BF18B5DA060066FDE3 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CA4BE18B5DA060066FDE3 /* GameKitHelper.m */; };
@@ -271,6 +271,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		053C528D18EC5F9E009FC37C /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		053C529018EC5FB6009FC37C /* crowcoin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin2.png; sourceTree = "<group>"; };
+		053C529718EC61C6009FC37C /* crowcoin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin1.png; sourceTree = "<group>"; };
+		053C529B18EC638A009FC37C /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
 		05616F1A18D74668009EFEBA /* mole_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mole_1.png; sourceTree = "<group>"; };
 		05616F2418D75DBB009EFEBA /* bg_dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_dirt.png; path = Art/background/bg_dirt.png; sourceTree = "<group>"; };
 		05616F2618D76043009EFEBA /* upper_upper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upper_upper.png; path = Art/foreground/upper_upper.png; sourceTree = "<group>"; };
@@ -284,10 +288,6 @@
 		05D8CF9818EC51A00037B772 /* ipadMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadMini.png; sourceTree = "<group>"; };
 		05D8CF9C18EC57EA0037B772 /* ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad.png; sourceTree = "<group>"; };
 		05D8CF9E18EC5E810037B772 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
-		05D8CFA018EC5E900037B772 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
-		05D8CFA118EC5E900037B772 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
-		05D8CFA218EC5E900037B772 /* crowcoin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin1.png; sourceTree = "<group>"; };
-		05D8CFA318EC5E900037B772 /* crowcoin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowcoin2.png; sourceTree = "<group>"; };
 		5C0CA4B818B5CBDF0066FDE3 /* LevelUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LevelUp.mp3; sourceTree = "<group>"; };
 		5C0CA4BA18B5D5550066FDE3 /* ActivatePower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ActivatePower.mp3; sourceTree = "<group>"; };
 		5C0CA4BD18B5DA060066FDE3 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
@@ -1040,11 +1040,11 @@
 		DCA62F2B182B92750053BCD0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				05D8CFA018EC5E900037B772 /* coin.png */,
-				05D8CFA118EC5E900037B772 /* cross.png */,
-				05D8CFA218EC5E900037B772 /* crowcoin1.png */,
-				05D8CFA318EC5E900037B772 /* crowcoin2.png */,
+				053C529718EC61C6009FC37C /* crowcoin1.png */,
+				053C529018EC5FB6009FC37C /* crowcoin2.png */,
 				05D8CF9E18EC5E810037B772 /* cloud.png */,
+				053C529B18EC638A009FC37C /* coin.png */,
+				053C528D18EC5F9E009FC37C /* cross.png */,
 				05D8CF8018EC3B670037B772 /* iphone4S.png */,
 				05D8CF9C18EC57EA0037B772 /* ipad.png */,
 				05D8CF9218EC4D540037B772 /* loweripadMini.png */,
@@ -1660,6 +1660,7 @@
 				DC12EBBF18B7A00D000DBC5F /* banana@4x.png in Resources */,
 				DC22817118B415260047D510 /* leaderboard@2x.png in Resources */,
 				DC2281AD18B460C60047D510 /* MinOn.png in Resources */,
+				053C528E18EC5F9E009FC37C /* cross.png in Resources */,
 				5C0CA4BB18B5D5550066FDE3 /* ActivatePower.mp3 in Resources */,
 				DC12EBC018B7A00D000DBC5F /* orange@4x.png in Resources */,
 				DC12EBC818B7A0C8000DBC5F /* levelStar@4x.png in Resources */,
@@ -1699,9 +1700,11 @@
 				5CF93BFF18B5BDC200B61BDF /* PowerBarSound.mp3 in Resources */,
 				DC22817318B415260047D510 /* muteOn@2x.png in Resources */,
 				DC8D7E9318B89A6C00D6F8C0 /* payOut@ipad.png in Resources */,
+				053C529C18EC638A009FC37C /* coin.png in Resources */,
 				DC8D7E9418B89A6C00D6F8C0 /* payOut@ipadhd.png in Resources */,
 				DCEF953C18B6C19400E50937 /* AppIcon60x60.png in Resources */,
 				DC2281B418B4FA7A0047D510 /* reelStop.mp3 in Resources */,
+				053C529818EC61C6009FC37C /* crowcoin1.png in Resources */,
 				DC8ACE5218A313070094075B /* backButton@2x.png in Resources */,
 				DC22819318B44A7E0047D510 /* Default-568h@2x.png in Resources */,
 				DC21D53D18A246C2009F4C09 /* bar@4x.png in Resources */,

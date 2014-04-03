@@ -7,6 +7,7 @@
 //
 
 #import "WackAmoleGame.h"
+#import "MainGameScene.h"
 
 #define TOUCHED 1
 #define UNTOUCHED 2
@@ -113,8 +114,12 @@
         [self addChild:upperTop z:-1];
         [self addChild:label z:10];
         
-        [self schedule:@selector(tryPopMoles:) interval:0.5];
-        [self schedule:@selector(update)];
+        [self runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:1.5] two:[CCCallBlockN actionWithBlock:^(CCNode *node) {
+            
+            [self schedule:@selector(tryPopMoles:) interval:0.5];
+            [self schedule:@selector(update)];
+            
+        }]]];
     }
     
     self.touchEnabled = YES;
@@ -123,7 +128,7 @@
 
 - (void) update {
     
-    [label setString:[NSString stringWithFormat:@"Score: %d", score]];
+    [label setString:[NSString stringWithFormat:@"Coins: %d", score]];
 }
 
 - (void) popMole:(CCSprite *)mole {
@@ -182,17 +187,15 @@
     for (CCSprite *mole in moles) {
         
         if (CGRectContainsPoint(mole.boundingBox, firstTouch) && mole.numberOfRunningActions != 0) {
-            score += 10;
+            score += 100;
             
             mole.tag = TOUCHED;
             
             screenTouched = NO;
-            
         }
     }
     
     if (screenTouched) {
-        
         molesMissed += 1;
         
         if (molesMissed <= 15) {
