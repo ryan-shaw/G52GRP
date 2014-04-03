@@ -157,6 +157,7 @@ int totalSpend = 0, totalCredits;
     
 	if( (self=[super init])) {
         
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         win = [[CCDirector sharedDirector] winSize];
