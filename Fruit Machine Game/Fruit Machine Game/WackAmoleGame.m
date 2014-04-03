@@ -77,6 +77,25 @@
         mole4.position = ccp(window.width/1.35, window.height/10);
         
         switch (deviceTag) {
+            case NONRETINA:
+                background = [CCSprite spriteWithFile:@"iphone4S.png"];
+                background.scale = 0.5;
+                
+                lowlower = [CCSprite spriteWithFile:@"loweriphone4S.png"];
+                lowlower.scale = 0.5;
+                lowlower.anchorPoint = ccp(0.5, 0.5);
+                lowlower.position = ccp(window.width/2, 30);
+                
+                uplower = [CCSprite spriteWithFile:@"loweriphone4S.png"];
+                uplower.scale = 0.5;
+                uplower.anchorPoint = ccp(0.5, 0.5);
+                uplower.position = ccp(window.width/2, window.height/1.85);
+                
+                mole1.scale = 0.5;
+                mole2.scale = 0.5;
+                mole3.scale = 0.5;
+                mole4.scale = 0.5;
+                break;
             case IPHONE:
                 background = [CCSprite spriteWithFile:@"iphone4S.png"];
                 
@@ -95,6 +114,7 @@
                 lowlower.anchorPoint = ccp(0.5, 0.5);
                 lowlower.position = ccp(window.width/2, 68);
                 
+                printf("here");
                 uplower = [CCSprite spriteWithFile:@"loweriphone5.png"];
                 uplower.anchorPoint = ccp(0.5, 0.5);
                 uplower.position = ccp(window.width/2, window.height/1.66);
@@ -194,6 +214,8 @@
     CCMoveBy *moveUp;
     if(deviceTag == IPADHD) {
         moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height + 70)];
+    } else if (deviceTag == NONRETINA){
+        moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height - 100)];
     } else {
         moveUp = [CCMoveBy actionWithDuration:0.4 position:ccp(0, mole.contentSize.height)];
     }
@@ -279,12 +301,27 @@
         
         iPadScaleFactor = 1;
         
+       
+        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+            ([UIScreen mainScreen].scale == 2.0)) {
+            
+            
+            
+            iPadScaleFactor = 1;
+            deviceTag = IPHONE;
+            
+        } else {
+            iPadScaleFactor = 0.5;
+            deviceTag = NONRETINA;
+        }
+        
         if ([[UIScreen mainScreen] bounds].size.height == 568) {
             deviceTag = IPHONE5;
-        } else {
-            deviceTag = IPHONE;
-            printf("iPhone 4S");
         }
+        
+        
+       
         
         
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
