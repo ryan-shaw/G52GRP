@@ -14,9 +14,6 @@
 #import "PopTheCloud.h"
 #import "WackAmoleGame.h"
 
-// set totalSpend as a global variable; this is here as i want the totalSpend to stay consistent regardless of the
-// new instances that are created
-
 int totalSpend = 0, totalCredits;
 
 @implementation MainGameScene {

@@ -15,13 +15,11 @@
 
 - (void) setReel:(int)reelPosition {
     
-    // set the reel position of each instance of this fruit class
     reel = reelPosition;
 }
 
 - (int) getReelPosition {
     
-    // return the reel position of the fruit
     return reel;
 }
 
