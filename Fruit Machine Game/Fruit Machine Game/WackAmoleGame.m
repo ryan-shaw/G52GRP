@@ -77,6 +77,10 @@
         CCSprite *mole4 = [CCSprite spriteWithFile:@"mole_1.png"];
         mole4.position = ccp(window.width/1.35, window.height/10);
         
+        CCSprite *background;
+        CCSprite *lowlower;
+        CCSprite *uplower;
+        
         switch (deviceTag) {
             case NONRETINA:
                 background = [CCSprite spriteWithFile:@"iphone4S.png"];
@@ -160,8 +164,7 @@
         
         background.anchorPoint = ccp(0.5, 0.5);
         background.position = ccp(window.width/2, window.height/2);
-        
-        
+       
         
         moles = [[NSMutableArray alloc] init];
         
@@ -319,12 +322,24 @@
             deviceTag = NONRETINA;
         }
         
+       
+        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+            ([UIScreen mainScreen].scale == 2.0)) {
+            
+            
+            
+            iPadScaleFactor = 1;
+            deviceTag = IPHONE;
+            
+        } else {
+            iPadScaleFactor = 0.5;
+            deviceTag = NONRETINA;
+        }
+        
         if ([[UIScreen mainScreen] bounds].size.height == 568) {
             deviceTag = IPHONE5;
         }
-        
-        
-        
         
         
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
